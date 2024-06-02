@@ -1,0 +1,12 @@
+openapi: 3.0.0
+info:
+  title: first-bot-apigw
+  version: 1.0.0
+paths:
+  /forwebhook:
+    post:
+      x-yc-apigateway-integration:
+        type: cloud-functions
+        function_id: d4ef7q930iv1v63urmj4
+        service_account_id: ajebk41rmhbgsnd054k0
+      operationId: first-bot-function
