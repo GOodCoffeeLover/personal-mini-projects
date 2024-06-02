@@ -3,10 +3,10 @@ info:
   title: first-bot-apigw
   version: 1.0.0
 paths:
-  /forwebhook:
+  /webhook:
     post:
       x-yc-apigateway-integration:
         type: cloud-functions
-        function_id: d4ef7q930iv1v63urmj4
-        service_account_id: ajebk41rmhbgsnd054k0
-      operationId: first-bot-function
+        function_id: ${function_id}
+        service_account_id: ${service_account_id}
+      operationId: ${function_name} 

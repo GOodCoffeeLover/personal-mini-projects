@@ -10,7 +10,7 @@ variable "tg_lockbox_secret" {
   type = map(string)
 }
 
-variable "sa_id"{
-type = string
-default = "ajebk41rmhbgsnd054k0"
+variable "sa_id" {
+  type    = string
+  default = "ajebk41rmhbgsnd054k0"
 }
