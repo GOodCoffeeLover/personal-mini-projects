@@ -1,0 +1,736 @@
+2025-02-11 19:20:19.554 [INFO][9] startup/startup.go 439: Early log level set to info
+2025-02-11 19:20:19.554 [INFO][9] startup/utils.go 126: Using NODENAME environment for node name raspberrypi5-ubuntu1
+2025-02-11 19:20:19.554 [INFO][9] startup/utils.go 138: Determined node name: raspberrypi5-ubuntu1
+2025-02-11 19:20:05.097 [INFO][1] init-best-effort/startup.go 439: Early log level set to info
+2025-02-11 19:20:05.097 [INFO][1] init-best-effort/calico-init_linux.go 57: Checking if BPF filesystem is mounted.
+2025-02-11 19:20:05.097 [INFO][1] init-best-effort/calico-init_linux.go 69: BPF filesystem is mounted.
+2025-02-11 19:20:05.097 [INFO][1] init-best-effort/calico-init_linux.go 92: Checking if cgroup2 filesystem is mounted.
+2025-02-11 19:20:19.554 [INFO][9] startup/startup.go 95: Starting node raspberrypi5-ubuntu1 with version v3.29.2
+2025-02-11 19:20:19.556 [INFO][9] startup/startup.go 444: Checking datastore connection
+2025-02-11 19:20:19.658 [INFO][9] startup/startup.go 468: Datastore connection verified
+2025-02-11 19:20:19.658 [INFO][9] startup/startup.go 105: Datastore is ready
+2025-02-11 19:20:19.690 [WARNING][9] startup/winutils.go 150: Neither --kubeconfig nor --master was specified.  Using the inClusterConfig.  This might not work.
+2025-02-11 19:20:19.762 [INFO][9] startup/reachaddr.go 47: Auto-detected address by connecting to remote Destination="192.168.1.199" IP=192.168.1.201
+2025-02-11 19:20:19.763 [INFO][9] startup/autodetection_methods.go 143: Using autodetected IPv4 address 192.168.1.201/24, detected by connecting to 192.168.1.199
+2025-02-11 19:20:19.763 [INFO][9] startup/startup.go 720: No AS number configured on node resource, using global value
+2025-02-11 19:20:19.763 [INFO][9] startup/startup.go 783: found v4=10.97.0.0/16 in the kubeadm config map
+2025-02-11 19:20:05.098 [INFO][1] init-best-effort/calico-init_linux.go 111: Cgroup2 filesystem is mounted.
+2025-02-11 19:20:19.763 [INFO][9] startup/startup.go 787: found v6= in the kubeadm config map
+2025-02-11 19:20:19.795 [INFO][9] startup/startup.go 688: FELIX_IPV6SUPPORT is false through environment variable
+2025-02-11 19:20:19.956 [INFO][9] startup/startup.go 215: Using node name: raspberrypi5-ubuntu1
+2025-02-11 19:20:19.956 [INFO][9] startup/utils.go 190: Setting NetworkUnavailable to false
+2025-02-11 19:20:20.135 [INFO][30] tunnel-ip-allocator/param_types.go 714: StringSliceParam StringSliceParam raw="docker+"
+2025-02-11 19:20:20.136 [INFO][30] tunnel-ip-allocator/env_var_loader.go 40: Found felix environment variable: "wireguardmtu"="0"
+2025-02-11 19:20:20.137 [INFO][30] tunnel-ip-allocator/env_var_loader.go 40: Found felix environment variable: "vxlanmtu"="0"
+2025-02-11 19:20:02.096 [INFO][1] cni-installer/install.go 138: Running as a Kubernetes pod
+2025-02-11 19:20:02.107 [INFO][1] cni-installer/install.go 415: File is already up to date, skipping file="/host/opt/cni/bin/bandwidth"
+2025-02-11 19:20:20.137 [INFO][30] tunnel-ip-allocator/env_var_loader.go 40: Found felix environment variable: "healthenabled"="true"
+2025-02-11 19:20:01.249 [INFO][1] ipam/ipam_plugin.go 70: migrating from host-local to calico-ipam...
+2025-02-11 19:20:01.251 [INFO][1] ipam/migrate.go 66: checking host-local IPAM data dir existence...
+2025-02-11 19:20:01.251 [INFO][1] ipam/migrate.go 68: host-local IPAM data dir not found; no migration necessary, successfully exiting...
+2025-02-11 19:20:20.137 [INFO][30] tunnel-ip-allocator/env_var_loader.go 40: Found felix environment variable: "defaultendpointtohostaction"="ACCEPT"
+2025-02-11 19:20:20.137 [INFO][30] tunnel-ip-allocator/env_var_loader.go 40: Found felix environment variable: "ipinipmtu"="0"
+2025-02-11 19:20:20.137 [INFO][30] tunnel-ip-allocator/env_var_loader.go 40: Found felix environment variable: "ipv6support"="false"
+2025-02-11 19:20:02.116 [INFO][1] cni-installer/install.go 224: Installed /host/opt/cni/bin/bandwidth
+2025-02-11 19:20:02.237 [INFO][1] cni-installer/install.go 415: File is already up to date, skipping file="/host/opt/cni/bin/calico"
+2025-02-11 19:20:02.355 [INFO][1] cni-installer/install.go 224: Installed /host/opt/cni/bin/calico
+2025-02-11 19:20:02.473 [INFO][1] cni-installer/install.go 415: File is already up to date, skipping file="/host/opt/cni/bin/calico-ipam"
+2025-02-11 19:20:01.251 [INFO][1] ipam/ipam_plugin.go 100: migration from host-local to calico-ipam complete node="raspberrypi5-ubuntu1"
+2025-02-11 19:20:20.137 [INFO][30] tunnel-ip-allocator/config_params.go 564: Merging in config from environment variable: map[defaultendpointtohostaction:ACCEPT healthenabled:true ipinipmtu:0 ipv6support:false vxlanmtu:0 wireguardmtu:0]
+2025-02-11 19:20:20.137 [INFO][30] tunnel-ip-allocator/config_params.go 695: Parsing value for HealthEnabled: true (from environment variable)
+2025-02-11 19:20:20.137 [INFO][30] tunnel-ip-allocator/config_params.go 731: Parsed value for HealthEnabled: true (from environment variable)
+2025-02-11 19:20:20.137 [INFO][30] tunnel-ip-allocator/config_params.go 695: Parsing value for DefaultEndpointToHostAction: ACCEPT (from environment variable)
+2025-02-11 19:20:02.588 [INFO][1] cni-installer/install.go 224: Installed /host/opt/cni/bin/calico-ipam
+2025-02-11 19:20:02.594 [INFO][1] cni-installer/install.go 415: File is already up to date, skipping file="/host/opt/cni/bin/flannel"
+2025-02-11 19:20:02.600 [INFO][1] cni-installer/install.go 224: Installed /host/opt/cni/bin/flannel
+2025-02-11 19:20:02.608 [INFO][1] cni-installer/install.go 415: File is already up to date, skipping file="/host/opt/cni/bin/host-local"
+2025-02-11 19:20:20.137 [INFO][30] tunnel-ip-allocator/config_params.go 731: Parsed value for DefaultEndpointToHostAction: ACCEPT (from environment variable)
+2025-02-11 19:20:20.137 [INFO][30] tunnel-ip-allocator/config_params.go 695: Parsing value for IpInIpMtu: 0 (from environment variable)
+2025-02-11 19:20:20.137 [INFO][30] tunnel-ip-allocator/config_params.go 731: Parsed value for IpInIpMtu: 0 (from environment variable)
+2025-02-11 19:20:20.137 [INFO][30] tunnel-ip-allocator/config_params.go 695: Parsing value for Ipv6Support: false (from environment variable)
+2025-02-11 19:20:02.615 [INFO][1] cni-installer/install.go 224: Installed /host/opt/cni/bin/host-local
+2025-02-11 19:20:02.623 [INFO][1] cni-installer/install.go 415: File is already up to date, skipping file="/host/opt/cni/bin/loopback"
+2025-02-11 19:20:02.631 [INFO][1] cni-installer/install.go 224: Installed /host/opt/cni/bin/loopback
+2025-02-11 19:20:02.640 [INFO][1] cni-installer/install.go 415: File is already up to date, skipping file="/host/opt/cni/bin/portmap"
+2025-02-11 19:20:02.648 [INFO][1] cni-installer/install.go 224: Installed /host/opt/cni/bin/portmap
+2025-02-11 19:20:02.657 [INFO][1] cni-installer/install.go 415: File is already up to date, skipping file="/host/opt/cni/bin/tuning"
+2025-02-11 19:20:02.664 [INFO][1] cni-installer/install.go 224: Installed /host/opt/cni/bin/tuning
+2025-02-11 19:20:02.665 [INFO][1] cni-installer/install.go 228: Wrote Calico CNI binaries to /host/opt/cni/bin
+
+2025-02-11 19:20:02.665 [INFO][1] cni-installer/install.go 233: CNI plugin version: v3.29.2
+2025-02-11 19:20:02.665 [INFO][1] cni-installer/install.go 185: /host/secondary-bin-dir is not writeable, skipping
+2025-02-11 19:20:02.665 [WARNING][1] cni-installer/winutils.go 150: Neither --kubeconfig nor --master was specified.  Using the inClusterConfig.  This might not work.
+2025-02-11 19:20:04.355 [INFO][1] cni-installer/install.go 312: Using CNI config template from CNI_NETWORK_CONFIG environment variable.
+2025-02-11 19:20:04.357 [INFO][1] cni-installer/install.go 393: Created /host/etc/cni/net.d/10-calico.conflist
+2025-02-11 19:20:04.357 [INFO][1] cni-installer/install.go 253: Done configuring CNI.  Sleep= false
+{
+  "name": "k8s-pod-network",
+  "cniVersion": "0.3.1",
+  "plugins": [
+    {
+      "type": "calico",
+      "log_level": "info",
+      "log_file_path": "/var/log/calico/cni/cni.log",
+      "datastore_type": "kubernetes",
+      "nodename": "raspberrypi5-ubuntu1",
+      "mtu": 0,
+2025-02-11 19:20:20.137 [INFO][30] tunnel-ip-allocator/config_params.go 731: Parsed value for Ipv6Support: false (from environment variable)
+2025-02-11 19:20:20.137 [INFO][30] tunnel-ip-allocator/config_params.go 695: Parsing value for WireguardMTU: 0 (from environment variable)
+2025-02-11 19:20:20.137 [INFO][30] tunnel-ip-allocator/config_params.go 731: Parsed value for WireguardMTU: 0 (from environment variable)
+2025-02-11 19:20:20.138 [INFO][30] tunnel-ip-allocator/config_params.go 695: Parsing value for VXLANMTU: 0 (from environment variable)
+2025-02-11 19:20:20.138 [INFO][30] tunnel-ip-allocator/config_params.go 731: Parsed value for VXLANMTU: 0 (from environment variable)
+2025-02-11 19:20:20.558 [INFO][30] tunnel-ip-allocator/allocateip.go 340: Current address is still valid, do nothing currentAddr="10.97.79.192" type="ipipTunnelAddress"
+Calico node started successfully
+bird: Unable to open configuration file /etc/calico/confd/config/bird.cfg: No such file or directory
+bird: Unable to open configuration file /etc/calico/confd/config/bird6.cfg: No such file or directory
+2025-02-11 19:20:21.871 [WARNING][82] cni-config-monitor/winutils.go 150: Neither --kubeconfig nor --master was specified.  Using the inClusterConfig.  This might not work.
+2025-02-11 19:20:21.881 [INFO][77] monitor-addresses/startup.go 439: Early log level set to info
+2025-02-11 19:20:21.884 [INFO][77] monitor-addresses/utils.go 126: Using NODENAME environment for node name raspberrypi5-ubuntu1
+2025-02-11 19:20:21.884 [INFO][77] monitor-addresses/utils.go 138: Determined node name: raspberrypi5-ubuntu1
+2025-02-11 19:20:21.884 [WARNING][77] monitor-addresses/winutils.go 150: Neither --kubeconfig nor --master was specified.  Using the inClusterConfig.  This might not work.
+2025-02-11 19:20:21.906 [INFO][81] tunnel-ip-allocator/param_types.go 714: StringSliceParam StringSliceParam raw="docker+"
+2025-02-11 19:20:21.910 [INFO][81] tunnel-ip-allocator/env_var_loader.go 40: Found felix environment variable: "wireguardmtu"="0"
+2025-02-11 19:20:21.911 [INFO][81] tunnel-ip-allocator/env_var_loader.go 40: Found felix environment variable: "vxlanmtu"="0"
+2025-02-11 19:20:21.911 [INFO][81] tunnel-ip-allocator/env_var_loader.go 40: Found felix environment variable: "healthenabled"="true"
+2025-02-11 19:20:21.911 [INFO][81] tunnel-ip-allocator/env_var_loader.go 40: Found felix environment variable: "defaultendpointtohostaction"="ACCEPT"
+      "ipam": {
+          "type": "calico-ipam"
+      },
+      "policy": {
+          "type": "k8s"
+      },
+      "kubernetes": {
+          "kubeconfig": "/etc/cni/net.d/calico-kubeconfig"
+      }
+    },
+    {
+      "type": "portmap",
+      "snat": true,
+      "capabilities": {"portMappings": true}
+    },
+    {
+      "type": "bandwidth",
+      "capabilities": {"bandwidth": true}
+    }
+  ]
+}
+2025-02-11 19:20:21.911 [INFO][81] tunnel-ip-allocator/env_var_loader.go 40: Found felix environment variable: "ipinipmtu"="0"
+2025-02-11 19:20:21.911 [INFO][81] tunnel-ip-allocator/env_var_loader.go 40: Found felix environment variable: "ipv6support"="false"
+2025-02-11 19:20:21.911 [INFO][81] tunnel-ip-allocator/config_params.go 564: Merging in config from environment variable: map[defaultendpointtohostaction:ACCEPT healthenabled:true ipinipmtu:0 ipv6support:false vxlanmtu:0 wireguardmtu:0]
+2025-02-11 19:20:21.911 [INFO][81] tunnel-ip-allocator/config_params.go 695: Parsing value for HealthEnabled: true (from environment variable)
+2025-02-11 19:20:21.911 [INFO][81] tunnel-ip-allocator/config_params.go 731: Parsed value for HealthEnabled: true (from environment variable)
+2025-02-11 19:20:21.911 [INFO][81] tunnel-ip-allocator/config_params.go 695: Parsing value for DefaultEndpointToHostAction: ACCEPT (from environment variable)
+2025-02-11 19:20:21.912 [INFO][81] tunnel-ip-allocator/config_params.go 731: Parsed value for DefaultEndpointToHostAction: ACCEPT (from environment variable)
+2025-02-11 19:20:21.912 [INFO][81] tunnel-ip-allocator/config_params.go 695: Parsing value for IpInIpMtu: 0 (from environment variable)
+2025-02-11 19:20:21.912 [INFO][81] tunnel-ip-allocator/config_params.go 731: Parsed value for IpInIpMtu: 0 (from environment variable)
+2025-02-11 19:20:21.912 [INFO][81] tunnel-ip-allocator/config_params.go 695: Parsing value for Ipv6Support: false (from environment variable)
+2025-02-11 19:20:21.912 [INFO][81] tunnel-ip-allocator/config_params.go 731: Parsed value for Ipv6Support: false (from environment variable)
+2025-02-11 19:20:21.912 [INFO][81] tunnel-ip-allocator/config_params.go 695: Parsing value for WireguardMTU: 0 (from environment variable)
+2025-02-11 19:20:21.912 [INFO][81] tunnel-ip-allocator/config_params.go 731: Parsed value for WireguardMTU: 0 (from environment variable)
+2025-02-11 19:20:21.912 [INFO][81] tunnel-ip-allocator/config_params.go 695: Parsing value for VXLANMTU: 0 (from environment variable)
+2025-02-11 19:20:21.912 [INFO][81] tunnel-ip-allocator/config_params.go 731: Parsed value for VXLANMTU: 0 (from environment variable)
+2025-02-11 19:20:21.916 [INFO][78] confd/config.go 83: Skipping confd config file.
+2025-02-11 19:20:21.916 [INFO][78] confd/run.go 18: Starting calico-confd
+2025-02-11 19:20:21.917 [INFO][81] tunnel-ip-allocator/watchersyncer.go 89: Start called
+2025-02-11 19:20:21.917 [INFO][81] tunnel-ip-allocator/watchersyncer.go 130: Sending status update Status=wait-for-ready
+2025-02-11 19:20:21.917 [INFO][81] tunnel-ip-allocator/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/nodes/raspberrypi5-ubuntu1"
+2025-02-11 19:20:21.919 [INFO][81] tunnel-ip-allocator/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/ippools"
+2025-02-11 19:20:21.917 [INFO][81] tunnel-ip-allocator/watchersyncer.go 149: Starting main event processing loop
+2025-02-11 19:20:21.920 [INFO][82] cni-config-monitor/token_watch.go 226: Update of CNI kubeconfig triggered based on elapsed time.
+2025-02-11 19:20:21.920 [WARNING][82] cni-config-monitor/winutils.go 150: Neither --kubeconfig nor --master was specified.  Using the inClusterConfig.  This might not work.
+2025-02-11 19:20:21.921 [INFO][82] cni-config-monitor/token_watch.go 281: Wrote updated CNI kubeconfig file. path="/host/etc/cni/net.d/calico-kubeconfig"
+2025-02-11 19:20:21.936 [INFO][83] status-reporter/startup.go 439: Early log level set to info
+2025-02-11 19:20:21.937 [INFO][83] status-reporter/watchersyncer.go 89: Start called
+2025-02-11 19:20:21.937 [INFO][83] status-reporter/watchersyncer.go 130: Sending status update Status=wait-for-ready
+2025-02-11 19:20:21.937 [INFO][83] status-reporter/watchersyncer.go 149: Starting main event processing loop
+2025-02-11 19:20:21.937 [INFO][83] status-reporter/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/caliconodestatuses"
+2025-02-11 19:20:21.955 [INFO][81] tunnel-ip-allocator/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/nodes/raspberrypi5-ubuntu1"
+2025-02-11 19:20:21.955 [INFO][81] tunnel-ip-allocator/watchersyncer.go 130: Sending status update Status=resync
+2025-02-11 19:20:21.955 [INFO][81] tunnel-ip-allocator/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:21.956 [INFO][81] tunnel-ip-allocator/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/ippools"
+2025-02-11 19:20:21.957 [INFO][81] tunnel-ip-allocator/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:21.957 [INFO][81] tunnel-ip-allocator/watchersyncer.go 221: All watchers have sync'd data - sending data and final sync
+2025-02-11 19:20:21.957 [INFO][81] tunnel-ip-allocator/watchersyncer.go 130: Sending status update Status=in-sync
+2025-02-11 19:20:21.958 [INFO][83] status-reporter/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/caliconodestatuses"
+2025-02-11 19:20:21.958 [INFO][83] status-reporter/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:21.958 [INFO][83] status-reporter/watchersyncer.go 130: Sending status update Status=resync
+2025-02-11 19:20:21.958 [INFO][83] status-reporter/watchersyncer.go 221: All watchers have sync'd data - sending data and final sync
+2025-02-11 19:20:21.958 [INFO][83] status-reporter/watchersyncer.go 130: Sending status update Status=in-sync
+2025-02-11 19:20:21.995 [WARNING][78] confd/winutils.go 150: Neither --kubeconfig nor --master was specified.  Using the inClusterConfig.  This might not work.
+2025-02-11 19:20:21.995 [INFO][78] confd/client.go 1496: Advertise global service ranges from this node
+2025-02-11 19:20:21.995 [INFO][78] confd/client.go 1427: Updated with new cluster IP CIDRs: []
+2025-02-11 19:20:21.995 [INFO][78] confd/client.go 1496: Advertise global service ranges from this node
+2025-02-11 19:20:21.995 [INFO][78] confd/client.go 1418: Updated with new external IP CIDRs: []
+2025-02-11 19:20:21.995 [INFO][78] confd/client.go 1496: Advertise global service ranges from this node
+2025-02-11 19:20:21.995 [INFO][78] confd/client.go 1451: Updated with new Loadbalancer IP CIDRs: []
+2025-02-11 19:20:21.995 [INFO][78] confd/watchersyncer.go 89: Start called
+2025-02-11 19:20:21.995 [INFO][78] confd/client.go 422: Source SourceRouteGenerator readiness changed, ready=true
+2025-02-11 19:20:21.996 [INFO][78] confd/watchersyncer.go 130: Sending status update Status=wait-for-ready
+2025-02-11 19:20:21.996 [INFO][78] confd/watchersyncer.go 149: Starting main event processing loop
+2025-02-11 19:20:21.996 [INFO][78] confd/watchercache.go 181: Full resync is required ListRoot="/calico/ipam/v2/host/raspberrypi5-ubuntu1"
+2025-02-11 19:20:21.996 [INFO][78] confd/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/bgpconfigurations"
+2025-02-11 19:20:21.996 [INFO][78] confd/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/nodes"
+2025-02-11 19:20:21.997 [INFO][78] confd/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/ippools"
+2025-02-11 19:20:21.997 [INFO][78] confd/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/bgpfilters"
+2025-02-11 19:20:21.997 [INFO][78] confd/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/bgppeers"
+2025-02-11 19:20:22.001 [INFO][78] confd/watchercache.go 310: Sending synced update ListRoot="/calico/ipam/v2/host/raspberrypi5-ubuntu1"
+2025-02-11 19:20:22.001 [INFO][78] confd/watchersyncer.go 130: Sending status update Status=resync
+2025-02-11 19:20:22.001 [INFO][78] confd/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:22.005 [INFO][78] confd/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/nodes"
+2025-02-11 19:20:22.005 [INFO][78] confd/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/bgpconfigurations"
+2025-02-11 19:20:22.005 [INFO][78] confd/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/bgppeers"
+2025-02-11 19:20:22.005 [INFO][78] confd/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:22.005 [INFO][78] confd/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:22.005 [INFO][78] confd/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:22.005 [INFO][78] confd/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/bgpfilters"
+2025-02-11 19:20:22.005 [INFO][78] confd/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:22.006 [INFO][78] confd/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/ippools"
+2025-02-11 19:20:22.006 [INFO][78] confd/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:22.006 [INFO][78] confd/watchersyncer.go 221: All watchers have sync'd data - sending data and final sync
+2025-02-11 19:20:22.007 [INFO][78] confd/client.go 1036: Recompute BGP peerings: HostBGPConfig(node=raspberrypi5-ubuntu1; name=ip_addr_v4) updated; HostBGPConfig(node=raspberrypi5-ubuntu1; name=ip_addr_v6) updated; HostBGPConfig(node=raspberrypi5-ubuntu1; name=network_v4) updated; HostBGPConfig(node=raspberrypi5-ubuntu1; name=rr_cluster_id) updated; raspberrypi5-ubuntu1 updated; HostBGPConfig(node=toshiba-ubuntu-server-2204; name=ip_addr_v4) updated; HostBGPConfig(node=toshiba-ubuntu-server-2204; name=ip_addr_v6) updated; HostBGPConfig(node=toshiba-ubuntu-server-2204; name=network_v4) updated; HostBGPConfig(node=toshiba-ubuntu-server-2204; name=rr_cluster_id) updated; toshiba-ubuntu-server-2204 updated
+2025-02-11 19:20:22.007 [INFO][78] confd/watchersyncer.go 130: Sending status update Status=in-sync
+2025-02-11 19:20:22.007 [INFO][78] confd/client.go 422: Source SourceSyncer readiness changed, ready=true
+2025-02-11 19:20:22.007 [INFO][78] confd/client.go 442: Data is now syncd, can start rendering templates
+2025-02-11 19:20:22.019 [INFO][78] confd/resource.go 290: Target config /etc/calico/confd/config/bird6_ipam.cfg has been updated
+2025-02-11 19:20:22.022 [INFO][78] confd/resource.go 290: Target config /etc/calico/confd/config/bird_ipam.cfg has been updated
+2025-02-11 19:20:22.022 [INFO][78] confd/resource.go 290: Target config /etc/calico/confd/config/bird_aggr.cfg has been updated
+2025-02-11 19:20:22.026 [INFO][78] confd/resource.go 290: Target config /etc/calico/confd/config/bird6_aggr.cfg has been updated
+2025-02-11 19:20:22.027 [INFO][78] confd/resource.go 290: Target config /etc/calico/confd/config/bird6.cfg has been updated
+2025-02-11 19:20:22.032 [INFO][78] confd/resource.go 290: Target config /etc/calico/confd/config/bird.cfg has been updated
+2025-02-11 19:20:22.062 [INFO][80] felix/daemon.go 354: Successfully loaded configuration. GOMAXPROCS=4 builddate="2025-02-05T17:17:50+0000" config=&config.Config{UseInternalDataplaneDriver:true, DataplaneDriver:"calico-iptables-plugin", DataplaneWatchdogTimeout:90000000000, WireguardEnabled:false, WireguardEnabledV6:false, WireguardListeningPort:51820, WireguardListeningPortV6:51821, WireguardRoutingRulePriority:99, WireguardInterfaceName:"wireguard.cali", WireguardInterfaceNameV6:"wg-v6.cali", WireguardMTU:0, WireguardMTUV6:0, WireguardHostEncryptionEnabled:false, WireguardPersistentKeepAlive:0, WireguardThreadingEnabled:false, NFTablesMode:"Disabled", BPFEnabled:false, BPFDisableUnprivileged:true, BPFLogLevel:"off", BPFLogFilters:map[string]string(nil), BPFCTLBLogFilter:"", BPFDataIfacePattern:(*regexp.Regexp)(0x40007ed2c0), BPFL3IfacePattern:(*regexp.Regexp)(nil), BPFConnectTimeLoadBalancingEnabled:false, BPFConnectTimeLoadBalancing:"TCP", BPFHostNetworkedNATWithoutCTLB:"Enabled", BPFExternalServiceMode:"tunnel", BPFDSROptoutCIDRs:[]string(nil), BPFKubeProxyIptablesCleanupEnabled:true, BPFKubeProxyMinSyncPeriod:1000000000, BPFKubeProxyEndpointSlicesEnabled:true, BPFExtToServiceConnmark:0, BPFPSNATPorts:numorstring.Port{MinPort:0x4e20, MaxPort:0x752f, PortName:""}, BPFMapSizeNATFrontend:65536, BPFMapSizeNATBackend:262144, BPFMapSizeNATAffinity:65536, BPFMapSizeRoute:262144, BPFMapSizeConntrack:512000, BPFMapSizeIPSets:1048576, BPFMapSizeIfState:1000, BPFHostConntrackBypass:true, BPFEnforceRPF:"Loose", BPFPolicyDebugEnabled:true, BPFForceTrackPacketsFromIfaces:[]string{"docker+"}, BPFDisableGROForIfaces:(*regexp.Regexp)(nil), BPFExcludeCIDRsFromNAT:[]string(nil), BPFRedirectToPeer:"L2Only", DebugBPFCgroupV2:"", DebugBPFMapRepinEnabled:false, DatastoreType:"kubernetes", FelixHostname:"raspberrypi5-ubuntu1", EtcdAddr:"127.0.0.1:2379", EtcdScheme:"http", EtcdKeyFile:"", EtcdCertFile:"", EtcdCaFile:"", EtcdEndpoints:[]string(nil), TyphaAddr:"", TyphaK8sServiceName:"", TyphaK8sNamespace:"kube-system", TyphaReadTimeout:30000000000, TyphaWriteTimeout:10000000000, TyphaKeyFile:"", TyphaCertFile:"", TyphaCAFile:"", TyphaCN:"", TyphaURISAN:"", Ipv6Support:false, IptablesBackend:"auto", RouteRefreshInterval:90000000000, InterfaceRefreshInterval:90000000000, DeviceRouteSourceAddress:net.IP(nil), DeviceRouteSourceAddressIPv6:net.IP(nil), DeviceRouteProtocol:3, RemoveExternalRoutes:true, IPForwarding:"Enabled", IptablesRefreshInterval:180000000000, IptablesPostWriteCheckIntervalSecs:5000000000, IptablesLockFilePath:"/run/xtables.lock", IptablesLockTimeoutSecs:0, IptablesLockProbeIntervalMillis:50000000, FeatureDetectOverride:map[string]string(nil), FeatureGates:map[string]string(nil), IpsetsRefreshInterval:90000000000, MaxIpsetSize:1048576, XDPRefreshInterval:90000000000, PolicySyncPathPrefix:"", NetlinkTimeoutSecs:10000000000, MetadataAddr:"", MetadataPort:8775, OpenstackRegion:"", InterfacePrefix:"cali", InterfaceExclude:[]*regexp.Regexp{(*regexp.Regexp)(0x40007ed400)}, ChainInsertMode:"insert", DefaultEndpointToHostAction:"ACCEPT", IptablesFilterAllowAction:"ACCEPT", IptablesMangleAllowAction:"ACCEPT", IptablesFilterDenyAction:"DROP", LogPrefix:"calico-packet", LogFilePath:"", LogSeverityFile:"", LogSeverityScreen:"INFO", LogSeveritySys:"", LogDebugFilenameRegex:(*regexp.Regexp)(nil), VXLANEnabled:(*bool)(nil), VXLANPort:4789, VXLANVNI:4096, VXLANMTU:0, VXLANMTUV6:0, IPv4VXLANTunnelAddr:net.IP(nil), IPv6VXLANTunnelAddr:net.IP(nil), VXLANTunnelMACAddr:"", VXLANTunnelMACAddrV6:"", IpInIpEnabled:(*bool)(nil), IpInIpMtu:0, IpInIpTunnelAddr:net.IP{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0xff, 0xff, 0xa, 0x61, 0x4f, 0xc0}, FloatingIPs:"Disabled", WindowsManageFirewallRules:"Disabled", AllowVXLANPacketsFromWorkloads:false, AllowIPIPPacketsFromWorkloads:false, AWSSrcDstCheck:"DoNothing", ServiceLoopPrevention:"Drop", WorkloadSourceSpoofing:"Disabled", ReportingIntervalSecs:0, ReportingTTLSecs:90000000000, EndpointReportingEnabled:false, EndpointReportingDelaySecs:1000000000, EndpointStatusPathPrefix:"", IptablesMarkMask:0xffff0000, DisableConntrackInvalidCheck:false, HealthEnabled:true, HealthPort:9099, HealthHost:"localhost", HealthTimeoutOverrides:map[string]time.Duration(nil), PrometheusMetricsEnabled:false, PrometheusMetricsHost:"", PrometheusMetricsPort:9091, PrometheusGoMetricsEnabled:true, PrometheusProcessMetricsEnabled:true, PrometheusWireGuardMetricsEnabled:true, FailsafeInboundHostPorts:[]config.ProtoPort{config.ProtoPort{Net:"", Protocol:"tcp", Port:0x16}, config.ProtoPort{Net:"", Protocol:"udp", Port:0x44}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0xb3}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x94b}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x94c}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x1561}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x192b}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x1a0a}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x1a0b}}, FailsafeOutboundHostPorts:[]config.ProtoPort{config.ProtoPort{Net:"", Protocol:"udp", Port:0x35}, config.ProtoPort{Net:"", Protocol:"udp", Port:0x43}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0xb3}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x94b}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x94c}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x1561}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x192b}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x1a0a}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x1a0b}}, KubeNodePortRanges:[]numorstring.Port{numorstring.Port{MinPort:0x7530, MaxPort:0x7fff, PortName:""}}, NATPortRange:numorstring.Port{MinPort:0x0, MaxPort:0x0, PortName:""}, NATOutgoingAddress:net.IP(nil), UsageReportingEnabled:true, UsageReportingInitialDelaySecs:300000000000, UsageReportingIntervalSecs:86400000000000, ClusterGUID:"1a6bef5e9cf84479aeb7ffc970fa2faa", ClusterType:"k8s,bgp,kubeadm,kdd", CalicoVersion:"v3.29.2", ExternalNodesCIDRList:[]string(nil), DebugMemoryProfilePath:"", DebugCPUProfilePath:"/tmp/felix-cpu-<timestamp>.pprof", DebugDisableLogDropping:false, DebugSimulateCalcGraphHangAfter:0, DebugSimulateDataplaneHangAfter:0, DebugSimulateDataplaneApplyDelay:0, DebugPanicAfter:0, DebugSimulateDataRace:false, DebugHost:"localhost", DebugPort:0, RouteSource:"CalicoIPAM", RouteTableRange:idalloc.IndexRange{Min:0, Max:0}, RouteTableRanges:[]idalloc.IndexRange(nil), RouteSyncDisabled:false, IptablesNATOutgoingInterfaceFilter:"", SidecarAccelerationEnabled:false, XDPEnabled:true, GenericXDPEnabled:false, Variant:"Calico", GoGCThreshold:40, GoMemoryLimitMB:-1, GoMaxProcs:-1, MTUIfacePattern:(*regexp.Regexp)(0x40007ed680), Encapsulation:config.Encapsulation{IPIPEnabled:true, VXLANEnabled:false, VXLANEnabledV6:false}, NftablesRefreshInterval:180000000000, NftablesFilterAllowAction:"ACCEPT", NftablesMangleAllowAction:"ACCEPT", NftablesFilterDenyAction:"DROP", NftablesMarkMask:0xffff0000, internalOverrides:map[string]string{}, sourceToRawConfig:map[config.Source]map[string]string{0x1:map[string]string{"CalicoVersion":"v3.29.2", "ClusterGUID":"1a6bef5e9cf84479aeb7ffc970fa2faa", "ClusterType":"k8s,bgp,kubeadm,kdd", "FloatingIPs":"Disabled", "LogSeverityScreen":"Info", "ReportingIntervalSecs":"0"}, 0x2:map[string]string{"IpInIpTunnelAddr":"10.97.79.192"}, 0x3:map[string]string{"LogFilePath":"None", "LogSeverityFile":"None", "LogSeveritySys":"None", "MetadataAddr":"None"}, 0x4:map[string]string{"datastoretype":"kubernetes", "defaultendpointtohostaction":"ACCEPT", "felixhostname":"raspberrypi5-ubuntu1", "healthenabled":"true", "ipinipmtu":"0", "ipv6support":"false", "vxlanmtu":"0", "wireguardmtu":"0"}}, rawValues:map[string]string{"CalicoVersion":"v3.29.2", "ClusterGUID":"1a6bef5e9cf84479aeb7ffc970fa2faa", "ClusterType":"k8s,bgp,kubeadm,kdd", "DatastoreType":"kubernetes", "DefaultEndpointToHostAction":"ACCEPT", "FelixHostname":"raspberrypi5-ubuntu1", "FloatingIPs":"Disabled", "HealthEnabled":"true", "IpInIpMtu":"0", "IpInIpTunnelAddr":"10.97.79.192", "Ipv6Support":"false", "LogFilePath":"None", "LogSeverityFile":"None", "LogSeverityScreen":"Info", "LogSeveritySys":"None", "MetadataAddr":"None", "ReportingIntervalSecs":"0", "VXLANMTU":"0", "WireguardMTU":"0"}, Err:error(nil), loadClientConfigFromEnvironment:(func() (*apiconfig.CalicoAPIConfig, error))(0x1616490), useNodeResourceUpdates:false} gitcommit="c29210835f7a2795d0791974602c8e1c625c8ca1" version="v3.29.2"
+2025-02-11 19:20:22.062 [INFO][80] felix/daemon.go 704: Setting GOGC from configuration. GOGC=40
+2025-02-11 19:20:22.062 [INFO][80] felix/daemon.go 732: Using runtime default GOMAXPROCS. default=4
+2025-02-11 19:20:22.063 [INFO][80] felix/health.go 376: Health enabled.  Server is already running. host="localhost" port=9099
+2025-02-11 19:20:22.063 [INFO][80] felix/driver.go 70: Using internal (linux) dataplane driver.
+2025-02-11 19:20:22.063 [INFO][80] felix/driver.go 155: Calculated iptables mark bits acceptMark=0x10000 endpointMark=0xfff00000 endpointMarkNonCali=0x0 passMark=0x20000 scratch0Mark=0x40000 scratch1Mark=0x80000
+2025-02-11 19:20:22.075 [INFO][80] felix/int_dataplane.go 383: Creating internal dataplane driver. config=intdataplane.Config{Hostname:"raspberrypi5-ubuntu1", NodeZone:"", IPv6Enabled:false, RuleRendererOverride:rules.RuleRenderer(nil), IPIPMTU:0, VXLANMTU:0, VXLANMTUV6:0, VXLANPort:4789, MaxIPSetSize:1048576, RouteSyncDisabled:false, IptablesBackend:"auto", IPSetsRefreshInterval:90000000000, RouteRefreshInterval:90000000000, DeviceRouteSourceAddress:net.IP(nil), DeviceRouteSourceAddressIPv6:net.IP(nil), DeviceRouteProtocol:3, RemoveExternalRoutes:true, IPForwarding:"Enabled", TableRefreshInterval:180000000000, IptablesPostWriteCheckInterval:5000000000, IptablesInsertMode:"insert", IptablesLockFilePath:"/run/xtables.lock", IptablesLockTimeout:0, IptablesLockProbeInterval:50000000, XDPRefreshInterval:90000000000, FloatingIPsEnabled:false, Wireguard:wireguard.Config{Enabled:false, EnabledV6:false, ListeningPort:51820, ListeningPortV6:51821, FirewallMark:0, RoutingRulePriority:99, RoutingTableIndex:1, RoutingTableIndexV6:2, InterfaceName:"wireguard.cali", InterfaceNameV6:"wg-v6.cali", MTU:0, MTUV6:0, RouteSource:"CalicoIPAM", EncryptHostTraffic:false, PersistentKeepAlive:0, RouteSyncDisabled:false, ThreadedNAPI:false}, NetlinkTimeout:10000000000, RulesConfig:rules.Config{IPSetConfigV4:(*ipsets.IPVersionConfig)(0x40006f9900), IPSetConfigV6:(*ipsets.IPVersionConfig)(0x40006f9a90), WorkloadIfacePrefixes:[]string{"cali"}, MarkAccept:0x10000, MarkPass:0x20000, MarkScratch0:0x40000, MarkScratch1:0x80000, MarkEndpoint:0xfff00000, MarkNonCaliEndpoint:0x0, KubeNodePortRanges:[]numorstring.Port{numorstring.Port{MinPort:0x7530, MaxPort:0x7fff, PortName:""}}, KubeIPVSSupportEnabled:false, OpenStackMetadataIP:net.IP(nil), OpenStackMetadataPort:0x2247, OpenStackSpecialCasesEnabled:false, VXLANEnabled:false, VXLANEnabledV6:false, VXLANPort:4789, VXLANVNI:4096, IPIPEnabled:true, FelixConfigIPIPEnabled:(*bool)(nil), IPIPTunnelAddress:net.IP{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0xff, 0xff, 0xa, 0x61, 0x4f, 0xc0}, VXLANTunnelAddress:net.IP(nil), VXLANTunnelAddressV6:net.IP(nil), AllowVXLANPacketsFromWorkloads:false, AllowIPIPPacketsFromWorkloads:false, WireguardEnabled:false, WireguardEnabledV6:false, WireguardInterfaceName:"wireguard.cali", WireguardInterfaceNameV6:"wg-v6.cali", WireguardMark:0x0, WireguardListeningPort:51820, WireguardListeningPortV6:51821, WireguardEncryptHostTraffic:false, RouteSource:"CalicoIPAM", LogPrefix:"calico-packet", EndpointToHostAction:"ACCEPT", FilterAllowAction:"ACCEPT", MangleAllowAction:"ACCEPT", FilterDenyAction:"DROP", FailsafeInboundHostPorts:[]config.ProtoPort{config.ProtoPort{Net:"", Protocol:"tcp", Port:0x16}, config.ProtoPort{Net:"", Protocol:"udp", Port:0x44}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0xb3}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x94b}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x94c}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x1561}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x192b}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x1a0a}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x1a0b}}, FailsafeOutboundHostPorts:[]config.ProtoPort{config.ProtoPort{Net:"", Protocol:"udp", Port:0x35}, config.ProtoPort{Net:"", Protocol:"udp", Port:0x43}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0xb3}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x94b}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x94c}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x1561}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x192b}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x1a0a}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x1a0b}}, DisableConntrackInvalid:false, NATPortRange:numorstring.Port{MinPort:0x0, MaxPort:0x0, PortName:""}, IptablesNATOutgoingInterfaceFilter:"", NATOutgoingAddress:net.IP(nil), BPFEnabled:false, BPFForceTrackPacketsFromIfaces:[]string{"docker+"}, ServiceLoopPrevention:"Drop", NFTables:false}, IfaceMonitorConfig:ifacemonitor.Config{InterfaceExcludes:[]*regexp.Regexp{(*regexp.Regexp)(0x40007ed400)}, ResyncInterval:90000000000, NetlinkTimeout:10000000000}, StatusReportingInterval:0, ConfigChangedRestartCallback:(func())(0x29c6d30), FatalErrorRestartCallback:(func(error))(0x29c6c20), PostInSyncCallback:(func())(0x299d2f0), HealthAggregator:(*health.HealthAggregator)(0x40009c5470), WatchdogTimeout:90000000000, RouteTableManager:(*idalloc.IndexAllocator)(0x4000070b80), DebugSimulateDataplaneHangAfter:0, DebugSimulateDataplaneApplyDelay:0, ExternalNodesCidrs:[]string(nil), BPFEnabled:false, BPFPolicyDebugEnabled:true, BPFDisableUnprivileged:true, BPFKubeProxyIptablesCleanupEnabled:true, BPFLogLevel:"off", BPFLogFilters:map[string]string(nil), BPFCTLBLogFilter:"", BPFExtToServiceConnmark:0, BPFDataIfacePattern:(*regexp.Regexp)(0x40007ed2c0), BPFL3IfacePattern:(*regexp.Regexp)(nil), XDPEnabled:true, XDPAllowGeneric:false, BPFConntrackTimeouts:conntrack.Timeouts{CreationGracePeriod:10000000000, TCPPreEstablished:20000000000, TCPEstablished:3600000000000, TCPFinsSeen:30000000000, TCPResetSeen:40000000000, UDPLastSeen:60000000000, GenericIPLastSeen:600000000000, ICMPLastSeen:5000000000}, BPFCgroupV2:"", BPFConnTimeLBEnabled:false, BPFConnTimeLB:"TCP", BPFHostNetworkedNAT:"Enabled", BPFMapRepin:false, BPFNodePortDSREnabled:false, BPFDSROptoutCIDRs:[]string(nil), BPFPSNATPorts:numorstring.Port{MinPort:0x4e20, MaxPort:0x752f, PortName:""}, BPFMapSizeRoute:262144, BPFMapSizeConntrack:512000, BPFMapSizeNATFrontend:65536, BPFMapSizeNATBackend:262144, BPFMapSizeNATAffinity:65536, BPFMapSizeIPSets:1048576, BPFMapSizeIfState:1000, BPFIpv6Enabled:false, BPFHostConntrackBypass:true, BPFEnforceRPF:"Loose", BPFDisableGROForIfaces:(*regexp.Regexp)(nil), BPFExcludeCIDRsFromNAT:[]string(nil), BPFRedirectToPeer:"L2Only", KubeProxyMinSyncPeriod:1000000000, SidecarAccelerationEnabled:false, ServiceLoopPrevention:"Drop", LookPathOverride:(func(string) (string, error))(nil), KubeClientSet:(*kubernetes.Clientset)(0x4000790000), FeatureDetectOverrides:map[string]string(nil), FeatureGates:map[string]string(nil), hostMTU:0, MTUIfacePattern:(*regexp.Regexp)(0x40007ed680), RouteSource:"CalicoIPAM", KubernetesProvider:0x0}
+2025-02-11 19:20:22.075 [INFO][80] felix/rule_defs.go 406: Creating rule renderer. config=rules.Config{IPSetConfigV4:(*ipsets.IPVersionConfig)(0x40006f9900), IPSetConfigV6:(*ipsets.IPVersionConfig)(0x40006f9a90), WorkloadIfacePrefixes:[]string{"cali"}, MarkAccept:0x10000, MarkPass:0x20000, MarkScratch0:0x40000, MarkScratch1:0x80000, MarkEndpoint:0xfff00000, MarkNonCaliEndpoint:0x0, KubeNodePortRanges:[]numorstring.Port{numorstring.Port{MinPort:0x7530, MaxPort:0x7fff, PortName:""}}, KubeIPVSSupportEnabled:false, OpenStackMetadataIP:net.IP(nil), OpenStackMetadataPort:0x2247, OpenStackSpecialCasesEnabled:false, VXLANEnabled:false, VXLANEnabledV6:false, VXLANPort:4789, VXLANVNI:4096, IPIPEnabled:true, FelixConfigIPIPEnabled:(*bool)(nil), IPIPTunnelAddress:net.IP{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0xff, 0xff, 0xa, 0x61, 0x4f, 0xc0}, VXLANTunnelAddress:net.IP(nil), VXLANTunnelAddressV6:net.IP(nil), AllowVXLANPacketsFromWorkloads:false, AllowIPIPPacketsFromWorkloads:false, WireguardEnabled:false, WireguardEnabledV6:false, WireguardInterfaceName:"wireguard.cali", WireguardInterfaceNameV6:"wg-v6.cali", WireguardMark:0x0, WireguardListeningPort:51820, WireguardListeningPortV6:51821, WireguardEncryptHostTraffic:false, RouteSource:"CalicoIPAM", LogPrefix:"calico-packet", EndpointToHostAction:"ACCEPT", FilterAllowAction:"ACCEPT", MangleAllowAction:"ACCEPT", FilterDenyAction:"DROP", FailsafeInboundHostPorts:[]config.ProtoPort{config.ProtoPort{Net:"", Protocol:"tcp", Port:0x16}, config.ProtoPort{Net:"", Protocol:"udp", Port:0x44}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0xb3}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x94b}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x94c}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x1561}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x192b}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x1a0a}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x1a0b}}, FailsafeOutboundHostPorts:[]config.ProtoPort{config.ProtoPort{Net:"", Protocol:"udp", Port:0x35}, config.ProtoPort{Net:"", Protocol:"udp", Port:0x43}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0xb3}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x94b}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x94c}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x1561}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x192b}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x1a0a}, config.ProtoPort{Net:"", Protocol:"tcp", Port:0x1a0b}}, DisableConntrackInvalid:false, NATPortRange:numorstring.Port{MinPort:0x0, MaxPort:0x0, PortName:""}, IptablesNATOutgoingInterfaceFilter:"", NATOutgoingAddress:net.IP(nil), BPFEnabled:false, BPFForceTrackPacketsFromIfaces:[]string{"docker+"}, ServiceLoopPrevention:"Drop", NFTables:false}
+2025-02-11 19:20:22.076 [INFO][80] felix/rule_defs.go 437: packets that are not passed by any policy or profile will be dropped.
+2025-02-11 19:20:22.076 [INFO][80] felix/rule_defs.go 452: Workload to host packets will be accepted.
+2025-02-11 19:20:22.076 [INFO][80] felix/rule_defs.go 466: filter table allowed packets will be accepted immediately.
+2025-02-11 19:20:22.076 [INFO][80] felix/rule_defs.go 474: mangle table allowed packets will be accepted immediately.
+2025-02-11 19:20:22.076 [INFO][80] felix/rule_defs.go 482: Packets to unknown service IPs will be dropped
+2025-02-11 19:20:22.076 [INFO][80] felix/int_dataplane.go 1203: Determined pod MTU mtu=1480
+2025-02-11 19:20:22.076 [INFO][80] felix/iface_monitor.go 92: configured to periodically rescan interfaces. interval=1m30s
+2025-02-11 19:20:22.077 [INFO][80] felix/feature_detect_linux.go 414: Looked up iptables command backendMode="nft" candidates=[]string{"ip6tables-nft-save", "ip6tables-save"} command="ip6tables-nft-save" ipVersion=0x6 saveOrRestore="save"
+2025-02-11 19:20:22.077 [INFO][80] felix/feature_detect_linux.go 414: Looked up iptables command backendMode="nft" candidates=[]string{"iptables-nft-save", "iptables-save"} command="iptables-nft-save" ipVersion=0x4 saveOrRestore="save"
+2025-02-11 19:20:22.096 [INFO][80] felix/feature_detect_linux.go 174: Updating detected iptables features features=environment.Features{SNATFullyRandom:true, MASQFullyRandom:true, RestoreSupportsLock:true, ChecksumOffloadBroken:false, IPIPDeviceIsL3:true, KernelSideRouteFiltering:true} iptablesVersion=1.8.8 kernelVersion=6.11.0-1004
+2025-02-11 19:20:22.096 [INFO][80] felix/table.go 348: Calculated old-insert detection regex. pattern="(?:-j|--jump) cali-|(?:-j|--jump) califw-|(?:-j|--jump) calitw-|(?:-j|--jump) califh-|(?:-j|--jump) calith-|(?:-j|--jump) calipi-|(?:-j|--jump) calipo-|(?:-j|--jump) felix-"
+2025-02-11 19:20:22.096 [INFO][80] felix/table.go 467: Enabling iptables-in-nftables-mode workarounds.
+2025-02-11 19:20:22.096 [INFO][80] felix/feature_detect_linux.go 414: Looked up iptables command backendMode="nft" candidates=[]string{"iptables-nft-restore", "iptables-restore"} command="iptables-nft-restore" ipVersion=0x4 saveOrRestore="restore"
+2025-02-11 19:20:22.096 [INFO][80] felix/feature_detect_linux.go 414: Looked up iptables command backendMode="nft" candidates=[]string{"iptables-nft-save", "iptables-save"} command="iptables-nft-save" ipVersion=0x4 saveOrRestore="save"
+2025-02-11 19:20:22.096 [INFO][80] felix/table.go 348: Calculated old-insert detection regex. pattern="(?:-j|--jump) cali-|(?:-j|--jump) califw-|(?:-j|--jump) calitw-|(?:-j|--jump) califh-|(?:-j|--jump) calith-|(?:-j|--jump) calipi-|(?:-j|--jump) calipo-|(?:-j|--jump) felix-|-A POSTROUTING .* felix-masq-ipam-pools .*|-A POSTROUTING -o tunl0 -m addrtype ! --src-type LOCAL --limit-iface-out -m addrtype --src-type LOCAL -j MASQUERADE"
+2025-02-11 19:20:22.096 [INFO][80] felix/table.go 467: Enabling iptables-in-nftables-mode workarounds.
+2025-02-11 19:20:22.096 [INFO][80] felix/feature_detect_linux.go 414: Looked up iptables command backendMode="nft" candidates=[]string{"iptables-nft-restore", "iptables-restore"} command="iptables-nft-restore" ipVersion=0x4 saveOrRestore="restore"
+2025-02-11 19:20:22.096 [INFO][80] felix/feature_detect_linux.go 414: Looked up iptables command backendMode="nft" candidates=[]string{"iptables-nft-save", "iptables-save"} command="iptables-nft-save" ipVersion=0x4 saveOrRestore="save"
+2025-02-11 19:20:22.097 [INFO][80] felix/table.go 348: Calculated old-insert detection regex. pattern="(?:-j|--jump) cali-|(?:-j|--jump) califw-|(?:-j|--jump) calitw-|(?:-j|--jump) califh-|(?:-j|--jump) calith-|(?:-j|--jump) calipi-|(?:-j|--jump) calipo-|(?:-j|--jump) felix-"
+2025-02-11 19:20:22.097 [INFO][80] felix/table.go 467: Enabling iptables-in-nftables-mode workarounds.
+2025-02-11 19:20:22.097 [INFO][80] felix/feature_detect_linux.go 414: Looked up iptables command backendMode="nft" candidates=[]string{"iptables-nft-restore", "iptables-restore"} command="iptables-nft-restore" ipVersion=0x4 saveOrRestore="restore"
+2025-02-11 19:20:22.097 [INFO][80] felix/feature_detect_linux.go 414: Looked up iptables command backendMode="nft" candidates=[]string{"iptables-nft-save", "iptables-save"} command="iptables-nft-save" ipVersion=0x4 saveOrRestore="save"
+2025-02-11 19:20:22.097 [INFO][80] felix/table.go 348: Calculated old-insert detection regex. pattern="(?:-j|--jump) cali-|(?:-j|--jump) califw-|(?:-j|--jump) calitw-|(?:-j|--jump) califh-|(?:-j|--jump) calith-|(?:-j|--jump) calipi-|(?:-j|--jump) calipo-|(?:-j|--jump) felix-"
+2025-02-11 19:20:22.097 [INFO][80] felix/table.go 467: Enabling iptables-in-nftables-mode workarounds.
+2025-02-11 19:20:22.097 [INFO][80] felix/feature_detect_linux.go 414: Looked up iptables command backendMode="nft" candidates=[]string{"iptables-nft-restore", "iptables-restore"} command="iptables-nft-restore" ipVersion=0x4 saveOrRestore="restore"
+2025-02-11 19:20:22.097 [INFO][80] felix/feature_detect_linux.go 414: Looked up iptables command backendMode="nft" candidates=[]string{"iptables-nft-save", "iptables-save"} command="iptables-nft-save" ipVersion=0x4 saveOrRestore="save"
+2025-02-11 19:20:22.098 [INFO][80] felix/int_dataplane.go 668: XDP acceleration enabled.
+2025-02-11 19:20:22.101 [INFO][80] felix/table.go 348: Calculated old-insert detection regex. pattern="(?:-j|--jump) cali-|(?:-j|--jump) califw-|(?:-j|--jump) calitw-|(?:-j|--jump) califh-|(?:-j|--jump) calith-|(?:-j|--jump) calipi-|(?:-j|--jump) calipo-|(?:-j|--jump) felix-"
+2025-02-11 19:20:22.102 [INFO][80] felix/table.go 467: Enabling iptables-in-nftables-mode workarounds.
+2025-02-11 19:20:22.102 [INFO][80] felix/feature_detect_linux.go 414: Looked up iptables command backendMode="nft" candidates=[]string{"ip6tables-nft-restore", "ip6tables-restore"} command="ip6tables-nft-restore" ipVersion=0x6 saveOrRestore="restore"
+2025-02-11 19:20:22.102 [INFO][80] felix/feature_detect_linux.go 414: Looked up iptables command backendMode="nft" candidates=[]string{"ip6tables-nft-save", "ip6tables-save"} command="ip6tables-nft-save" ipVersion=0x6 saveOrRestore="save"
+2025-02-11 19:20:22.102 [INFO][80] felix/connecttime.go 82: Running bpftool to look up programs attached to cgroup args=[]string{"bpftool", "-j", "-p", "cgroup", "show", "/run/calico/cgroup"}
+2025-02-11 19:20:22.103 [INFO][80] felix/connecttime.go 85: Failed to list BPF programs.  Assuming not supported/nothing to clean up. error=exit status 255 output="{\n    \"error\": \"can't query bpf programs attached to /run/calico/cgroup: No such device or address\"\n}\n"
+2025-02-11 19:20:22.103 [INFO][80] felix/int_dataplane.go 759: Failed to remove BPF connect-time load balancer, ignoring. error=exit status 255
+2025-02-11 19:20:22.148 [INFO][81] tunnel-ip-allocator/allocateip.go 340: Current address is still valid, do nothing currentAddr="10.97.79.192" type="ipipTunnelAddress"
+2025-02-11 19:20:22.718 [INFO][80] felix/ipsets.go 175: Queueing IP set for creation family="inet" setID="all-ipam-pools" setType="hash:net"
+2025-02-11 19:20:22.718 [INFO][80] felix/ipsets.go 175: Queueing IP set for creation family="inet" setID="masq-ipam-pools" setType="hash:net"
+2025-02-11 19:20:22.718 [INFO][80] felix/int_dataplane.go 923: IPIP enabled, starting thread to keep tunnel configuration in sync.
+2025-02-11 19:20:22.718 [INFO][80] felix/ipip_mgr.go 86: IPIP thread started.
+2025-02-11 19:20:22.718 [INFO][80] felix/int_dataplane.go 1089: Registering to report health.
+2025-02-11 19:20:22.722 [INFO][80] felix/int_dataplane.go 2154: attempted to modprobe nf_conntrack_proto_sctp error=exit status 1 output=""
+2025-02-11 19:20:22.722 [INFO][80] felix/int_dataplane.go 2157: Making sure IPv4 forwarding is enabled.
+2025-02-11 19:20:22.722 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-PREROUTING" ipVersion=0x4 table="raw"
+2025-02-11 19:20:22.722 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-rpf-skip" ipVersion=0x4 table="raw"
+2025-02-11 19:20:22.722 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-from-host-endpoint" ipVersion=0x4 table="raw"
+2025-02-11 19:20:22.722 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-OUTPUT" ipVersion=0x4 table="raw"
+2025-02-11 19:20:22.722 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-to-host-endpoint" ipVersion=0x4 table="raw"
+2025-02-11 19:20:22.722 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-FORWARD" ipVersion=0x4 table="filter"
+2025-02-11 19:20:22.722 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-from-hep-forward" ipVersion=0x4 table="filter"
+2025-02-11 19:20:22.722 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-from-wl-dispatch" ipVersion=0x4 table="filter"
+2025-02-11 19:20:22.723 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-to-wl-dispatch" ipVersion=0x4 table="filter"
+2025-02-11 19:20:22.723 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-to-hep-forward" ipVersion=0x4 table="filter"
+2025-02-11 19:20:22.723 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-cidr-block" ipVersion=0x4 table="filter"
+2025-02-11 19:20:22.723 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-INPUT" ipVersion=0x4 table="filter"
+2025-02-11 19:20:22.723 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-wl-to-host" ipVersion=0x4 table="filter"
+2025-02-11 19:20:22.723 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-from-host-endpoint" ipVersion=0x4 table="filter"
+2025-02-11 19:20:22.723 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-OUTPUT" ipVersion=0x4 table="filter"
+2025-02-11 19:20:22.723 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-to-host-endpoint" ipVersion=0x4 table="filter"
+2025-02-11 19:20:22.723 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-PREROUTING" ipVersion=0x4 table="nat"
+2025-02-11 19:20:22.723 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-fip-dnat" ipVersion=0x4 table="nat"
+2025-02-11 19:20:22.723 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-POSTROUTING" ipVersion=0x4 table="nat"
+2025-02-11 19:20:22.723 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-fip-snat" ipVersion=0x4 table="nat"
+2025-02-11 19:20:22.723 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-nat-outgoing" ipVersion=0x4 table="nat"
+2025-02-11 19:20:22.723 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-OUTPUT" ipVersion=0x4 table="nat"
+2025-02-11 19:20:22.723 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-PREROUTING" ipVersion=0x4 table="mangle"
+2025-02-11 19:20:22.723 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-from-host-endpoint" ipVersion=0x4 table="mangle"
+2025-02-11 19:20:22.723 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-POSTROUTING" ipVersion=0x4 table="mangle"
+2025-02-11 19:20:22.723 [INFO][80] felix/ratelimitedlogger.go 216: Chain became referenced, marking it for programming chainName="cali-to-host-endpoint" ipVersion=0x4 table="mangle"
+2025-02-11 19:20:22.735 [INFO][80] felix/int_dataplane.go 1875: Set XDP failsafe ports: [{Net: Protocol:tcp Port:22} {Net: Protocol:udp Port:68} {Net: Protocol:tcp Port:179} {Net: Protocol:tcp Port:2379} {Net: Protocol:tcp Port:2380} {Net: Protocol:tcp Port:5473} {Net: Protocol:tcp Port:6443} {Net: Protocol:tcp Port:6666} {Net: Protocol:tcp Port:6667}]
+2025-02-11 19:20:22.735 [INFO][80] felix/health.go 206: Health of component changed name="FelixStartup" newReport="live,ready" oldReport="live,non-ready"
+2025-02-11 19:20:22.735 [INFO][80] felix/daemon.go 430: Connect to the dataplane driver.
+2025-02-11 19:20:22.735 [INFO][80] felix/int_dataplane.go 1904: Started internal iptables dataplane driver loop
+2025-02-11 19:20:22.735 [INFO][80] felix/int_dataplane.go 2021: Will refresh IP sets on timer interval=1m30s
+2025-02-11 19:20:22.735 [INFO][80] felix/int_dataplane.go 2442: Started internal status report thread
+2025-02-11 19:20:22.735 [INFO][80] felix/iface_monitor.go 117: Interface monitoring thread started.
+2025-02-11 19:20:22.735 [INFO][80] felix/int_dataplane.go 2444: Process status reports disabled
+2025-02-11 19:20:22.735 [INFO][80] felix/int_dataplane.go 2021: Will refresh routes on timer interval=1m30s
+2025-02-11 19:20:22.735 [INFO][80] felix/int_dataplane.go 2021: Will refresh XDP state on timer interval=1m30s
+2025-02-11 19:20:22.735 [INFO][80] felix/daemon.go 509: using resource updates where applicable
+2025-02-11 19:20:22.735 [INFO][80] felix/iface_monitor.go 137: Subscribed to netlink updates.
+2025-02-11 19:20:22.735 [INFO][80] felix/daemon.go 512: Created Syncer syncer=&watchersyncer.watcherSyncer{status:0x0, watcherCaches:[]*watchersyncer.watcherCache{(*watchersyncer.watcherCache)(0x400061e750), (*watchersyncer.watcherCache)(0x400061e7e0), (*watchersyncer.watcherCache)(0x400061e870), (*watchersyncer.watcherCache)(0x400061e900), (*watchersyncer.watcherCache)(0x400061e990), (*watchersyncer.watcherCache)(0x400061ea20), (*watchersyncer.watcherCache)(0x400061eab0), (*watchersyncer.watcherCache)(0x400061eb40), (*watchersyncer.watcherCache)(0x400061ebd0), (*watchersyncer.watcherCache)(0x400061ec60), (*watchersyncer.watcherCache)(0x400061ecf0), (*watchersyncer.watcherCache)(0x400061ed80), (*watchersyncer.watcherCache)(0x400061ee10), (*watchersyncer.watcherCache)(0x400061eea0), (*watchersyncer.watcherCache)(0x400061ef30), (*watchersyncer.watcherCache)(0x400061efc0), (*watchersyncer.watcherCache)(0x400061f050), (*watchersyncer.watcherCache)(0x400061f0e0)}, results:(chan interface {})(0x4000456e00), numSynced:0, callbacks:(*dedupebuffer.DedupeBuffer)(0x4000456d90), wgwc:(*sync.WaitGroup)(nil), wgws:(*sync.WaitGroup)(nil), cancel:(context.CancelFunc)(nil)}
+2025-02-11 19:20:22.735 [INFO][80] felix/daemon.go 516: Starting the datastore Syncer
+2025-02-11 19:20:22.735 [INFO][80] felix/watchersyncer.go 89: Start called
+2025-02-11 19:20:22.735 [INFO][80] felix/calc_graph.go 149: Creating calculation graph, filtered to hostname raspberrypi5-ubuntu1
+2025-02-11 19:20:22.735 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.WorkloadEndpointKey: (dispatcher.UpdateHandler)(0x1b2fa20)
+2025-02-11 19:20:22.735 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.HostEndpointKey: (dispatcher.UpdateHandler)(0x1b2fa20)
+2025-02-11 19:20:22.735 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.WorkloadEndpointKey: (dispatcher.UpdateHandler)(0x1b2f930)
+2025-02-11 19:20:22.735 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.HostEndpointKey: (dispatcher.UpdateHandler)(0x1b2f930)
+2025-02-11 19:20:22.735 [INFO][80] felix/int_dataplane.go 1431: Linux interface state changed. ifIndex=1 ifaceName="lo" state="up"
+2025-02-11 19:20:22.735 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.WorkloadEndpointKey: (dispatcher.UpdateHandler)(0x1b30c50)
+2025-02-11 19:20:22.735 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.HostEndpointKey: (dispatcher.UpdateHandler)(0x1b30c50)
+2025-02-11 19:20:22.735 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.PolicyKey: (dispatcher.UpdateHandler)(0x1b30c50)
+2025-02-11 19:20:22.735 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.ProfileRulesKey: (dispatcher.UpdateHandler)(0x1b30c50)
+2025-02-11 19:20:22.736 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.ResourceKey: (dispatcher.UpdateHandler)(0x1b30c50)
+2025-02-11 19:20:22.736 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.TierKey: (dispatcher.UpdateHandler)(0x1b30c50)
+2025-02-11 19:20:22.736 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.ResourceKey: (dispatcher.UpdateHandler)(0x1ad88d0)
+2025-02-11 19:20:22.736 [INFO][80] felix/int_dataplane.go 1475: Linux interface addrs changed. addrs=set.Set{127.0.0.1,::1,127.0.0.0} ifaceName="lo"
+2025-02-11 19:20:22.736 [INFO][80] felix/watchersyncer.go 130: Sending status update Status=wait-for-ready
+2025-02-11 19:20:22.736 [INFO][80] felix/int_dataplane.go 1431: Linux interface state changed. ifIndex=2 ifaceName="eth0" state="down"
+2025-02-11 19:20:22.736 [INFO][80] felix/watchersyncer.go 149: Starting main event processing loop
+2025-02-11 19:20:22.736 [INFO][80] felix/int_dataplane.go 1475: Linux interface addrs changed. addrs=set.Set{} ifaceName="eth0"
+2025-02-11 19:20:22.736 [INFO][80] felix/int_dataplane.go 1431: Linux interface state changed. ifIndex=3 ifaceName="wlan0" state="up"
+2025-02-11 19:20:22.736 [INFO][80] felix/watchercache.go 181: Full resync is required ListRoot="/calico/ipam/v2/assignment/"
+2025-02-11 19:20:22.736 [INFO][80] felix/int_dataplane.go 1475: Linux interface addrs changed. addrs=set.Set{192.168.1.201,fe80::2ecf:67ff:fe31:895e} ifaceName="wlan0"
+2025-02-11 19:20:22.736 [INFO][80] felix/int_dataplane.go 1431: Linux interface state changed. ifIndex=4 ifaceName="tunl0" state="up"
+2025-02-11 19:20:22.736 [INFO][80] felix/int_dataplane.go 1475: Linux interface addrs changed. addrs=set.Set{10.97.79.192} ifaceName="tunl0"
+2025-02-11 19:20:22.736 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.ResourceKey: (dispatcher.UpdateHandler)(0x1a63620)
+2025-02-11 19:20:22.736 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.WorkloadEndpointKey: (dispatcher.UpdateHandler)(0x1a63620)
+2025-02-11 19:20:22.736 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.HostEndpointKey: (dispatcher.UpdateHandler)(0x1a63620)
+2025-02-11 19:20:22.736 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.NetworkSetKey: (dispatcher.UpdateHandler)(0x1a63620)
+2025-02-11 19:20:22.736 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.PolicyKey: (dispatcher.UpdateHandler)(0x1b2fde0)
+2025-02-11 19:20:22.736 [INFO][80] felix/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/workloadendpoints"
+2025-02-11 19:20:22.736 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.TierKey: (dispatcher.UpdateHandler)(0x1b2fde0)
+2025-02-11 19:20:22.736 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.WorkloadEndpointKey: (dispatcher.UpdateHandler)(0x1b2fde0)
+2025-02-11 19:20:22.736 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.HostEndpointKey: (dispatcher.UpdateHandler)(0x1b2fde0)
+2025-02-11 19:20:22.736 [INFO][80] felix/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/networkpolicies"
+2025-02-11 19:20:22.736 [INFO][80] felix/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/clusterinformations"
+2025-02-11 19:20:22.736 [INFO][80] felix/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/networksets"
+2025-02-11 19:20:22.737 [INFO][80] felix/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/felixconfigurations"
+2025-02-11 19:20:22.737 [INFO][80] felix/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/kubernetesendpointslices"
+2025-02-11 19:20:22.737 [INFO][80] felix/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/kubernetesadminnetworkpolicies"
+2025-02-11 19:20:22.737 [INFO][80] felix/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/globalnetworkpolicies"
+2025-02-11 19:20:22.737 [INFO][80] felix/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/kubernetesservice"
+2025-02-11 19:20:22.737 [INFO][80] felix/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/globalnetworksets"
+2025-02-11 19:20:22.736 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.HostIPKey: (dispatcher.UpdateHandler)(0x1b30a20)
+2025-02-11 19:20:22.737 [INFO][80] felix/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/tiers"
+2025-02-11 19:20:22.737 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.IPPoolKey: (dispatcher.UpdateHandler)(0x1b30a20)
+2025-02-11 19:20:22.737 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.WireguardKey: (dispatcher.UpdateHandler)(0x1b30a20)
+2025-02-11 19:20:22.737 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.ResourceKey: (dispatcher.UpdateHandler)(0x1b30a20)
+2025-02-11 19:20:22.737 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.GlobalConfigKey: (dispatcher.UpdateHandler)(0x1b30140)
+2025-02-11 19:20:22.737 [INFO][80] felix/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/ippools"
+2025-02-11 19:20:22.737 [INFO][80] felix/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/profiles"
+2025-02-11 19:20:22.737 [INFO][80] felix/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/hostendpoints"
+2025-02-11 19:20:22.737 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.HostConfigKey: (dispatcher.UpdateHandler)(0x1b30140)
+2025-02-11 19:20:22.737 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.ReadyFlagKey: (dispatcher.UpdateHandler)(0x1b30140)
+2025-02-11 19:20:22.738 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.ResourceKey: (dispatcher.UpdateHandler)(0x1b30050)
+2025-02-11 19:20:22.738 [INFO][80] felix/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/nodes"
+2025-02-11 19:20:22.738 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.IPPoolKey: (dispatcher.UpdateHandler)(0x1b2fef0)
+2025-02-11 19:20:22.738 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.HostIPKey: (dispatcher.UpdateHandler)(0x1b2f6e0)
+2025-02-11 19:20:22.738 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.WorkloadEndpointKey: (dispatcher.UpdateHandler)(0x1b2f6e0)
+2025-02-11 19:20:22.738 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.HostEndpointKey: (dispatcher.UpdateHandler)(0x1b2f6e0)
+2025-02-11 19:20:22.738 [INFO][80] felix/dispatcher.go 68: Registering listener for type model.HostConfigKey: (dispatcher.UpdateHandler)(0x1b2f6e0)
+2025-02-11 19:20:22.738 [INFO][80] felix/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/bgpconfigurations"
+2025-02-11 19:20:22.738 [INFO][80] felix/async_calc_graph.go 256: Starting AsyncCalcGraph
+2025-02-11 19:20:22.738 [INFO][80] felix/daemon.go 629: Started the processing graph
+2025-02-11 19:20:22.738 [INFO][80] felix/int_dataplane.go 2098: Received interface update msg=&intdataplane.ifaceStateUpdate{Name:"lo", State:"up", Index:1}
+2025-02-11 19:20:22.738 [INFO][80] felix/async_calc_graph.go 137: AsyncCalcGraph running
+2025-02-11 19:20:22.738 [INFO][80] felix/int_dataplane.go 2125: Received interface addresses update msg=&intdataplane.ifaceAddrsUpdate{Name:"lo", Addrs:set.Typed[string]{"127.0.0.0":set.v{}, "127.0.0.1":set.v{}, "::1":set.v{}}}
+2025-02-11 19:20:22.738 [INFO][80] felix/daemon.go 1061: Reading from dataplane driver pipe...
+2025-02-11 19:20:22.738 [INFO][80] felix/hostip_mgr.go 84: Interface addrs changed. update=&intdataplane.ifaceAddrsUpdate{Name:"lo", Addrs:set.Typed[string]{"127.0.0.0":set.v{}, "127.0.0.1":set.v{}, "::1":set.v{}}}
+2025-02-11 19:20:22.738 [INFO][80] felix/ipsets.go 175: Queueing IP set for creation family="inet" setID="this-host" setType="hash:ip"
+2025-02-11 19:20:22.738 [INFO][80] felix/int_dataplane.go 2098: Received interface update msg=&intdataplane.ifaceStateUpdate{Name:"eth0", State:"down", Index:2}
+2025-02-11 19:20:22.738 [INFO][80] felix/watchercache.go 181: Full resync is required ListRoot="/calico/resources/v3/projectcalico.org/kubernetesnetworkpolicies"
+2025-02-11 19:20:22.738 [INFO][80] felix/daemon.go 1334: Configuration update from calculation graph. configBySource=map[string]map[string]string{"config file":map[string]string{"LogFilePath":"None", "LogSeverityFile":"None", "LogSeveritySys":"None", "MetadataAddr":"None"}, "datastore (global)":map[string]string{"CalicoVersion":"v3.29.2", "ClusterGUID":"1a6bef5e9cf84479aeb7ffc970fa2faa", "ClusterType":"k8s,bgp,kubeadm,kdd", "FloatingIPs":"Disabled", "LogSeverityScreen":"Info", "ReportingIntervalSecs":"0"}, "datastore (per-host)":map[string]string{"IpInIpTunnelAddr":"10.97.79.192"}, "environment variable":map[string]string{"datastoretype":"kubernetes", "defaultendpointtohostaction":"ACCEPT", "felixhostname":"raspberrypi5-ubuntu1", "healthenabled":"true", "ipinipmtu":"0", "ipv6support":"false", "vxlanmtu":"0", "wireguardmtu":"0"}} configUpdate=config:<key:"CalicoVersion" value:"v3.29.2" > config:<key:"ClusterGUID" value:"1a6bef5e9cf84479aeb7ffc970fa2faa" > config:<key:"ClusterType" value:"k8s,bgp,kubeadm,kdd" > config:<key:"DatastoreType" value:"kubernetes" > config:<key:"DefaultEndpointToHostAction" value:"ACCEPT" > config:<key:"FelixHostname" value:"raspberrypi5-ubuntu1" > config:<key:"FloatingIPs" value:"Disabled" > config:<key:"HealthEnabled" value:"true" > config:<key:"IpInIpMtu" value:"0" > config:<key:"IpInIpTunnelAddr" value:"10.97.79.192" > config:<key:"Ipv6Support" value:"false" > config:<key:"LogFilePath" value:"None" > config:<key:"LogSeverityFile" value:"None" > config:<key:"LogSeverityScreen" value:"Info" > config:<key:"LogSeveritySys" value:"None" > config:<key:"MetadataAddr" value:"None" > config:<key:"ReportingIntervalSecs" value:"0" > config:<key:"VXLANMTU" value:"0" > config:<key:"WireguardMTU" value:"0" > source_to_raw_config:<key:1 value:<source:"datastore (global)" config:<key:"CalicoVersion" value:"v3.29.2" > config:<key:"ClusterGUID" value:"1a6bef5e9cf84479aeb7ffc970fa2faa" > config:<key:"ClusterType" value:"k8s,bgp,kubeadm,kdd" > config:<key:"FloatingIPs" value:"Disabled" > config:<key:"LogSeverityScreen" value:"Info" > config:<key:"ReportingIntervalSecs" value:"0" > > > source_to_raw_config:<key:2 value:<source:"datastore (per-host)" config:<key:"IpInIpTunnelAddr" value:"10.97.79.192" > > > source_to_raw_config:<key:3 value:<source:"config file" config:<key:"LogFilePath" value:"None" > config:<key:"LogSeverityFile" value:"None" > config:<key:"LogSeveritySys" value:"None" > config:<key:"MetadataAddr" value:"None" > > > source_to_raw_config:<key:4 value:<source:"environment variable" config:<key:"datastoretype" value:"kubernetes" > config:<key:"defaultendpointtohostaction" value:"ACCEPT" > config:<key:"felixhostname" value:"raspberrypi5-ubuntu1" > config:<key:"healthenabled" value:"true" > config:<key:"ipinipmtu" value:"0" > config:<key:"ipv6support" value:"false" > config:<key:"vxlanmtu" value:"0" > config:<key:"wireguardmtu" value:"0" > > > 
+2025-02-11 19:20:22.739 [INFO][80] felix/daemon.go 750: No driver process to monitor
+2025-02-11 19:20:22.738 [INFO][80] felix/int_dataplane.go 2125: Received interface addresses update msg=&intdataplane.ifaceAddrsUpdate{Name:"eth0", Addrs:set.Typed[string]{}}
+2025-02-11 19:20:22.739 [INFO][80] felix/hostip_mgr.go 84: Interface addrs changed. update=&intdataplane.ifaceAddrsUpdate{Name:"eth0", Addrs:set.Typed[string]{}}
+2025-02-11 19:20:22.739 [INFO][80] felix/ipsets.go 175: Queueing IP set for creation family="inet" setID="this-host" setType="hash:ip"
+2025-02-11 19:20:22.739 [INFO][80] felix/int_dataplane.go 2098: Received interface update msg=&intdataplane.ifaceStateUpdate{Name:"wlan0", State:"up", Index:3}
+2025-02-11 19:20:22.739 [INFO][80] felix/int_dataplane.go 2125: Received interface addresses update msg=&intdataplane.ifaceAddrsUpdate{Name:"wlan0", Addrs:set.Typed[string]{"192.168.1.201":set.v{}, "fe80::2ecf:67ff:fe31:895e":set.v{}}}
+2025-02-11 19:20:22.739 [INFO][80] felix/hostip_mgr.go 84: Interface addrs changed. update=&intdataplane.ifaceAddrsUpdate{Name:"wlan0", Addrs:set.Typed[string]{"192.168.1.201":set.v{}, "fe80::2ecf:67ff:fe31:895e":set.v{}}}
+2025-02-11 19:20:22.739 [INFO][80] felix/ipsets.go 175: Queueing IP set for creation family="inet" setID="this-host" setType="hash:ip"
+2025-02-11 19:20:22.739 [INFO][80] felix/int_dataplane.go 2098: Received interface update msg=&intdataplane.ifaceStateUpdate{Name:"tunl0", State:"up", Index:4}
+2025-02-11 19:20:22.739 [INFO][80] felix/int_dataplane.go 2125: Received interface addresses update msg=&intdataplane.ifaceAddrsUpdate{Name:"tunl0", Addrs:set.Typed[string]{"10.97.79.192":set.v{}}}
+2025-02-11 19:20:22.739 [INFO][80] felix/hostip_mgr.go 84: Interface addrs changed. update=&intdataplane.ifaceAddrsUpdate{Name:"tunl0", Addrs:set.Typed[string]{"10.97.79.192":set.v{}}}
+2025-02-11 19:20:22.739 [INFO][80] felix/ipsets.go 175: Queueing IP set for creation family="inet" setID="this-host" setType="hash:ip"
+2025-02-11 19:20:22.739 [INFO][80] felix/int_dataplane.go 2092: Interface monitor now in sync.
+2025-02-11 19:20:22.739 [INFO][80] felix/config_params.go 695: Parsing value for IpInIpMtu: 0 (from environment variable)
+2025-02-11 19:20:22.739 [INFO][80] felix/config_params.go 731: Parsed value for IpInIpMtu: 0 (from environment variable)
+2025-02-11 19:20:22.739 [INFO][80] felix/config_params.go 695: Parsing value for Ipv6Support: false (from environment variable)
+2025-02-11 19:20:22.739 [INFO][80] felix/config_params.go 731: Parsed value for Ipv6Support: false (from environment variable)
+2025-02-11 19:20:22.739 [INFO][80] felix/config_params.go 695: Parsing value for VXLANMTU: 0 (from environment variable)
+2025-02-11 19:20:22.739 [INFO][80] felix/config_params.go 731: Parsed value for VXLANMTU: 0 (from environment variable)
+2025-02-11 19:20:22.739 [INFO][80] felix/config_params.go 695: Parsing value for HealthEnabled: true (from environment variable)
+2025-02-11 19:20:22.740 [INFO][80] felix/config_params.go 731: Parsed value for HealthEnabled: true (from environment variable)
+2025-02-11 19:20:22.740 [INFO][80] felix/config_params.go 695: Parsing value for DefaultEndpointToHostAction: ACCEPT (from environment variable)
+2025-02-11 19:20:22.740 [INFO][80] felix/config_params.go 731: Parsed value for DefaultEndpointToHostAction: ACCEPT (from environment variable)
+2025-02-11 19:20:22.740 [INFO][80] felix/config_params.go 695: Parsing value for WireguardMTU: 0 (from environment variable)
+2025-02-11 19:20:22.740 [INFO][80] felix/config_params.go 731: Parsed value for WireguardMTU: 0 (from environment variable)
+2025-02-11 19:20:22.740 [INFO][80] felix/config_params.go 695: Parsing value for DatastoreType: kubernetes (from environment variable)
+2025-02-11 19:20:22.740 [INFO][80] felix/config_params.go 731: Parsed value for DatastoreType: kubernetes (from environment variable)
+2025-02-11 19:20:22.740 [INFO][80] felix/config_params.go 695: Parsing value for FelixHostname: raspberrypi5-ubuntu1 (from environment variable)
+2025-02-11 19:20:22.740 [INFO][80] felix/config_params.go 731: Parsed value for FelixHostname: raspberrypi5-ubuntu1 (from environment variable)
+2025-02-11 19:20:22.740 [INFO][80] felix/config_params.go 695: Parsing value for LogSeverityFile: None (from config file)
+2025-02-11 19:20:22.740 [INFO][80] felix/config_params.go 712: Value set to 'none', replacing with zero-value: "".
+2025-02-11 19:20:22.740 [INFO][80] felix/config_params.go 731: Parsed value for LogSeverityFile:  (from config file)
+2025-02-11 19:20:22.740 [INFO][80] felix/config_params.go 695: Parsing value for LogSeveritySys: None (from config file)
+2025-02-11 19:20:22.740 [INFO][80] felix/config_params.go 712: Value set to 'none', replacing with zero-value: "".
+2025-02-11 19:20:22.740 [INFO][80] felix/config_params.go 731: Parsed value for LogSeveritySys:  (from config file)
+2025-02-11 19:20:22.740 [INFO][80] felix/config_params.go 695: Parsing value for MetadataAddr: None (from config file)
+2025-02-11 19:20:22.740 [INFO][80] felix/config_params.go 712: Value set to 'none', replacing with zero-value: "".
+2025-02-11 19:20:22.740 [INFO][80] felix/config_params.go 731: Parsed value for MetadataAddr:  (from config file)
+2025-02-11 19:20:22.741 [INFO][80] felix/config_params.go 695: Parsing value for LogFilePath: None (from config file)
+2025-02-11 19:20:22.741 [INFO][80] felix/config_params.go 712: Value set to 'none', replacing with zero-value: "".
+2025-02-11 19:20:22.741 [INFO][80] felix/config_params.go 731: Parsed value for LogFilePath:  (from config file)
+2025-02-11 19:20:22.741 [INFO][80] felix/config_params.go 695: Parsing value for IpInIpTunnelAddr: 10.97.79.192 (from datastore (per-host))
+2025-02-11 19:20:22.741 [INFO][80] felix/config_params.go 731: Parsed value for IpInIpTunnelAddr: 10.97.79.192 (from datastore (per-host))
+2025-02-11 19:20:22.741 [INFO][80] felix/config_params.go 695: Parsing value for ClusterType: k8s,bgp,kubeadm,kdd (from datastore (global))
+2025-02-11 19:20:22.741 [INFO][80] felix/config_params.go 731: Parsed value for ClusterType: k8s,bgp,kubeadm,kdd (from datastore (global))
+2025-02-11 19:20:22.741 [INFO][80] felix/config_params.go 695: Parsing value for CalicoVersion: v3.29.2 (from datastore (global))
+2025-02-11 19:20:22.741 [INFO][80] felix/config_params.go 731: Parsed value for CalicoVersion: v3.29.2 (from datastore (global))
+2025-02-11 19:20:22.741 [INFO][80] felix/config_params.go 695: Parsing value for LogSeverityScreen: Info (from datastore (global))
+2025-02-11 19:20:22.741 [INFO][80] felix/config_params.go 731: Parsed value for LogSeverityScreen: INFO (from datastore (global))
+2025-02-11 19:20:22.741 [INFO][80] felix/config_params.go 695: Parsing value for ReportingIntervalSecs: 0 (from datastore (global))
+2025-02-11 19:20:22.741 [INFO][80] felix/config_params.go 731: Parsed value for ReportingIntervalSecs: 0s (from datastore (global))
+2025-02-11 19:20:22.741 [INFO][80] felix/config_params.go 695: Parsing value for FloatingIPs: Disabled (from datastore (global))
+2025-02-11 19:20:22.741 [INFO][80] felix/config_params.go 731: Parsed value for FloatingIPs: Disabled (from datastore (global))
+2025-02-11 19:20:22.741 [INFO][80] felix/config_params.go 695: Parsing value for ClusterGUID: 1a6bef5e9cf84479aeb7ffc970fa2faa (from datastore (global))
+2025-02-11 19:20:22.741 [INFO][80] felix/config_params.go 731: Parsed value for ClusterGUID: 1a6bef5e9cf84479aeb7ffc970fa2faa (from datastore (global))
+2025-02-11 19:20:22.742 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ConfigUpdate update from calculation graph msg=config:<key:"CalicoVersion" value:"v3.29.2" > config:<key:"ClusterGUID" value:"1a6bef5e9cf84479aeb7ffc970fa2faa" > config:<key:"ClusterType" value:"k8s,bgp,kubeadm,kdd" > config:<key:"DatastoreType" value:"kubernetes" > config:<key:"DefaultEndpointToHostAction" value:"ACCEPT" > config:<key:"FelixHostname" value:"raspberrypi5-ubuntu1" > config:<key:"FloatingIPs" value:"Disabled" > config:<key:"HealthEnabled" value:"true" > config:<key:"IpInIpMtu" value:"0" > config:<key:"IpInIpTunnelAddr" value:"10.97.79.192" > config:<key:"Ipv6Support" value:"false" > config:<key:"LogFilePath" value:"None" > config:<key:"LogSeverityFile" value:"None" > config:<key:"LogSeverityScreen" value:"Info" > config:<key:"LogSeveritySys" value:"None" > config:<key:"MetadataAddr" value:"None" > config:<key:"ReportingIntervalSecs" value:"0" > config:<key:"VXLANMTU" value:"0" > config:<key:"WireguardMTU" value:"0" > source_to_raw_config:<key:1 value:<source:"datastore (global)" config:<key:"CalicoVersion" value:"v3.29.2" > config:<key:"ClusterGUID" value:"1a6bef5e9cf84479aeb7ffc970fa2faa" > config:<key:"ClusterType" value:"k8s,bgp,kubeadm,kdd" > config:<key:"FloatingIPs" value:"Disabled" > config:<key:"LogSeverityScreen" value:"Info" > config:<key:"ReportingIntervalSecs" value:"0" > > > source_to_raw_config:<key:2 value:<source:"datastore (per-host)" config:<key:"IpInIpTunnelAddr" value:"10.97.79.192" > > > source_to_raw_config:<key:3 value:<source:"config file" config:<key:"LogFilePath" value:"None" > config:<key:"LogSeverityFile" value:"None" > config:<key:"LogSeveritySys" value:"None" > config:<key:"MetadataAddr" value:"None" > > > source_to_raw_config:<key:4 value:<source:"environment variable" config:<key:"datastoretype" value:"kubernetes" > config:<key:"defaultendpointtohostaction" value:"ACCEPT" > config:<key:"felixhostname" value:"raspberrypi5-ubuntu1" > config:<key:"healthenabled" value:"true" > config:<key:"ipinipmtu" value:"0" > config:<key:"ipv6support" value:"false" > config:<key:"vxlanmtu" value:"0" > config:<key:"wireguardmtu" value:"0" > > > 
+2025-02-11 19:20:22.746 [INFO][80] felix/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/kubernetesadminnetworkpolicies"
+2025-02-11 19:20:22.746 [INFO][80] felix/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:22.746 [INFO][80] felix/watchersyncer.go 130: Sending status update Status=resync
+2025-02-11 19:20:22.750 [INFO][80] felix/watchercache.go 310: Sending synced update ListRoot="/calico/ipam/v2/assignment/"
+2025-02-11 19:20:22.750 [INFO][80] felix/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:22.756 [INFO][80] felix/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/clusterinformations"
+2025-02-11 19:20:22.756 [INFO][80] felix/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:22.756 [INFO][80] felix/config_batcher.go 74: Global config update: {{GlobalFelixConfig(name=ClusterGUID) 1a6bef5e9cf84479aeb7ffc970fa2faa 1014047 <nil> 0s} 1}
+2025-02-11 19:20:22.756 [INFO][80] felix/config_batcher.go 74: Global config update: {{GlobalFelixConfig(name=ClusterType) k8s,bgp,kubeadm,kdd 1014047 <nil> 0s} 1}
+2025-02-11 19:20:22.756 [INFO][80] felix/config_batcher.go 74: Global config update: {{GlobalFelixConfig(name=CalicoVersion) v3.29.2 1014047 <nil> 0s} 1}
+2025-02-11 19:20:22.761 [INFO][80] felix/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/networkpolicies"
+2025-02-11 19:20:22.761 [INFO][80] felix/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/bgpconfigurations"
+2025-02-11 19:20:22.761 [INFO][80] felix/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:22.761 [INFO][80] felix/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:22.761 [INFO][80] felix/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/globalnetworksets"
+2025-02-11 19:20:22.761 [INFO][80] felix/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:22.762 [INFO][80] felix/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/nodes"
+2025-02-11 19:20:22.762 [INFO][80] felix/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/felixconfigurations"
+2025-02-11 19:20:22.762 [INFO][80] felix/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/globalnetworkpolicies"
+2025-02-11 19:20:22.762 [INFO][80] felix/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:22.762 [INFO][80] felix/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:22.762 [INFO][80] felix/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:22.762 [INFO][80] felix/config_batcher.go 61: Host config update for this host: {{HostConfig(node=raspberrypi5-ubuntu1,name=IpInIpTunnelAddr) 10.97.79.192 1024778 <nil> 0s} 1}
+2025-02-11 19:20:22.762 [INFO][80] felix/config_batcher.go 74: Global config update: {{GlobalFelixConfig(name=LogSeverityScreen) Info 1129 <nil> 0s} 1}
+2025-02-11 19:20:22.762 [INFO][80] felix/config_batcher.go 74: Global config update: {{GlobalFelixConfig(name=ReportingIntervalSecs) 0 1129 <nil> 0s} 1}
+2025-02-11 19:20:22.762 [INFO][80] felix/config_batcher.go 74: Global config update: {{GlobalFelixConfig(name=FloatingIPs) Disabled 1129 <nil> 0s} 1}
+2025-02-11 19:20:22.765 [INFO][80] felix/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/ippools"
+2025-02-11 19:20:22.765 [INFO][80] felix/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:22.765 [INFO][80] felix/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/tiers"
+2025-02-11 19:20:22.765 [INFO][80] felix/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/hostendpoints"
+2025-02-11 19:20:22.765 [INFO][80] felix/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:22.765 [INFO][80] felix/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:22.766 [INFO][80] felix/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/kubernetesservice"
+2025-02-11 19:20:22.766 [INFO][80] felix/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/kubernetesnetworkpolicies"
+2025-02-11 19:20:22.766 [INFO][80] felix/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:22.766 [INFO][80] felix/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:22.767 [INFO][80] felix/label_inheritance_index.go 185: Updating selector id=Policy(tier=default, name=argocd/knp.default.argocd-application-controller-network-policy) selector=((projectcalico.org/orchestrator == "k8s" && app.kubernetes.io/name == "argocd-application-controller") && projectcalico.org/namespace == "argocd")
+2025-02-11 19:20:22.768 [INFO][80] felix/label_inheritance_index.go 185: Updating selector id=Policy(tier=default, name=argocd/knp.default.argocd-applicationset-controller-network-policy) selector=((projectcalico.org/orchestrator == "k8s" && app.kubernetes.io/name == "argocd-applicationset-controller") && projectcalico.org/namespace == "argocd")
+2025-02-11 19:20:22.768 [INFO][80] felix/label_inheritance_index.go 185: Updating selector id=Policy(tier=default, name=argocd/knp.default.argocd-dex-server-network-policy) selector=((projectcalico.org/orchestrator == "k8s" && app.kubernetes.io/name == "argocd-dex-server") && projectcalico.org/namespace == "argocd")
+2025-02-11 19:20:22.768 [INFO][80] felix/label_inheritance_index.go 185: Updating selector id=Policy(tier=default, name=argocd/knp.default.argocd-notifications-controller-network-policy) selector=((projectcalico.org/orchestrator == "k8s" && app.kubernetes.io/name == "argocd-notifications-controller") && projectcalico.org/namespace == "argocd")
+2025-02-11 19:20:22.768 [INFO][80] felix/label_inheritance_index.go 185: Updating selector id=Policy(tier=default, name=argocd/knp.default.argocd-redis-network-policy) selector=((projectcalico.org/orchestrator == "k8s" && app.kubernetes.io/name == "argocd-redis") && projectcalico.org/namespace == "argocd")
+2025-02-11 19:20:22.768 [INFO][80] felix/label_inheritance_index.go 185: Updating selector id=Policy(tier=default, name=argocd/knp.default.argocd-repo-server-network-policy) selector=((projectcalico.org/orchestrator == "k8s" && app.kubernetes.io/name == "argocd-repo-server") && projectcalico.org/namespace == "argocd")
+2025-02-11 19:20:22.768 [INFO][80] felix/label_inheritance_index.go 185: Updating selector id=Policy(tier=default, name=argocd/knp.default.argocd-server-network-policy) selector=((projectcalico.org/orchestrator == "k8s" && app.kubernetes.io/name == "argocd-server") && projectcalico.org/namespace == "argocd")
+2025-02-11 19:20:22.768 [INFO][80] felix/int_dataplane.go 2041: Received *proto.HostMetadataUpdate update from calculation graph msg=hostname:"raspberrypi5-ubuntu1" ipv4_addr:"192.168.1.201" 
+2025-02-11 19:20:22.768 [INFO][80] felix/int_dataplane.go 2041: Received *proto.HostMetadataUpdate update from calculation graph msg=hostname:"toshiba-ubuntu-server-2204" ipv4_addr:"192.168.1.199" 
+2025-02-11 19:20:22.768 [INFO][80] felix/int_dataplane.go 2041: Received *proto.HostMetadataV4V6Update update from calculation graph msg=hostname:"raspberrypi5-ubuntu1" ipv4_addr:"192.168.1.201/24" labels:<key:"beta.kubernetes.io/arch" value:"arm64" > labels:<key:"beta.kubernetes.io/os" value:"linux" > labels:<key:"kubernetes.io/arch" value:"arm64" > labels:<key:"kubernetes.io/hostname" value:"raspberrypi5-ubuntu1" > labels:<key:"kubernetes.io/os" value:"linux" > 
+2025-02-11 19:20:22.768 [INFO][80] felix/int_dataplane.go 2041: Received *proto.HostMetadataV4V6Update update from calculation graph msg=hostname:"toshiba-ubuntu-server-2204" ipv4_addr:"192.168.1.199/24" labels:<key:"beta.kubernetes.io/arch" value:"amd64" > labels:<key:"beta.kubernetes.io/os" value:"linux" > labels:<key:"kubernetes.io/arch" value:"amd64" > labels:<key:"kubernetes.io/hostname" value:"toshiba-ubuntu-server-2204" > labels:<key:"kubernetes.io/os" value:"linux" > labels:<key:"node-role.kubernetes.io/control-plane" value:"" > labels:<key:"node.kubernetes.io/exclude-from-external-load-balancers" value:"" > 
+2025-02-11 19:20:22.768 [INFO][80] felix/int_dataplane.go 2041: Received *proto.IPAMPoolUpdate update from calculation graph msg=id:"10.97.0.0-16" pool:<cidr:"10.97.0.0/16" masquerade:true ipip_mode:"always" > 
+2025-02-11 19:20:22.769 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceUpdate update from calculation graph msg=name:"registry" namespace:"registry" type:"ClusterIP" cluster_ips:"10.96.11.89" ports:<Protocol:"TCP" Port:80 > 
+2025-02-11 19:20:22.769 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceUpdate update from calculation graph msg=name:"argocd-applicationset-controller" namespace:"argocd" type:"ClusterIP" cluster_ips:"10.96.62.177" ports:<Protocol:"TCP" Port:7000 > ports:<Protocol:"TCP" Port:8080 > 
+2025-02-11 19:20:22.769 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceUpdate update from calculation graph msg=name:"argocd-notifications-controller-metrics" namespace:"argocd" type:"ClusterIP" cluster_ips:"10.96.53.131" ports:<Protocol:"TCP" Port:9001 > 
+2025-02-11 19:20:22.769 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceUpdate update from calculation graph msg=name:"argocd-server-metrics" namespace:"argocd" type:"ClusterIP" cluster_ips:"10.96.15.21" ports:<Protocol:"TCP" Port:8083 > 
+2025-02-11 19:20:22.769 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceUpdate update from calculation graph msg=name:"kubernetes" namespace:"default" type:"ClusterIP" cluster_ips:"10.96.0.1" ports:<Protocol:"TCP" Port:443 > 
+2025-02-11 19:20:22.769 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceUpdate update from calculation graph msg=name:"staticsite-sample-svc" namespace:"default" type:"NodePort" cluster_ips:"10.96.12.22" ports:<Protocol:"TCP" Port:80 NodePort:32000 > 
+2025-02-11 19:20:22.769 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceUpdate update from calculation graph msg=name:"ingress-nginx-controller" namespace:"ingress-nginx" type:"LoadBalancer" cluster_ips:"10.96.218.188" ports:<Protocol:"TCP" Port:80 NodePort:80 > ports:<Protocol:"TCP" Port:443 NodePort:31288 > 
+2025-02-11 19:20:22.769 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceUpdate update from calculation graph msg=name:"ingress-nginx-controller-admission" namespace:"ingress-nginx" type:"ClusterIP" cluster_ips:"10.96.205.66" ports:<Protocol:"TCP" Port:443 > 
+2025-02-11 19:20:22.769 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceUpdate update from calculation graph msg=name:"argocd-metrics" namespace:"argocd" type:"ClusterIP" cluster_ips:"10.96.155.39" ports:<Protocol:"TCP" Port:8082 > 
+2025-02-11 19:20:22.769 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceUpdate update from calculation graph msg=name:"google-ns" namespace:"kube-system" type:"ExternalName" 
+2025-02-11 19:20:22.769 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceUpdate update from calculation graph msg=name:"docker-registry-ui-docker-registry-ui-user-interface" namespace:"registry-ui" type:"ClusterIP" cluster_ips:"10.96.121.218" ports:<Protocol:"TCP" Port:80 > 
+2025-02-11 19:20:22.769 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceUpdate update from calculation graph msg=name:"argocd-redis" namespace:"argocd" type:"ClusterIP" cluster_ips:"10.96.236.2" ports:<Protocol:"TCP" Port:6379 > 
+2025-02-11 19:20:22.769 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceUpdate update from calculation graph msg=name:"metrics-server" namespace:"kube-system" type:"ClusterIP" cluster_ips:"10.96.184.135" ports:<Protocol:"TCP" Port:443 > 
+2025-02-11 19:20:22.769 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceUpdate update from calculation graph msg=name:"argocd-dex-server" namespace:"argocd" type:"ClusterIP" cluster_ips:"10.96.148.238" ports:<Protocol:"TCP" Port:5556 > ports:<Protocol:"TCP" Port:5557 > ports:<Protocol:"TCP" Port:5558 > 
+2025-02-11 19:20:22.769 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceUpdate update from calculation graph msg=name:"argocd-repo-server" namespace:"argocd" type:"ClusterIP" cluster_ips:"10.96.59.109" ports:<Protocol:"TCP" Port:8081 > ports:<Protocol:"TCP" Port:8084 > 
+2025-02-11 19:20:22.769 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceUpdate update from calculation graph msg=name:"argocd-server" namespace:"argocd" type:"ClusterIP" cluster_ips:"10.96.64.176" ports:<Protocol:"TCP" Port:80 > ports:<Protocol:"TCP" Port:443 > 
+2025-02-11 19:20:22.769 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceUpdate update from calculation graph msg=name:"cv-operator-controller-manager-metrics-service" namespace:"cv-operator-system" type:"ClusterIP" cluster_ips:"10.96.194.164" ports:<Protocol:"TCP" Port:8443 > 
+2025-02-11 19:20:22.769 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceUpdate update from calculation graph msg=name:"kube-dns" namespace:"kube-system" type:"NodePort" cluster_ips:"10.96.0.10" ports:<Protocol:"UDP" Port:53 NodePort:53 > ports:<Protocol:"TCP" Port:53 NodePort:23514 > ports:<Protocol:"TCP" Port:9153 NodePort:9153 > 
+2025-02-11 19:20:22.771 [INFO][80] felix/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/networksets"
+2025-02-11 19:20:22.771 [INFO][80] felix/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:22.771 [INFO][80] felix/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/kubernetesendpointslices"
+2025-02-11 19:20:22.771 [INFO][80] felix/watchersyncer.go 209: Received InSync event from one of the watcher caches
+bird: device1: Initializing
+bird: direct1: Initializing
+bird: Mesh_192_168_1_199: Initializing
+bird: device1: Starting
+bird: device1: Connected to table master
+bird: device1: State changed to feed
+bird: direct1: Starting
+bird: direct1: Connected to table master
+bird: direct1: State changed to feed
+bird: Mesh_192_168_1_199: Starting
+bird: Mesh_192_168_1_199: State changed to start
+bird: Graceful restart started
+bird: Started
+bird: device1: State changed to up
+bird: direct1: State changed to up
+bird: Reconfiguration requested by SIGHUP
+bird: Reconfiguring
+bird: device1: Reconfigured
+bird: direct1: Reconfigured
+bird: Mesh_192_168_1_199: Reconfigured
+bird: Reconfigured
+2025-02-11 19:20:22.794 [INFO][80] felix/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/workloadendpoints"
+2025-02-11 19:20:22.794 [INFO][80] felix/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:22.836 [INFO][80] felix/watchercache.go 310: Sending synced update ListRoot="/calico/resources/v3/projectcalico.org/profiles"
+2025-02-11 19:20:22.836 [INFO][80] felix/watchersyncer.go 209: Received InSync event from one of the watcher caches
+2025-02-11 19:20:22.836 [INFO][80] felix/watchersyncer.go 221: All watchers have sync'd data - sending data and final sync
+2025-02-11 19:20:22.836 [INFO][80] felix/watchersyncer.go 130: Sending status update Status=in-sync
+2025-02-11 19:20:22.838 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"argocd" name:"argocd-applicationset-controller" > labels:<key:"app.kubernetes.io/component" value:"applicationset-controller" > labels:<key:"app.kubernetes.io/name" value:"argocd-applicationset-controller" > labels:<key:"app.kubernetes.io/part-of" value:"argocd" > labels:<key:"projectcalico.org/name" value:"argocd-applicationset-controller" > 
+2025-02-11 19:20:22.838 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"argocd" name:"argocd-server" > labels:<key:"app.kubernetes.io/component" value:"server" > labels:<key:"app.kubernetes.io/name" value:"argocd-server" > labels:<key:"app.kubernetes.io/part-of" value:"argocd" > labels:<key:"projectcalico.org/name" value:"argocd-server" > 
+2025-02-11 19:20:22.838 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"calico-cni-plugin" > labels:<key:"projectcalico.org/name" value:"calico-cni-plugin" > 
+2025-02-11 19:20:22.838 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"argocd" name:"argocd-application-controller" > labels:<key:"app.kubernetes.io/component" value:"application-controller" > labels:<key:"app.kubernetes.io/name" value:"argocd-application-controller" > labels:<key:"app.kubernetes.io/part-of" value:"argocd" > labels:<key:"projectcalico.org/name" value:"argocd-application-controller" > 
+2025-02-11 19:20:22.838 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"argocd" name:"argocd-repo-server" > labels:<key:"app.kubernetes.io/component" value:"repo-server" > labels:<key:"app.kubernetes.io/name" value:"argocd-repo-server" > labels:<key:"app.kubernetes.io/part-of" value:"argocd" > labels:<key:"projectcalico.org/name" value:"argocd-repo-server" > 
+2025-02-11 19:20:22.838 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"argocd" name:"default" > labels:<key:"projectcalico.org/name" value:"default" > 
+2025-02-11 19:20:22.839 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"cv-operator-system" name:"default" > labels:<key:"projectcalico.org/name" value:"default" > 
+2025-02-11 19:20:22.839 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"ingress-nginx" name:"default" > labels:<key:"projectcalico.org/name" value:"default" > 
+2025-02-11 19:20:22.839 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"bootstrap-signer" > labels:<key:"projectcalico.org/name" value:"bootstrap-signer" > 
+2025-02-11 19:20:22.839 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"calico-node" > labels:<key:"projectcalico.org/name" value:"calico-node" > 
+2025-02-11 19:20:22.839 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"certificate-controller" > labels:<key:"projectcalico.org/name" value:"certificate-controller" > 
+2025-02-11 19:20:22.839 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"argocd" name:"argocd-notifications-controller" > labels:<key:"app.kubernetes.io/component" value:"notifications-controller" > labels:<key:"app.kubernetes.io/name" value:"argocd-notifications-controller" > labels:<key:"app.kubernetes.io/part-of" value:"argocd" > labels:<key:"projectcalico.org/name" value:"argocd-notifications-controller" > 
+2025-02-11 19:20:22.839 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"cv-operator-system" name:"cv-operator-controller-manager" > labels:<key:"app.kubernetes.io/instance" value:"cv-operator-manager" > labels:<key:"app.kubernetes.io/managed-by" value:"kustomize" > labels:<key:"app.kubernetes.io/name" value:"cv-operator" > labels:<key:"projectcalico.org/name" value:"cv-operator-controller-manager" > 
+2025-02-11 19:20:22.839 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"ingress-nginx" name:"ingress-nginx" > labels:<key:"app.kubernetes.io/component" value:"controller" > labels:<key:"app.kubernetes.io/instance" value:"ingress-nginx" > labels:<key:"app.kubernetes.io/managed-by" value:"Helm" > labels:<key:"app.kubernetes.io/name" value:"ingress-nginx" > labels:<key:"app.kubernetes.io/part-of" value:"ingress-nginx" > labels:<key:"app.kubernetes.io/version" value:"1.12.0" > labels:<key:"helm.sh/chart" value:"ingress-nginx-4.12.0" > labels:<key:"projectcalico.org/name" value:"ingress-nginx" > 
+2025-02-11 19:20:22.839 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"attachdetach-controller" > labels:<key:"projectcalico.org/name" value:"attachdetach-controller" > 
+2025-02-11 19:20:22.839 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"argocd" name:"argocd-redis" > labels:<key:"app.kubernetes.io/component" value:"redis" > labels:<key:"app.kubernetes.io/name" value:"argocd-redis" > labels:<key:"app.kubernetes.io/part-of" value:"argocd" > labels:<key:"projectcalico.org/name" value:"argocd-redis" > 
+2025-02-11 19:20:22.839 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"default" name:"default" > labels:<key:"projectcalico.org/name" value:"default" > 
+2025-02-11 19:20:22.840 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-node-lease" name:"default" > labels:<key:"projectcalico.org/name" value:"default" > 
+2025-02-11 19:20:22.840 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-public" name:"default" > labels:<key:"projectcalico.org/name" value:"default" > 
+2025-02-11 19:20:22.840 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"calico-kube-controllers" > labels:<key:"projectcalico.org/name" value:"calico-kube-controllers" > 
+2025-02-11 19:20:22.840 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"argocd" name:"argocd-dex-server" > labels:<key:"app.kubernetes.io/component" value:"dex-server" > labels:<key:"app.kubernetes.io/name" value:"argocd-dex-server" > labels:<key:"app.kubernetes.io/part-of" value:"argocd" > labels:<key:"projectcalico.org/name" value:"argocd-dex-server" > 
+2025-02-11 19:20:22.840 [INFO][80] felix/int_dataplane.go 2041: Received *proto.NamespaceUpdate update from calculation graph msg=id:<name:"default" > labels:<key:"kubernetes.io/metadata.name" value:"default" > labels:<key:"projectcalico.org/name" value:"default" > 
+2025-02-11 19:20:22.840 [INFO][80] felix/int_dataplane.go 2041: Received *proto.NamespaceUpdate update from calculation graph msg=id:<name:"ingress-nginx" > labels:<key:"kubernetes.io/metadata.name" value:"ingress-nginx" > labels:<key:"name" value:"ingress-nginx" > labels:<key:"projectcalico.org/name" value:"ingress-nginx" > 
+2025-02-11 19:20:22.840 [INFO][80] felix/int_dataplane.go 2041: Received *proto.NamespaceUpdate update from calculation graph msg=id:<name:"traefik" > labels:<key:"kubernetes.io/metadata.name" value:"traefik" > labels:<key:"name" value:"traefik" > labels:<key:"projectcalico.org/name" value:"traefik" > 
+2025-02-11 19:20:22.840 [INFO][80] felix/int_dataplane.go 2041: Received *proto.NamespaceUpdate update from calculation graph msg=id:<name:"argocd" > labels:<key:"kubernetes.io/metadata.name" value:"argocd" > labels:<key:"projectcalico.org/name" value:"argocd" > 
+2025-02-11 19:20:22.840 [INFO][80] felix/config_batcher.go 102: Datamodel in sync, flushing config update
+2025-02-11 19:20:22.840 [INFO][80] felix/int_dataplane.go 2041: Received *proto.NamespaceUpdate update from calculation graph msg=id:<name:"cv-operator-system" > labels:<key:"app.kubernetes.io/instance" value:"cv-operator-manager" > labels:<key:"app.kubernetes.io/managed-by" value:"kustomize" > labels:<key:"app.kubernetes.io/name" value:"cv-operator" > labels:<key:"control-plane" value:"controller-manager" > labels:<key:"kubernetes.io/metadata.name" value:"cv-operator-system" > labels:<key:"projectcalico.org/name" value:"cv-operator-system" > 
+2025-02-11 19:20:22.840 [INFO][80] felix/int_dataplane.go 2041: Received *proto.NamespaceUpdate update from calculation graph msg=id:<name:"kube-system" > labels:<key:"kubernetes.io/metadata.name" value:"kube-system" > labels:<key:"projectcalico.org/name" value:"kube-system" > 
+2025-02-11 19:20:22.840 [INFO][80] felix/int_dataplane.go 2041: Received *proto.NamespaceUpdate update from calculation graph msg=id:<name:"local-path-storage" > labels:<key:"kubernetes.io/metadata.name" value:"local-path-storage" > labels:<key:"projectcalico.org/name" value:"local-path-storage" > 
+2025-02-11 19:20:22.841 [INFO][80] felix/int_dataplane.go 2041: Received *proto.NamespaceUpdate update from calculation graph msg=id:<name:"registry" > labels:<key:"kubernetes.io/metadata.name" value:"registry" > labels:<key:"projectcalico.org/name" value:"registry" > 
+2025-02-11 19:20:22.841 [INFO][80] felix/int_dataplane.go 2041: Received *proto.NamespaceUpdate update from calculation graph msg=id:<name:"registry-ui" > labels:<key:"kubernetes.io/metadata.name" value:"registry-ui" > labels:<key:"name" value:"registry-ui" > labels:<key:"projectcalico.org/name" value:"registry-ui" > 
+2025-02-11 19:20:22.840 [INFO][80] felix/config_batcher.go 112: Sending config update global: map[CalicoVersion:v3.29.2 ClusterGUID:1a6bef5e9cf84479aeb7ffc970fa2faa ClusterType:k8s,bgp,kubeadm,kdd FloatingIPs:Disabled LogSeverityScreen:Info ReportingIntervalSecs:0], host: map[IpInIpTunnelAddr:10.97.79.192].
+2025-02-11 19:20:22.841 [INFO][80] felix/int_dataplane.go 2041: Received *proto.NamespaceUpdate update from calculation graph msg=id:<name:"kube-node-lease" > labels:<key:"kubernetes.io/metadata.name" value:"kube-node-lease" > labels:<key:"projectcalico.org/name" value:"kube-node-lease" > 
+2025-02-11 19:20:22.841 [INFO][80] felix/async_calc_graph.go 166: First time we've been in sync
+2025-02-11 19:20:22.841 [INFO][80] felix/health.go 206: Health of component changed name="CalculationGraph" newReport="live,ready" oldReport="live,non-ready"
+2025-02-11 19:20:22.841 [INFO][80] felix/event_sequencer.go 273: Possible config update. global=map[string]string{"CalicoVersion":"v3.29.2", "ClusterGUID":"1a6bef5e9cf84479aeb7ffc970fa2faa", "ClusterType":"k8s,bgp,kubeadm,kdd", "FloatingIPs":"Disabled", "LogSeverityScreen":"Info", "ReportingIntervalSecs":"0"} host=map[string]string{"IpInIpTunnelAddr":"10.97.79.192"}
+2025-02-11 19:20:22.841 [INFO][80] felix/config_params.go 564: Merging in config from datastore (global): map[CalicoVersion:v3.29.2 ClusterGUID:1a6bef5e9cf84479aeb7ffc970fa2faa ClusterType:k8s,bgp,kubeadm,kdd FloatingIPs:Disabled LogSeverityScreen:Info ReportingIntervalSecs:0]
+2025-02-11 19:20:22.841 [INFO][80] felix/config_params.go 695: Parsing value for IpInIpMtu: 0 (from environment variable)
+2025-02-11 19:20:22.841 [INFO][80] felix/config_params.go 731: Parsed value for IpInIpMtu: 0 (from environment variable)
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 695: Parsing value for Ipv6Support: false (from environment variable)
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 731: Parsed value for Ipv6Support: false (from environment variable)
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 695: Parsing value for VXLANMTU: 0 (from environment variable)
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 731: Parsed value for VXLANMTU: 0 (from environment variable)
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 695: Parsing value for HealthEnabled: true (from environment variable)
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 731: Parsed value for HealthEnabled: true (from environment variable)
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 695: Parsing value for DefaultEndpointToHostAction: ACCEPT (from environment variable)
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 731: Parsed value for DefaultEndpointToHostAction: ACCEPT (from environment variable)
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 695: Parsing value for WireguardMTU: 0 (from environment variable)
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 731: Parsed value for WireguardMTU: 0 (from environment variable)
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 695: Parsing value for DatastoreType: kubernetes (from environment variable)
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 731: Parsed value for DatastoreType: kubernetes (from environment variable)
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 695: Parsing value for FelixHostname: raspberrypi5-ubuntu1 (from environment variable)
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 731: Parsed value for FelixHostname: raspberrypi5-ubuntu1 (from environment variable)
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 695: Parsing value for MetadataAddr: None (from config file)
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 712: Value set to 'none', replacing with zero-value: "".
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 731: Parsed value for MetadataAddr:  (from config file)
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 695: Parsing value for LogFilePath: None (from config file)
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 712: Value set to 'none', replacing with zero-value: "".
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 731: Parsed value for LogFilePath:  (from config file)
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 695: Parsing value for LogSeverityFile: None (from config file)
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 712: Value set to 'none', replacing with zero-value: "".
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 731: Parsed value for LogSeverityFile:  (from config file)
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 695: Parsing value for LogSeveritySys: None (from config file)
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 712: Value set to 'none', replacing with zero-value: "".
+2025-02-11 19:20:22.842 [INFO][80] felix/config_params.go 731: Parsed value for LogSeveritySys:  (from config file)
+2025-02-11 19:20:22.843 [INFO][80] felix/config_params.go 695: Parsing value for IpInIpTunnelAddr: 10.97.79.192 (from datastore (per-host))
+2025-02-11 19:20:22.843 [INFO][80] felix/config_params.go 731: Parsed value for IpInIpTunnelAddr: 10.97.79.192 (from datastore (per-host))
+2025-02-11 19:20:22.843 [INFO][80] felix/config_params.go 695: Parsing value for ClusterType: k8s,bgp,kubeadm,kdd (from datastore (global))
+2025-02-11 19:20:22.843 [INFO][80] felix/config_params.go 731: Parsed value for ClusterType: k8s,bgp,kubeadm,kdd (from datastore (global))
+2025-02-11 19:20:22.843 [INFO][80] felix/config_params.go 695: Parsing value for CalicoVersion: v3.29.2 (from datastore (global))
+2025-02-11 19:20:22.843 [INFO][80] felix/config_params.go 731: Parsed value for CalicoVersion: v3.29.2 (from datastore (global))
+2025-02-11 19:20:22.843 [INFO][80] felix/config_params.go 695: Parsing value for LogSeverityScreen: Info (from datastore (global))
+2025-02-11 19:20:22.843 [INFO][80] felix/config_params.go 731: Parsed value for LogSeverityScreen: INFO (from datastore (global))
+2025-02-11 19:20:22.843 [INFO][80] felix/config_params.go 695: Parsing value for ReportingIntervalSecs: 0 (from datastore (global))
+2025-02-11 19:20:22.843 [INFO][80] felix/config_params.go 731: Parsed value for ReportingIntervalSecs: 0s (from datastore (global))
+2025-02-11 19:20:22.844 [INFO][80] felix/config_params.go 695: Parsing value for FloatingIPs: Disabled (from datastore (global))
+2025-02-11 19:20:22.844 [INFO][80] felix/config_params.go 731: Parsed value for FloatingIPs: Disabled (from datastore (global))
+2025-02-11 19:20:22.844 [INFO][80] felix/config_params.go 695: Parsing value for ClusterGUID: 1a6bef5e9cf84479aeb7ffc970fa2faa (from datastore (global))
+2025-02-11 19:20:22.844 [INFO][80] felix/config_params.go 731: Parsed value for ClusterGUID: 1a6bef5e9cf84479aeb7ffc970fa2faa (from datastore (global))
+2025-02-11 19:20:22.844 [INFO][80] felix/config_params.go 564: Merging in config from datastore (per-host): map[IpInIpTunnelAddr:10.97.79.192]
+2025-02-11 19:20:22.845 [INFO][80] felix/config_params.go 695: Parsing value for WireguardMTU: 0 (from environment variable)
+2025-02-11 19:20:22.845 [INFO][80] felix/config_params.go 731: Parsed value for WireguardMTU: 0 (from environment variable)
+2025-02-11 19:20:22.846 [INFO][80] felix/config_params.go 695: Parsing value for DatastoreType: kubernetes (from environment variable)
+2025-02-11 19:20:22.846 [INFO][80] felix/config_params.go 731: Parsed value for DatastoreType: kubernetes (from environment variable)
+2025-02-11 19:20:22.846 [INFO][80] felix/config_params.go 695: Parsing value for FelixHostname: raspberrypi5-ubuntu1 (from environment variable)
+2025-02-11 19:20:22.846 [INFO][80] felix/config_params.go 731: Parsed value for FelixHostname: raspberrypi5-ubuntu1 (from environment variable)
+2025-02-11 19:20:22.843 [INFO][80] felix/int_dataplane.go 2041: Received *proto.NamespaceUpdate update from calculation graph msg=id:<name:"kube-public" > labels:<key:"kubernetes.io/metadata.name" value:"kube-public" > labels:<key:"projectcalico.org/name" value:"kube-public" > 
+2025-02-11 19:20:22.846 [INFO][80] felix/config_params.go 695: Parsing value for IpInIpMtu: 0 (from environment variable)
+2025-02-11 19:20:22.846 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"expand-controller" > labels:<key:"projectcalico.org/name" value:"expand-controller" > 
+2025-02-11 19:20:22.846 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"resourcequota-controller" > labels:<key:"projectcalico.org/name" value:"resourcequota-controller" > 
+2025-02-11 19:20:22.847 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"service-controller" > labels:<key:"projectcalico.org/name" value:"service-controller" > 
+2025-02-11 19:20:22.846 [INFO][80] felix/config_params.go 731: Parsed value for IpInIpMtu: 0 (from environment variable)
+2025-02-11 19:20:22.843 [INFO][80] felix/usagerep.go 91: Waiting before first check-in delay=5m1.899s
+2025-02-11 19:20:22.847 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"node-controller" > labels:<key:"projectcalico.org/name" value:"node-controller" > 
+2025-02-11 19:20:22.847 [INFO][80] felix/config_params.go 695: Parsing value for Ipv6Support: false (from environment variable)
+2025-02-11 19:20:22.847 [INFO][80] felix/config_params.go 731: Parsed value for Ipv6Support: false (from environment variable)
+2025-02-11 19:20:22.847 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"coredns" > labels:<key:"projectcalico.org/name" value:"coredns" > 
+2025-02-11 19:20:22.847 [INFO][80] felix/config_params.go 695: Parsing value for VXLANMTU: 0 (from environment variable)
+2025-02-11 19:20:22.847 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"disruption-controller" > labels:<key:"projectcalico.org/name" value:"disruption-controller" > 
+2025-02-11 19:20:22.847 [INFO][80] felix/config_params.go 731: Parsed value for VXLANMTU: 0 (from environment variable)
+2025-02-11 19:20:22.847 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"endpoint-controller" > labels:<key:"projectcalico.org/name" value:"endpoint-controller" > 
+2025-02-11 19:20:22.847 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"endpointslicemirroring-controller" > labels:<key:"projectcalico.org/name" value:"endpointslicemirroring-controller" > 
+2025-02-11 19:20:22.847 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"job-controller" > labels:<key:"projectcalico.org/name" value:"job-controller" > 
+2025-02-11 19:20:22.847 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"root-ca-cert-publisher" > labels:<key:"projectcalico.org/name" value:"root-ca-cert-publisher" > 
+2025-02-11 19:20:22.847 [INFO][80] felix/config_params.go 695: Parsing value for HealthEnabled: true (from environment variable)
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"ttl-controller" > labels:<key:"projectcalico.org/name" value:"ttl-controller" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"generic-garbage-collector" > labels:<key:"projectcalico.org/name" value:"generic-garbage-collector" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"legacy-service-account-token-cleaner" > labels:<key:"projectcalico.org/name" value:"legacy-service-account-token-cleaner" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/config_params.go 731: Parsed value for HealthEnabled: true (from environment variable)
+2025-02-11 19:20:22.848 [INFO][80] felix/config_params.go 695: Parsing value for DefaultEndpointToHostAction: ACCEPT (from environment variable)
+2025-02-11 19:20:22.848 [INFO][80] felix/config_params.go 731: Parsed value for DefaultEndpointToHostAction: ACCEPT (from environment variable)
+2025-02-11 19:20:22.848 [INFO][80] felix/config_params.go 695: Parsing value for MetadataAddr: None (from config file)
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"replication-controller" > labels:<key:"projectcalico.org/name" value:"replication-controller" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/config_params.go 712: Value set to 'none', replacing with zero-value: "".
+2025-02-11 19:20:22.848 [INFO][80] felix/config_params.go 731: Parsed value for MetadataAddr:  (from config file)
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"pv-protection-controller" > labels:<key:"projectcalico.org/name" value:"pv-protection-controller" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/config_params.go 695: Parsing value for LogFilePath: None (from config file)
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"replicaset-controller" > labels:<key:"projectcalico.org/name" value:"replicaset-controller" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/config_params.go 712: Value set to 'none', replacing with zero-value: "".
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"token-cleaner" > labels:<key:"projectcalico.org/name" value:"token-cleaner" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/config_params.go 731: Parsed value for LogFilePath:  (from config file)
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"daemon-set-controller" > labels:<key:"projectcalico.org/name" value:"daemon-set-controller" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/config_params.go 695: Parsing value for LogSeverityFile: None (from config file)
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"default" > labels:<key:"projectcalico.org/name" value:"default" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/config_params.go 712: Value set to 'none', replacing with zero-value: "".
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"deployment-controller" > labels:<key:"projectcalico.org/name" value:"deployment-controller" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/config_params.go 731: Parsed value for LogSeverityFile:  (from config file)
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"ephemeral-volume-controller" > labels:<key:"projectcalico.org/name" value:"ephemeral-volume-controller" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"horizontal-pod-autoscaler" > labels:<key:"projectcalico.org/name" value:"horizontal-pod-autoscaler" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"ttl-after-finished-controller" > labels:<key:"projectcalico.org/name" value:"ttl-after-finished-controller" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"endpointslice-controller" > labels:<key:"projectcalico.org/name" value:"endpointslice-controller" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"metrics-server" > labels:<key:"k8s-app" value:"metrics-server" > labels:<key:"projectcalico.org/name" value:"metrics-server" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"namespace-controller" > labels:<key:"projectcalico.org/name" value:"namespace-controller" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"persistent-volume-binder" > labels:<key:"projectcalico.org/name" value:"persistent-volume-binder" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/config_params.go 695: Parsing value for LogSeveritySys: None (from config file)
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"statefulset-controller" > labels:<key:"projectcalico.org/name" value:"statefulset-controller" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/config_params.go 712: Value set to 'none', replacing with zero-value: "".
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"clusterrole-aggregation-controller" > labels:<key:"projectcalico.org/name" value:"clusterrole-aggregation-controller" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/config_params.go 731: Parsed value for LogSeveritySys:  (from config file)
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"kube-proxy" > labels:<key:"projectcalico.org/name" value:"kube-proxy" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"service-account-controller" > labels:<key:"projectcalico.org/name" value:"service-account-controller" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/config_params.go 695: Parsing value for IpInIpTunnelAddr: 10.97.79.192 (from datastore (per-host))
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"cronjob-controller" > labels:<key:"projectcalico.org/name" value:"cronjob-controller" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/config_params.go 731: Parsed value for IpInIpTunnelAddr: 10.97.79.192 (from datastore (per-host))
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"pod-garbage-collector" > labels:<key:"projectcalico.org/name" value:"pod-garbage-collector" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/config_params.go 695: Parsing value for CalicoVersion: v3.29.2 (from datastore (global))
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"pvc-protection-controller" > labels:<key:"projectcalico.org/name" value:"pvc-protection-controller" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/config_params.go 731: Parsed value for CalicoVersion: v3.29.2 (from datastore (global))
+2025-02-11 19:20:22.848 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"local-path-storage" name:"local-path-provisioner-service-account" > labels:<key:"projectcalico.org/name" value:"local-path-provisioner-service-account" > 
+2025-02-11 19:20:22.848 [INFO][80] felix/config_params.go 695: Parsing value for LogSeverityScreen: Info (from datastore (global))
+2025-02-11 19:20:22.849 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"registry-ui" name:"default" > labels:<key:"projectcalico.org/name" value:"default" > 
+2025-02-11 19:20:22.849 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"registry" name:"default" > labels:<key:"projectcalico.org/name" value:"default" > 
+2025-02-11 19:20:22.849 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"traefik" name:"default" > labels:<key:"projectcalico.org/name" value:"default" > 
+2025-02-11 19:20:22.849 [INFO][80] felix/config_params.go 731: Parsed value for LogSeverityScreen: INFO (from datastore (global))
+2025-02-11 19:20:22.849 [INFO][80] felix/config_params.go 695: Parsing value for ReportingIntervalSecs: 0 (from datastore (global))
+2025-02-11 19:20:22.849 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"kube-system" name:"validatingadmissionpolicy-status-controller" > labels:<key:"projectcalico.org/name" value:"validatingadmissionpolicy-status-controller" > 
+2025-02-11 19:20:22.849 [INFO][80] felix/int_dataplane.go 2041: Received *proto.ServiceAccountUpdate update from calculation graph msg=id:<namespace:"local-path-storage" name:"default" > labels:<key:"projectcalico.org/name" value:"default" > 
+2025-02-11 19:20:22.849 [INFO][80] felix/config_params.go 731: Parsed value for ReportingIntervalSecs: 0s (from datastore (global))
+2025-02-11 19:20:22.849 [INFO][80] felix/config_params.go 695: Parsing value for FloatingIPs: Disabled (from datastore (global))
+2025-02-11 19:20:22.849 [INFO][80] felix/config_params.go 731: Parsed value for FloatingIPs: Disabled (from datastore (global))
+2025-02-11 19:20:22.849 [INFO][80] felix/config_params.go 695: Parsing value for ClusterGUID: 1a6bef5e9cf84479aeb7ffc970fa2faa (from datastore (global))
+2025-02-11 19:20:22.849 [INFO][80] felix/config_params.go 731: Parsed value for ClusterGUID: 1a6bef5e9cf84479aeb7ffc970fa2faa (from datastore (global))
+2025-02-11 19:20:22.849 [INFO][80] felix/config_params.go 695: Parsing value for ClusterType: k8s,bgp,kubeadm,kdd (from datastore (global))
+2025-02-11 19:20:22.849 [INFO][80] felix/config_params.go 731: Parsed value for ClusterType: k8s,bgp,kubeadm,kdd (from datastore (global))
+2025-02-11 19:20:22.849 [INFO][80] felix/async_calc_graph.go 221: First flush after becoming in sync, sending InSync message.
+2025-02-11 19:20:22.849 [INFO][80] felix/daemon.go 1266: Datastore now in sync.
+2025-02-11 19:20:22.849 [INFO][80] felix/int_dataplane.go 2041: Received *proto.Encapsulation update from calculation graph msg=ipip_enabled:true 
+2025-02-11 19:20:22.849 [INFO][80] felix/int_dataplane.go 2041: Received *proto.InSync update from calculation graph msg=
+2025-02-11 19:20:22.849 [INFO][80] felix/int_dataplane.go 2050: Datastore in sync, flushing the dataplane for the first time... timeSinceStart=951.41962ms
+2025-02-11 19:20:22.850 [INFO][80] felix/masq_mgr.go 145: IPAM pools updated, refreshing iptables rule ipVersion=0x4
+2025-02-11 19:20:22.850 [INFO][80] felix/ipip_mgr.go 231: All-hosts IP set out-of sync, refreshing it.
+2025-02-11 19:20:22.850 [INFO][80] felix/ipsets.go 175: Queueing IP set for creation family="inet" setID="all-hosts-net" setType="hash:net"
+2025-02-11 19:20:22.980 [INFO][80] felix/int_dataplane.go 1431: Linux interface state changed. ifIndex=33 ifaceName="calico_tmp_B" state="down"
+2025-02-11 19:20:22.980 [INFO][80] felix/int_dataplane.go 1475: Linux interface addrs changed. addrs=set.Set{} ifaceName="calico_tmp_B"
+2025-02-11 19:20:22.980 [INFO][80] felix/int_dataplane.go 1431: Linux interface state changed. ifIndex=34 ifaceName="calico_tmp_A" state="down"
+2025-02-11 19:20:22.980 [INFO][80] felix/int_dataplane.go 1475: Linux interface addrs changed. addrs=set.Set{} ifaceName="calico_tmp_A"
+2025-02-11 19:20:23.248 [INFO][80] felix/wireguard.go 1725: Trying to connect to linkClient ipVersion=0x4
+2025-02-11 19:20:23.248 [INFO][80] felix/wireguard.go 646: Public key out of sync or updated ipVersion=0x4 ourPublicKey=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+2025-02-11 19:20:23.292 [INFO][80] felix/int_dataplane.go 1998: Completed first update to dataplane. secsSinceStart=1.393731123
+2025-02-11 19:20:23.297 [INFO][80] felix/health.go 206: Health of component changed name="InternalDataplaneMainLoop" newReport="live,ready" oldReport="live,non-ready"
+2025-02-11 19:20:23.297 [INFO][80] felix/int_dataplane.go 2098: Received interface update msg=&intdataplane.ifaceStateUpdate{Name:"calico_tmp_B", State:"down", Index:33}
+2025-02-11 19:20:23.297 [INFO][80] felix/int_dataplane.go 2125: Received interface addresses update msg=&intdataplane.ifaceAddrsUpdate{Name:"calico_tmp_B", Addrs:set.Typed[string]{}}
+2025-02-11 19:20:23.297 [INFO][80] felix/hostip_mgr.go 84: Interface addrs changed. update=&intdataplane.ifaceAddrsUpdate{Name:"calico_tmp_B", Addrs:set.Typed[string]{}}
+2025-02-11 19:20:23.297 [INFO][80] felix/int_dataplane.go 2098: Received interface update msg=&intdataplane.ifaceStateUpdate{Name:"calico_tmp_A", State:"down", Index:34}
+2025-02-11 19:20:23.297 [INFO][80] felix/int_dataplane.go 2125: Received interface addresses update msg=&intdataplane.ifaceAddrsUpdate{Name:"calico_tmp_A", Addrs:set.Typed[string]{}}
+2025-02-11 19:20:23.297 [INFO][80] felix/hostip_mgr.go 84: Interface addrs changed. update=&intdataplane.ifaceAddrsUpdate{Name:"calico_tmp_A", Addrs:set.Typed[string]{}}
+2025-02-11 19:20:23.319 [INFO][80] felix/int_dataplane.go 1431: Linux interface state changed. ifIndex=34 ifaceName="calico_tmp_A" state=""
+2025-02-11 19:20:23.319 [INFO][80] felix/int_dataplane.go 1475: Linux interface addrs changed. addrs=<nil> ifaceName="calico_tmp_A"
+2025-02-11 19:20:23.319 [INFO][80] felix/int_dataplane.go 2098: Received interface update msg=&intdataplane.ifaceStateUpdate{Name:"calico_tmp_A", State:"", Index:34}
+2025-02-11 19:20:23.319 [INFO][80] felix/int_dataplane.go 2125: Received interface addresses update msg=&intdataplane.ifaceAddrsUpdate{Name:"calico_tmp_A", Addrs:set.Set[string](nil)}
+2025-02-11 19:20:23.319 [INFO][80] felix/hostip_mgr.go 84: Interface addrs changed. update=&intdataplane.ifaceAddrsUpdate{Name:"calico_tmp_A", Addrs:set.Set[string](nil)}
+2025-02-11 19:20:23.320 [INFO][80] felix/int_dataplane.go 1431: Linux interface state changed. ifIndex=33 ifaceName="calico_tmp_B" state=""
+2025-02-11 19:20:23.320 [INFO][80] felix/int_dataplane.go 1475: Linux interface addrs changed. addrs=<nil> ifaceName="calico_tmp_B"
+2025-02-11 19:20:23.320 [INFO][80] felix/int_dataplane.go 2098: Received interface update msg=&intdataplane.ifaceStateUpdate{Name:"calico_tmp_B", State:"", Index:33}
+2025-02-11 19:20:23.320 [INFO][80] felix/int_dataplane.go 2125: Received interface addresses update msg=&intdataplane.ifaceAddrsUpdate{Name:"calico_tmp_B", Addrs:set.Set[string](nil)}
+2025-02-11 19:20:23.320 [INFO][80] felix/hostip_mgr.go 84: Interface addrs changed. update=&intdataplane.ifaceAddrsUpdate{Name:"calico_tmp_B", Addrs:set.Set[string](nil)}
+bird: device1: Initializing
+bird: direct1: Initializing
+bird: device1: Starting
+bird: device1: Connected to table master
+bird: device1: State changed to feed
+bird: direct1: Starting
+bird: direct1: Connected to table master
+bird: direct1: State changed to feed
+bird: Graceful restart started
+bird: Graceful restart done
+bird: Started
+bird: device1: State changed to up
+bird: direct1: State changed to up
+bird: Mesh_192_168_1_199: Connected to table master
+bird: Mesh_192_168_1_199: State changed to wait
+bird: Graceful restart done
+bird: Mesh_192_168_1_199: State changed to feed
+bird: Mesh_192_168_1_199: State changed to up
+2025-02-11 19:20:27.013 [INFO][80] felix/health.go 336: Overall health status changed: live=true ready=true
++---------------------------+---------+----------------+-----------------+--------+
+|         COMPONENT         | TIMEOUT |    LIVENESS    |    READINESS    | DETAIL |
++---------------------------+---------+----------------+-----------------+--------+
+| CalculationGraph          | 30s     | reporting live | reporting ready |        |
+| FelixStartup              | -       | reporting live | reporting ready |        |
+| InternalDataplaneMainLoop | 1m30s   | reporting live | reporting ready |        |
++---------------------------+---------+----------------+-----------------+--------+

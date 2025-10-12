@@ -1,0 +1,26 @@
+apiServer:
+  certSANs:
+  - 192.168.1.1
+  - 192.168.1.201
+  - 192.168.1.199
+  - k8s.deviant-optimist.home
+apiVersion: kubeadm.k8s.io/v1beta4
+caCertificateValidityPeriod: 87600h0m0s
+certificateValidityPeriod: 8760h0m0s
+certificatesDir: /etc/kubernetes/pki
+clusterName: fucking-bastard
+controllerManager: {}
+dns: {}
+encryptionAlgorithm: RSA-2048
+etcd:
+  local:
+    dataDir: /var/lib/etcd
+imageRepository: registry.k8s.io
+kind: ClusterConfiguration
+kubernetesVersion: v1.31.0
+networking:
+  dnsDomain: cluster.local
+  podSubnet: 10.96.0.0/16
+  serviceSubnet: 10.97.0.0/16
+proxy: {}
+scheduler: {}
