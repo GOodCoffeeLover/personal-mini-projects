@@ -1,0 +1,8 @@
+nameReference:
+- kind: Secret
+  version: v1
+  fieldSpecs:
+  - group: controlplane.cluster.x-k8s.io
+    version: v1beta2
+    kind: KubeadmControlPlaneTemplate
+    path: spec/template/spec/kubeadmConfigSpec/files/contentFrom/secret/name

@@ -13,7 +13,7 @@ case "$(uname -m)" in
     ;;
 esac
 
-RELEASE="${RELEASE:-v1.37.0}"
+RELEASE="{{ .controlPlane.version }}"
 RELEASE="${RELEASE#v}"
 if [[ "$RELEASE" =~ ^([0-9]+)\.([0-9]+)\.[0-9]+([+-].*)?$ ]]; then
   CRICTL_VERSION="v${BASH_REMATCH[1]}.${BASH_REMATCH[2]}.0"

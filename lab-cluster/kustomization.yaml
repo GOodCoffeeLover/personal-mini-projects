@@ -11,3 +11,13 @@ resources:
 - cluster-class.yaml
 - pooled-remote-machine.yaml
 # - cluster.yaml
+
+secretGenerator:
+- name: lab-cluster-node-scripts
+  files:
+  - capi-node-cleanup.sh=scripts/capi-node-cleanup.sh
+  - setup-kube.sh=scripts/setup-kube.sh
+  - setup-kube-vip.sh=scripts/setup-kube-vip.sh
+
+configurations:
+- kustomizeconfig.yaml
