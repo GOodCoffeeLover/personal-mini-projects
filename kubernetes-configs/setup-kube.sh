@@ -1,11 +1,32 @@
-set -xe 
-ARCH="arm64"
-RELEASE="v1.31.6"
-RELEASE_VERSION="v0.17.12"
-CRICTL_VERSION="v1.31.1"
-CONTAINERD_VERSION="1.7.25"
-RUNC_VERSION="1.2.5"
-CNI_PLUGINS_VERSION="v1.6.2"
+set -Eeuo pipefail
+
+case "$(uname -m)" in
+  x86_64)
+    ARCH="amd64"
+    ;;
+  aarch64 | arm64)
+    ARCH="arm64"
+    ;;
+  *)
+    echo "Unsupported architecture: $(uname -m)" >&2
+    exit 1
+    ;;
+esac
+
+RELEASE="${RELEASE:-v1.37.0}"
+RELEASE="${RELEASE#v}"
+if [[ "$RELEASE" =~ ^([0-9]+)\.([0-9]+)\.[0-9]+([+-].*)?$ ]]; then
+  CRICTL_VERSION="v${BASH_REMATCH[1]}.${BASH_REMATCH[2]}.0"
+  RELEASE="v${RELEASE}"
+else
+  echo "Unsupported Kubernetes version: ${RELEASE}" >&2
+  exit 1
+fi
+
+RELEASE_VERSION="v0.21.1"
+CONTAINERD_VERSION="2.3.5"
+RUNC_VERSION="1.5.1"
+CNI_PLUGINS_VERSION="v1.9.1"
 
 curl -L "https://github.com/containerd/containerd/releases/download/v${CONTAINERD_VERSION}/containerd-${CONTAINERD_VERSION}-linux-${ARCH}.tar.gz" | sudo tar -C "/usr/local" -xz
 mkdir -p "/etc/containerd/"
@@ -40,6 +61,7 @@ sudo mkdir -p /usr/lib/systemd/system/kubelet.service.d
 curl -sSL "https://raw.githubusercontent.com/kubernetes/release/${RELEASE_VERSION}/cmd/krel/templates/latest/kubeadm/10-kubeadm.conf" | sed "s:/usr/bin:${DOWNLOAD_DIR}:g" | sudo tee /usr/lib/systemd/system/kubelet.service.d/10-kubeadm.conf
 sudo systemctl enable --now kubelet
 
+
 cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
 net.ipv4.ip_forward = 1
 EOF
@@ -48,9 +70,9 @@ EOF
 sudo sysctl --system
 
 sudo apt update && \
-sudo apt install  socat iptables iproute2 mount conntrack util-linux ethtool libc6 -y
+sudo apt install socat iptables iproute2 mount conntrack util-linux ethtool libc6 -y
 
 
 swapoff -a
-cat /etc/fstab | grep -v "swap.img" > /tmp/fstab 
+sed '/swap\.img/d' /etc/fstab > /tmp/fstab
 mv /tmp/fstab /etc/fstab

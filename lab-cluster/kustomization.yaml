@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: default
+
+resources:
+- ssh-key-secret.yaml
+- remote-machine-template.yaml
+- remote-cluster-template.yaml
+- kubeadm-control-plane-template.yaml
+- cluster-class.yaml
+- pooled-remote-machine.yaml
+# - cluster.yaml

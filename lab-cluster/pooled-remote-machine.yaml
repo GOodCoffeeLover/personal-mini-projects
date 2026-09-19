@@ -1,0 +1,17 @@
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
+kind: PooledRemoteMachine
+metadata:
+  name: green-box
+  namespace: default
+spec:
+  pool: default
+  machine:
+    address: 192.168.1.69
+    port: 22
+    sshKeyRef:
+      name: ssh-key-personal-git
+    user: schizo
+    useSudo: true
+    cleanUpCommands:
+    - /usr/local/sbin/capi-node-cleanup

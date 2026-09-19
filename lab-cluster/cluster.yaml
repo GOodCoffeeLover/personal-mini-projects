@@ -1,0 +1,21 @@
+apiVersion: cluster.x-k8s.io/v1beta2
+kind: Cluster
+metadata:
+  name: lab-cluster
+  namespace: default
+spec:
+  clusterNetwork:
+    pods:
+      cidrBlocks:
+      - 10.129.0.0/16
+    serviceDomain: cluster.local
+    services:
+      cidrBlocks:
+      - 10.128.0.0/16
+  controlPlaneEndpoint:
+    host: 192.168.1.69
+    port: 6443
+  topology:
+    version: v1.37.0
+    classRef:
+      name: lab cluster

@@ -1,0 +1,2 @@
+lab-cluster/ssh-key-secret.yaml
+*.kubeconf
