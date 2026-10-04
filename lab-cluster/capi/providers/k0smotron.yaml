@@ -1,0 +1,9 @@
+apiVersion: operator.cluster.x-k8s.io/v1alpha2
+kind: InfrastructureProvider
+metadata:
+  name: k0sproject-k0smotron
+  namespace: k0sproject-k0smotron-infrastructure-system
+spec:
+  version: v2.1.1
+  fetchConfig:
+    url: https://github.com/k0sproject/k0smotron/releases

@@ -2,12 +2,13 @@
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
 kind: PooledRemoteMachine
 metadata:
-  name: green-box
-  namespace: default
+  name: asus-pn41-1
+  labels:
+    clusterctl.cluster.x-k8s.io/move: ""
 spec:
-  pool: default
+  pool: control-plane
   machine:
-    address: 192.168.1.69
+    address: 10.60.80.101
     port: 22
     sshKeyRef:
       name: ssh-key-personal-git

@@ -1,0 +1,43 @@
+apiVersion: addons.cluster.x-k8s.io/v1alpha1
+kind: HelmChartProxy
+metadata:
+  name: lab-cluster-argo-cd
+  labels:
+    clusterctl.cluster.x-k8s.io/move: ""
+spec:
+  reconcileStrategy: InstallOnce
+  clusterSelector:
+    matchLabels:
+      homelab.cluster.x-k8s.io/addons: lab-cluster
+  repoURL: https://argoproj.github.io/argo-helm
+  chartName: argo-cd
+  version: 10.9.6
+  releaseName: argocd
+  namespace: argocd
+  options:
+    wait: true
+    timeout: 20m
+    install:
+      createNamespace: true
+  valuesTemplate: |
+    extraObjects:
+    - apiVersion: argoproj.io/v1alpha1
+      kind: Application
+      metadata:
+        name: lab-cluster-applications
+        namespace: argocd
+      spec:
+        project: default
+        source:
+          repoURL: https://github.com/GOodCoffeeLover/personal-mini-projects.git
+          targetRevision: main
+          path: lab-cluster/applications
+        destination:
+          server: https://kubernetes.default.svc
+          namespace: argocd
+        syncPolicy:
+          automated:
+            prune: false
+            selfHeal: true
+          syncOptions:
+          - ServerSideApply=true

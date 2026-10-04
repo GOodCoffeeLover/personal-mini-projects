@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: lab-cluster-capi
+  namespace: argocd
+spec:
+  project: default
+  sources:
+  - repoURL: https://github.com/GOodCoffeeLover/personal-mini-projects.git
+    targetRevision: main
+    path: lab-cluster/cluster
+  - repoURL: https://github.com/GOodCoffeeLover/personal-mini-projects.git
+    targetRevision: main
+    path: lab-cluster/cluster/addons/argo-cd
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: lab-cluster
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    - Prune=false
+    - ServerSideApply=true

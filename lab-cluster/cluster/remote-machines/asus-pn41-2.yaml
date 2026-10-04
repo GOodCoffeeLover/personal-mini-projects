@@ -1,0 +1,18 @@
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
+kind: PooledRemoteMachine
+metadata:
+  name: asus-pn41-2
+  labels:
+    clusterctl.cluster.x-k8s.io/move: ""
+spec:
+  pool: control-plane
+  machine:
+    address: 10.60.80.102
+    port: 22
+    sshKeyRef:
+      name: ssh-key-personal-git
+    user: schizo
+    useSudo: true
+    cleanUpCommands:
+    - /usr/local/sbin/capi-node-cleanup

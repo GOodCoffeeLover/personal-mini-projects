@@ -1,23 +1,25 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namespace: default
+namespace: lab-cluster
 
 resources:
-- ssh-key-secret.yaml
 - remote-machine-template.yaml
 - remote-cluster-template.yaml
 - kubeadm-control-plane-template.yaml
 - cluster-class.yaml
-- pooled-remote-machine.yaml
-# - cluster.yaml
+- addons/cilium
+- cluster.yaml
 
 secretGenerator:
 - name: lab-cluster-node-scripts
   files:
-  - capi-node-cleanup.sh=scripts/capi-node-cleanup.sh
-  - setup-kube.sh=scripts/setup-kube.sh
-  - setup-kube-vip.sh=scripts/setup-kube-vip.sh
+  - capi-node-cleanup.sh=node-scripts/capi-node-cleanup.sh
+  - setup-kube.sh=node-scripts/setup-kube.sh
+  - setup-kube-vip.sh=node-scripts/setup-kube-vip.sh
+  options:
+    labels:
+      clusterctl.cluster.x-k8s.io/move: ""
 
 configurations:
 - kustomizeconfig.yaml

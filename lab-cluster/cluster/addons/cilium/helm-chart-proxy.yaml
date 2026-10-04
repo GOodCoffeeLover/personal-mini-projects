@@ -1,0 +1,30 @@
+apiVersion: addons.cluster.x-k8s.io/v1alpha1
+kind: HelmChartProxy
+metadata:
+  name: lab-cluster-cilium
+  labels:
+    clusterctl.cluster.x-k8s.io/move: ""
+spec:
+  reconcileStrategy: InstallOnce
+  clusterSelector:
+    matchLabels:
+      homelab.cluster.x-k8s.io/addons: lab-cluster
+  repoURL: https://helm.cilium.io
+  chartName: cilium
+  version: 1.20.2
+  releaseName: cilium
+  namespace: kube-system
+  options:
+    wait: true
+    timeout: 20m
+  valuesTemplate: |
+    kubeProxyReplacement: "true"
+    k8sServiceHost: 10.60.80.1
+    k8sServicePort: 6443
+    ipam:
+      mode: cluster-pool
+      operator:
+        clusterPoolIPv4PodCIDRList:
+        - 10.129.0.0/16
+    operator:
+      replicas: 1

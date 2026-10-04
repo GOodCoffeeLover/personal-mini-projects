@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: capi-providers
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/GOodCoffeeLover/personal-mini-projects.git
+    targetRevision: main
+    path: lab-cluster/capi/providers
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: capi-operator-system
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    retry:
+      limit: -1
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+    syncOptions:
+    - SkipDryRunOnMissingResource=true
+    - ServerSideApply=true

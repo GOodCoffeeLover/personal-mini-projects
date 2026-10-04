@@ -1,8 +1,9 @@
+---
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
-kind: RemoteClusterTemplate
+kind: RemoteMachineTemplate
 metadata:
   name: lab-cluster
-  namespace: default
-spec: 
+spec:
   template:
-    spec: {}
+    spec:
+      pool: control-plane
