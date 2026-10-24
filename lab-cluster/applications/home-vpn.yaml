@@ -13,6 +13,9 @@ spec:
     server: https://kubernetes.default.svc
     namespace: home-vpn
   syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
     syncOptions:
     - Prune=false
     - ServerSideApply=true
