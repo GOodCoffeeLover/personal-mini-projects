@@ -9,7 +9,7 @@
 | `capi/operator-values.yaml` | Значения Helm chart CAPI Operator без установки провайдеров |
 | `capi/providers/` | Пять отдельных Provider CR и namespace их контроллеров |
 | `cluster/` | Общая сборка Cluster, ClusterClass, шаблонов, скриптов, трёх PRM и обоих аддонов |
-| `cluster/addons/` | Cilium и Argo CD `HelmChartProxy`; chart Argo CD создаёт корневое Application через `extraObjects` |
+| `cluster/addons/` | Cilium и Argo CD `HelmChartProxy`; образ Redis закреплён в values аддона Argo CD |
 | `cluster/remote-machines/` | Три `PooledRemoteMachine`; локальный SSH Secret не входит в сборку |
 | `applications/` | Корневое Application, системные Applications и ручное `lab-cluster-cluster` |
 | `bootstrap/bootstrap.sh` | Создание kind и начальная установка кластера |
@@ -73,7 +73,11 @@ kubectl --kubeconfig lab-cluster/.state/kind.kubeconfig run remote-network-check
 lab-cluster/bootstrap/bootstrap.sh
 ```
 
-Скрипт создаёт или использует существующий kind, устанавливает cert-manager и CAPI Operator через Helm, применяет пять Provider CR и ждёт их готовности. Затем отдельно применяет SSH Secret и **одну** Kustomize-сборку `cluster/` с Cluster, тремя PRM и обоими HelmChartProxy. CAAPH устанавливает Cilium и Argo CD; скрипт ждёт Cilium, Ready узла и Argo CD. Chart Argo CD создаёт корневое Application, которое автоматически создаёт остальные Applications из Git.
+Скрипт создаёт или использует существующий kind, устанавливает cert-manager и CAPI Operator через Helm, применяет пять Provider CR и ждёт их готовности. Затем отдельно применяет SSH Secret и **одну** Kustomize-сборку `cluster/` с Cluster, тремя PRM и обоими HelmChartProxy. CAAPH устанавливает Cilium и Argo CD; скрипт ждёт Cilium, Ready узла и готовности HelmChartProxy Argo CD. После этого он ждёт `Established` у CRD `applications.argoproj.io` и готовности `argocd-server`, затем применяет `applications/root.yaml` в целевой кластер. Корневое Application автоматически создаёт остальные Applications из Git.
+
+Корневое Application применяется отдельно от Helm-релиза: CRD chart Argo CD находятся среди обычных шаблонов, поэтому на первой установке Helm ещё не может проверить API для Application из `extraObjects`. Если ожидание HelmChartProxy, CRD или сервера заканчивается ошибкой, bootstrap останавливается до применения корневого Application.
+
+Для Redis задан официальный образ `docker.io/library/redis:8.6.4-alpine`. Версия сохраняется, источник меняется с ECR Public на Docker Hub из-за наблюдавшихся таймаутов скачивания с узла.
 
 В целевом кластере cert-manager, CAPI Operator и Provider CR поддерживаются Argo CD автоматически. `lab-cluster-cluster` охватывает Cluster, пул машин и аддоны, но синхронизируется только вручную, без автоматического prune и каскадного finalizer. **До pivot не синхронизируйте это Application:** Cluster и PRM должны попасть в целевой management-кластер через move.
 
@@ -112,6 +116,8 @@ kind delete cluster --name lab-cluster-bootstrap
 ```
 
 Оба Helm-релиза Cilium и Argo CD установлены CAAPH с `reconcileStrategy: InstallOnce`. После установки CAAPH не обновляет их при изменении манифестов. После move у `HelmReleaseProxy` может не восстановиться `Ready`, поэтому `verify.sh` проверяет сами релизы и работающие компоненты. Обновление этих двух релизов потребует отдельного плана передачи управления.
+
+Правки образа Redis и порядка создания корневого Application проверены локально. Их применение в существующий кластер и восстановление текущего Helm-релиза выполняются отдельно: изменение файлов или HelmChartProxy само по себе не обновляет успешно установленный релиз с `InstallOnce`. Успешное скачивание из Docker Hub на физическом узле требует отдельной проверки.
 
 ## Статическая проверка
 

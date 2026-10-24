@@ -56,7 +56,10 @@ kubectl --kubeconfig "$TARGET_KUBECONFIG" wait --for=condition=Ready node --all 
 
 wait_provider "$BOOTSTRAP_KUBECONFIG" helmchartproxy lab-cluster-argo-cd "$CLUSTER_NAME"
 kubectl --kubeconfig "$TARGET_KUBECONFIG" wait \
+  --for=condition=Established crd/applications.argoproj.io --timeout=5m
+kubectl --kubeconfig "$TARGET_KUBECONFIG" wait \
   --for=condition=Available deployment/argocd-server -n argocd --timeout=15m
+kubectl --kubeconfig "$TARGET_KUBECONFIG" apply -f "${LAB_DIR}/applications/root.yaml"
 
-echo "Workload cluster is ready; Argo CD will reconcile system Applications from Git."
+echo "Workload cluster and Argo CD are ready; root Application applied. Argo CD will reconcile system Applications from Git."
 echo "Keep lab-cluster-cluster unsynced until after pivot. Run ${LAB_DIR}/bootstrap/verify.sh pre-pivot when the target providers are ready."

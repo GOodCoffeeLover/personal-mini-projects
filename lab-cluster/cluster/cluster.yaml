@@ -17,7 +17,7 @@ spec:
     host: 10.60.80.1
     port: 6443
   topology:
-    version: v1.36.5
+    version: v1.37.1
     classRef:
       name: lab-cluster
     controlPlane:
