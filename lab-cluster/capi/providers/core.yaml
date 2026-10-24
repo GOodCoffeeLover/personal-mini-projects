@@ -4,4 +4,7 @@ metadata:
   name: cluster-api
   namespace: capi-system
 spec:
-  version: v1.13.6
+  version: v1.14.3
+  manager:
+    featureGates:
+      ClusterTopology: true

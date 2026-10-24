@@ -1,60 +1,60 @@
 # План bootstrap homelab-кластера на remote machines
 
-## Цель
+## Цель и состояние
 
-Создать `lab-cluster` на трёх физических машинах через временный kind management-кластер. До ручного pivot нужен один control-plane узел, Cilium, Argo CD, cert-manager и все CAPI-провайдеры в целевом кластере. Storage, ingress, VPN, прикладные сервисы и масштабирование control plane входят в следующие этапы.
+Ближайший этап — подготовить репозиторий к запуску `lab-cluster`. Основные манифесты и скрипты написаны; перестройка каталогов завершена. Создание кластера и перенос управления остаются отдельными незавершёнными шагами. Команды запуска и ручной диагностики находятся в [README.md](README.md).
+
+Сохраняем исходную архитектуру: временный kind management-кластер создаёт один control-plane узел из пула трёх физических машин. На нём работают Cilium, Argo CD, cert-manager и пять CAPI-провайдеров. Затем управление переносится в целевой кластер вручную. Storage, ingress, VPN, прикладные сервисы и масштабирование control plane входят в следующие этапы.
 
 | Параметр | Решение |
 | --- | --- |
 | Namespace Cluster, шаблонов, PRM и CAAPH-объектов | Совпадает с `Cluster.metadata.name`: `lab-cluster` |
 | Kubernetes и API | `v1.36.5`, `10.60.80.1:6443` через kube-vip |
-| Начальный control plane | 1 узел, выбранный из трёх PRM |
-| CAPI core, kubeadm bootstrap/control plane | `v1.13.6` с обеих сторон pivot |
-| k0smotron и CAAPH | `v2.1.1` и `v0.6.4` с обеих сторон pivot |
-| Helm charts | cert-manager `v1.21.2`, CAPI Operator `0.29.0`, Cilium `1.20.2`, Argo CD `10.9.6` |
+| Начальный control plane | 1 узел, выбранный из трёх PRM; остальные машины остаются в пуле |
+| CAPI core, kubeadm bootstrap/control plane | `v1.14.3` с обеих сторон pivot |
+| k0smotron и CAAPH | `v2.3.0` и `v0.6.4` с обеих сторон pivot |
+| Helm charts | cert-manager `v1.21.2`, CAPI Operator `0.30.0`, Cilium `1.20.2`, Argo CD `10.9.6` |
 | Источник GitOps | `main` публичного HTTPS-репозитория |
-| SSH-ключ | Локальный `ssh-key-secret.yaml`, исключённый из Git |
+| SSH-ключ | Локальный `cluster/remote-machines/ssh-key-secret.yaml`, исключённый из Git |
 
-## Структура и владельцы
+## Подготовка репозитория
 
-1. `capi/` содержит значения Helm для установки только CAPI Operator и отдельные манифесты пяти Provider CR. В kind оператор ставится Helm, а Provider CR применяются из `capi/providers/`. В целевом кластере те же версии ведут отдельные Argo CD Applications `capi-operator` и `capi-providers`.
-2. `cluster/` содержит Cluster, ClusterClass, шаблоны, скрипты узлов, Cilium и Argo CD `HelmChartProxy`, а также отдельную сборку трёх PRM. Namespace для всех CAPI-объектов кластера равен имени Cluster. `bootstrap/cluster/` объединяет Cluster и PRM в **одну** операцию применения в kind. SSH Secret подаётся отдельно из локального файла; он не попадает в Git.
-3. `applications/` содержит корневое Application и дочерние Applications. Argo CD chart создаёт корневое Application через `extraObjects`; оно автоматически синхронизирует определения дочерних Applications из Git. После запуска Argo CD скрипты ничего не применяют в целевой кластер.
-4. `bootstrap/bootstrap.sh` создаёт kind, проверяет доступность машин и запускает начальную установку. `bootstrap/verify.sh pre-pivot|post-pivot` выполняет только чтение состояния и dry-run переноса. Сам `clusterctl move` всегда запускается вручную.
+- [x] Закрепить новые версии провайдеров и оператора одинаково для kind и целевого кластера.
+- [x] Включить `spec.manager.featureGates.ClusterTopology` у CoreProvider и kubeadm ControlPlaneProvider. CAPI 1.14 нужен также для `contentFormat: Template`, подставляющего версию Kubernetes в установочный скрипт.
+- [x] Объединить Cluster, ClusterClass, шаблоны, скрипты узлов, три PRM и оба HelmChartProxy в сборку `cluster/`.
+- [x] Исключить приватный SSH Secret из Kustomize; bootstrap применяет его отдельно с namespace и меткой переноса.
+- [x] Оставить одно ручное Application `lab-cluster-cluster`, без автоматического prune и каскадного finalizer.
+- [x] Исправить bootstrap и сократить verify до команд готовности, вывода состояния и dry-run переноса.
+- [x] Сохранить пропуск уже установленных версий и файлов в скриптах узлов. SSH, sudo и сетевые preflight-проверки выполнять вручную по README.
+- [x] Подтвердить статическую готовность: Kustomize без локального SSH Secret, ссылки на Secret со скриптами, namespace, метки move, структура по CRD провайдеров, `bash -n` и `git diff --check`.
 
-## Порядок выполнения
+Статические проверки выполнены: четыре сборки проходят из копии без приватного Secret; структура ресурсов проверена по опубликованным CRD закреплённых версий. Helm chart оператора рендерится с общими для bootstrap и Argo CD values и не создаёт Provider CR. Прогоны с подставными CLI подтвердили порядок bootstrap, остановку при ошибке Cilium и отсутствие изменений ресурсов и локального состояния в verify. CEL-валидация, webhooks и работа контроллеров требуют живого API-сервера и ещё не проверены.
 
-### 1. Подготовка
+## Владельцы ресурсов и порядок bootstrap
 
-Проверить Docker, kind, kubectl, Helm, clusterctl, yq, OpenSSL и SSH; приватный Secret; свободный VIP `10.60.80.1`; SSH и `sudo -n` на `10.60.80.101–103`; общую L2-сеть для kube-vip. Скрипт проверяет TCP-доступ к машинам из pod в kind. Опубликовать манифесты в `main` до запуска GitOps.
+1. В kind Helm устанавливает cert-manager и CAPI Operator. Затем применяются пять Provider CR из `capi/providers/`; скрипт ждёт их готовности. Значения Helm chart оператора сами провайдеров не создают.
+2. Bootstrap применяет локальный SSH Secret отдельно, затем одной командой всю сборку `cluster/`. CAAPH устанавливает Cilium и Argo CD, когда целевой API становится доступен. Скрипт ждёт Cilium, Ready узла и Argo CD.
+3. Argo CD chart создаёт корневое Application через `extraObjects`. Оно автоматически создаёт дочерние Applications из Git. cert-manager, оператор и Provider CR в целевом кластере поддерживаются автоматически; версии и feature gates берутся из тех же конфигураций, что и в kind.
+4. `lab-cluster-cluster` создаётся заранее, но до pivot его нельзя синхронизировать. Cluster и PRM должны появиться в целевом management-кластере только через move. После переноса приложение также остаётся ручным.
+5. `verify.sh pre-pivot|post-pivot` выполняет чтение состояния и, перед pivot, dry-run. Скрипт не меняет ресурсы и не выполняет сам перенос. Вывод нужно просмотреть: завершение команд не заменяет проверку состава объектов.
 
-### 2. Временный management-кластер
+## Запуск на физических машинах — ещё не выполнен
 
-Создать kind с отдельным kubeconfig. Установить cert-manager chart и CAPI Operator chart через Helm. Отдельно применить пять Provider CR: core, kubeadm bootstrap, kubeadm control plane, k0smotron infrastructure и CAAPH addon; дождаться их `Ready`. Значения chart оператора не создают Provider CR, поэтому источник истины для них — `capi/providers/`.
+- [ ] Проверить инструменты, Debian/Ubuntu с systemd на узлах, SSH и `sudo -n`, доступ из kind, свободный VIP и общую L2-сеть. Опубликовать подготовленные манифесты в `main`.
+- [ ] Выполнить bootstrap; подтвердить доступность API, Cilium, узла и Argo CD.
+- [ ] Дождаться готовности пяти провайдеров в целевом кластере, сохраняя `lab-cluster-cluster` несинхронизированным.
+- [ ] Выполнить pre-pivot проверку. В целевом кластере не должно быть Cluster и PRM. В dry-run должны присутствовать Cluster, ClusterClass, Machines, шаблоны, необходимые Secrets, три PRM и оба HelmChartProxy с HelmReleaseProxy.
+- [ ] Вручную выполнить `clusterctl move` и post-pivot проверку. Убедиться в сохранности перенесённых объектов и работе компонентов.
+- [ ] Просмотреть diff и вручную синхронизировать `lab-cluster-cluster` без prune, убедившись, что синхронизация не меняет ожидаемую топологию.
+- [ ] Удалить kind только после подтверждения работы целевого management-кластера.
 
-### 3. Целевой кластер
+## Ограничения и источники
 
-Применить локальный SSH Secret с меткой `clusterctl.cluster.x-k8s.io/move: ""`, затем одной командой применить `bootstrap/cluster/`. Все три PRM, Secret со скриптами узлов и оба `HelmChartProxy` тоже имеют метку move. Дождаться API через VIP, установки Cilium, Ready узла. Затем применить Argo CD `HelmChartProxy`; оба proxy используют `InstallOnce`.
+Оба HelmChartProxy используют `InstallOnce`: после установки CAAPH не обновляет релизы при изменении манифестов. Во время move удаление исходных proxy не должно удалять установленные релизы. У HelmReleaseProxy после переноса может не восстановиться Ready, поэтому проверяются сами Helm-релизы и работающие компоненты. Обновление Cilium и Argo CD требует отдельного плана передачи управления.
 
-### 4. Самонастройка целевого кластера
-
-CAAPH устанавливает Argo CD вместе с корневым Application. Корневое Application автоматически создаёт дочерние Applications. `cert-manager`, `capi-operator` и `capi-providers` синхронизируются автоматически; зависимости переживают временные ошибки через retry у оператора и провайдеров. `lab-cluster-capi` и `lab-cluster-remote-machines` создаются заранее **без** `syncPolicy.automated`, без auto-prune и без каскадного finalizer. До pivot их нельзя синхронизировать: Cluster и PRM в целевом management-кластере должны появиться только через move.
-
-### 5. Ручной pivot
-
-Запустить `bootstrap/verify.sh pre-pivot`. Он проверяет целевые компоненты, отсутствие дубликатов Cluster и PRM, `InstallOnce` у исходных proxy, метки move у трёх PRM и выполняет `clusterctl move --dry-run`. Проверить полный список объектов: Cluster, Machines, шаблоны, Secrets, три PRM, два `HelmChartProxy` и связанные `HelmReleaseProxy`. При отсутствии объекта исправить метки или связи.
-
-Запустить `clusterctl move --kubeconfig ... --to-kubeconfig ... --namespace lab-cluster` вручную. Затем запустить `bootstrap/verify.sh post-pivot`, убедиться в сохранности Cluster, PRM, Secrets, proxy, Cilium, Argo CD и Helm-релизов. После успешного переноса вручную синхронизировать Application `lab-cluster-remote-machines`. Application `lab-cluster-capi` остаётся ручным. Kind удалить только после проверки.
-
-## Инварианты и ограничения
-
-- CAPI-манифесты Cluster не применяются автоматически в новый management-кластер, включая после pivot. Изменения в Git требуют ручного Sync `lab-cluster-capi`.
-- PRM существуют в kind до pivot и переносятся с меткой move. Их Application создаётся автоматически, но синхронизируется только вручную по решению оператора. Удаление PRM из Git не вызывает автоматическое удаление объекта.
-- `InstallOnce` сохраняет уже установленные Cilium и Argo CD при удалении исходных CAAPH-объектов во время move, но не обновляет релизы после успешной установки. У `HelmReleaseProxy` после move может не восстановиться `Ready`: проверять Helm-релизы и реальные компоненты. Изменение стратегии требует отдельного плана передачи управления релизами.
-- Статические проверки `kubectl kustomize` и `bash -n` описаны в README. Работу сети, controller readiness и состав `clusterctl move --dry-run` можно подтвердить только на живом кластере.
-
-## Источники
+Статическая готовность репозитория не подтверждает доступность сети, загрузку образов, работу контроллеров и успешный pivot. Это проверяется только на живом кластере.
 
 - [Cluster API move](https://cluster-api.sigs.k8s.io/clusterctl/commands/move)
-- [k0smotron Remote Machine Provider](https://docs.k0smotron.io/v2.1.1/capi-remote/)
-- [CAAPH](https://github.com/kubernetes-sigs/cluster-api-addon-provider-helm/blob/main/docs/quick-start.md)
+- [CAPI 1.14: изменения API](https://cluster-api.sigs.k8s.io/developer/providers/migrations/v1.13-to-v1.14)
+- [k0smotron Remote Machine Provider](https://docs.k0smotron.io/v2.3.0/capi-remote/)
+- [CAAPH v0.6.4](https://github.com/kubernetes-sigs/cluster-api-addon-provider-helm/blob/v0.6.4/docs/quick-start.md)

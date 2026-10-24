@@ -8,7 +8,8 @@ resources:
 - remote-cluster-template.yaml
 - kubeadm-control-plane-template.yaml
 - cluster-class.yaml
-- addons/cilium
+- addons
+- remote-machines
 - cluster.yaml
 
 secretGenerator:

@@ -4,4 +4,4 @@ metadata:
   name: kubeadm
   namespace: kubeadm-bootstrap-system
 spec:
-  version: v1.13.6
+  version: v1.14.3
