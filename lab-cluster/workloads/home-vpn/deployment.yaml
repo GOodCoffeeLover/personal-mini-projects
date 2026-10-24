@@ -1,0 +1,394 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: home-vpn
+  namespace: home-vpn
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  revisionHistoryLimit: 3
+  progressDeadlineSeconds: 600
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: home-vpn
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: home-vpn
+    spec:
+      serviceAccountName: home-vpn
+      automountServiceAccountToken: false
+      enableServiceLinks: false
+      hostNetwork: false
+      hostPID: false
+      hostIPC: false
+      terminationGracePeriodSeconds: 45
+      nodeSelector:
+        kubernetes.io/os: linux
+        kubernetes.io/arch: amd64
+      dnsPolicy: None
+      dnsConfig:
+        nameservers:
+        - 1.1.1.1
+        - 9.9.9.9
+        options:
+        - name: ndots
+          value: '1'
+      securityContext:
+        fsGroup: 65532
+        seccompProfile:
+          type: RuntimeDefault
+      initContainers:
+      - name: network-init
+        image: docker.io/nicolaka/netshoot:v0.14@sha256:7f08c4aff13ff61a35d30e30c5c1ea8396eac6ab4ce19fd02d5a4b3b5d0d09a2
+        imagePullPolicy: IfNotPresent
+        command:
+        - python3
+        - "/config/runtime.py"
+        - init
+        workingDir: "/tmp"
+        env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: PYTHONDONTWRITEBYTECODE
+          value: '1'
+        volumeMounts:
+        - name: config
+          mountPath: "/config"
+          readOnly: true
+        - name: runtime
+          mountPath: "/runtime"
+          readOnly: false
+        - name: settings
+          mountPath: "/settings"
+          readOnly: true
+        securityContext:
+          privileged: true
+          runAsUser: 0
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 500m
+            memory: 192Mi
+      - name: tailscale
+        image: docker.io/tailscale/tailscale:v1.98.4@sha256:25cde9ad76020b0e29229136d0c38b5962e9a0e1774ffac9b0df68e4a37d6cf0
+        imagePullPolicy: IfNotPresent
+        restartPolicy: Always
+        command:
+        - "/bin/sh"
+        - "-ec"
+        args:
+        - |
+          cp /usr/local/bin/tailscale /tailscale/tailscale.new
+          chmod 0755 /tailscale/tailscale.new
+          mv /tailscale/tailscale.new /tailscale/tailscale
+          TS_HOSTNAME=$(printf '%s' "$TS_HOSTNAME" | tr -d '\r\n')
+          export TS_HOSTNAME
+          exec /usr/local/bin/containerboot
+        env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_UID
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.uid
+        - name: TS_USERSPACE
+          value: 'false'
+        - name: TS_AUTH_ONCE
+          value: 'true'
+        - name: TS_ACCEPT_DNS
+          value: 'false'
+        - name: TS_KUBE_SECRET
+          value: home-vpn-state
+        - name: TS_SOCKET
+          value: "/tailscale/tailscaled.sock"
+        - name: TS_STATE_DIR
+          value: "/var/lib/tailscale"
+        - name: TS_ROUTES
+          value: ''
+        - name: TS_KUBERNETES_READ_API_SERVER_ADDRESS_FROM_ENV
+          value: 'true'
+        - name: TS_HOSTNAME
+          valueFrom:
+            secretKeyRef:
+              name: home-vpn-settings
+              key: TS_HOSTNAME
+        - name: TS_EXTRA_ARGS
+          valueFrom:
+            secretKeyRef:
+              name: home-vpn-settings
+              key: TS_EXTRA_ARGS
+        volumeMounts:
+        - name: tailscale
+          mountPath: "/tailscale"
+          readOnly: false
+        - name: ts-tmp
+          mountPath: "/var/lib/tailscale"
+          readOnly: false
+        - name: api-token
+          mountPath: "/var/run/secrets/kubernetes.io/serviceaccount"
+          readOnly: true
+        securityContext:
+          privileged: true
+          runAsUser: 0
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 1000m
+            memory: 256Mi
+        startupProbe:
+          exec:
+            command:
+            - "/bin/sh"
+            - "-ec"
+            - '/usr/local/bin/tailscale --socket=/tailscale/tailscaled.sock status
+              --json | grep -E ''"BackendState": *"Running"'''
+          periodSeconds: 3
+          timeoutSeconds: 5
+          failureThreshold: 60
+      - name: xray-configure
+        image: docker.io/nicolaka/netshoot:v0.14@sha256:7f08c4aff13ff61a35d30e30c5c1ea8396eac6ab4ce19fd02d5a4b3b5d0d09a2
+        imagePullPolicy: IfNotPresent
+        command:
+        - python3
+        - "/config/runtime.py"
+        - configure
+        workingDir: "/tmp"
+        env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: PYTHONDONTWRITEBYTECODE
+          value: '1'
+        volumeMounts:
+        - name: config
+          mountPath: "/config"
+          readOnly: true
+        - name: runtime
+          mountPath: "/runtime"
+          readOnly: false
+        - name: tailscale
+          mountPath: "/tailscale"
+          readOnly: true
+        - name: upstream
+          mountPath: "/upstream"
+          readOnly: true
+        - name: settings
+          mountPath: "/settings"
+          readOnly: true
+        securityContext:
+          runAsUser: 0
+          runAsGroup: 65532
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+            add:
+            - CHOWN
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 500m
+            memory: 192Mi
+      - name: xray-validate
+        image: ghcr.io/xtls/xray-core:26.3.23@sha256:581394b25833b419c69b39e1e7f07e03b6cb2fb957cfe5b831f25aba986bd99e
+        imagePullPolicy: IfNotPresent
+        command:
+        - "/usr/local/bin/xray"
+        - run
+        - "-test"
+        - "-config"
+        - "/runtime/xray.json"
+        volumeMounts:
+        - name: runtime
+          mountPath: "/runtime"
+          readOnly: true
+        securityContext:
+          runAsUser: 65532
+          runAsGroup: 65532
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+            add:
+            - NET_ADMIN
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 1500m
+            memory: 384Mi
+      containers:
+      - name: xray
+        image: ghcr.io/xtls/xray-core:26.3.23@sha256:581394b25833b419c69b39e1e7f07e03b6cb2fb957cfe5b831f25aba986bd99e
+        imagePullPolicy: IfNotPresent
+        command:
+        - "/usr/local/bin/xray"
+        - run
+        - "-config"
+        - "/runtime/xray.json"
+        volumeMounts:
+        - name: runtime
+          mountPath: "/runtime"
+          readOnly: true
+        securityContext:
+          runAsUser: 0
+          runAsGroup: 65532
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+            add:
+            - NET_ADMIN
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 1500m
+            memory: 384Mi
+      - name: network-guard
+        image: docker.io/nicolaka/netshoot:v0.14@sha256:7f08c4aff13ff61a35d30e30c5c1ea8396eac6ab4ce19fd02d5a4b3b5d0d09a2
+        imagePullPolicy: IfNotPresent
+        command:
+        - python3
+        - "/config/runtime.py"
+        - guard
+        workingDir: "/tmp"
+        env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: PYTHONDONTWRITEBYTECODE
+          value: '1'
+        volumeMounts:
+        - name: config
+          mountPath: "/config"
+          readOnly: true
+        - name: runtime
+          mountPath: "/runtime"
+          readOnly: false
+        - name: tailscale
+          mountPath: "/tailscale"
+          readOnly: true
+        - name: settings
+          mountPath: "/settings"
+          readOnly: true
+        securityContext:
+          runAsUser: 0
+          runAsGroup: 65532
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+            add:
+            - NET_ADMIN
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 500m
+            memory: 192Mi
+        readinessProbe:
+          exec:
+            command:
+            - python3
+            - "/config/runtime.py"
+            - ready
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 1
+        livenessProbe:
+          exec:
+            command:
+            - python3
+            - "/config/runtime.py"
+            - alive
+          periodSeconds: 15
+          timeoutSeconds: 3
+          initialDelaySeconds: 30
+          failureThreshold: 3
+      volumes:
+      - name: config
+        configMap:
+          name: home-vpn-config
+      - name: runtime
+        emptyDir:
+          medium: Memory
+          sizeLimit: 16Mi
+      - name: tailscale
+        emptyDir:
+          sizeLimit: 96Mi
+      - name: ts-tmp
+        emptyDir:
+          sizeLimit: 32Mi
+      - name: upstream
+        secret:
+          secretName: home-vpn-upstream
+          defaultMode: 288
+      - name: api-token
+        projected:
+          defaultMode: 256
+          sources:
+          - serviceAccountToken:
+              path: token
+              expirationSeconds: 3600
+          - configMap:
+              name: kube-root-ca.crt
+              items:
+              - key: ca.crt
+                path: ca.crt
+          - downwardAPI:
+              items:
+              - path: namespace
+                fieldRef:
+                  fieldPath: metadata.namespace
+      - name: settings
+        secret:
+          secretName: home-vpn-settings
+          defaultMode: 288
+          items:
+          - key: settings.json
+            path: settings.json
+          - key: direct-domains.json
+            path: direct-domains.json

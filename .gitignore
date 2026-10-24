@@ -1,3 +1,6 @@
 **/ssh-key-secret.yaml
 lab-cluster/.state/
+.state/home-vpn/
+lab-cluster/workloads/home-vpn/**/__pycache__/
+lab-cluster/workloads/home-vpn/settings.local/
 *.kubeconf

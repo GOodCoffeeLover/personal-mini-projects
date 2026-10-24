@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: home-vpn
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/GOodCoffeeLover/personal-mini-projects.git
+    targetRevision: main
+    path: lab-cluster/workloads/home-vpn
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: home-vpn
+  syncPolicy:
+    syncOptions:
+    - Prune=false
+    - ServerSideApply=true

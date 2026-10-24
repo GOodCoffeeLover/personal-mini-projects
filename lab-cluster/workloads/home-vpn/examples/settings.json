@@ -1,0 +1,11 @@
+{
+  "pod_cidr": "10.244.0.0/16",
+  "service_cidr": "10.245.0.0/16",
+  "pod_interface": "eth0",
+  "tcp_retries2": 8,
+  "tailnet_cidr": "100.64.0.0/10",
+  "tailnet_ipv6_cidr": "fd7a:115c:a1e0::/48",
+  "return_route_probe": "100.64.0.200",
+  "xray_dns": "https+local://1.1.1.1/dns-query",
+  "advertise_exit_node": true
+}

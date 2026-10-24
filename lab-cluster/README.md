@@ -11,8 +11,9 @@
 | `cluster/` | Общая сборка Cluster, ClusterClass, шаблонов, скриптов, трёх PRM и обоих аддонов |
 | `cluster/addons/` | Cilium и Argo CD `HelmChartProxy`; образ Redis закреплён в values аддона Argo CD |
 | `cluster/remote-machines/` | Три `PooledRemoteMachine`; локальный SSH Secret не входит в сборку |
-| `applications/` | Корневое Application, системные Applications; ручные `lab-cluster-cluster`, `cilium` и `argocd` |
+| `applications/` | Корневое Application, системные Applications; ручные `lab-cluster-cluster`, `cilium`, `argocd` и `home-vpn` |
 | [`cilium-config/`](cilium-config/README.md) | Пул LB `10.60.80.2–10.60.80.11` и L2-политика; второй источник Application `cilium` |
+| [`workloads/home-vpn/`](workloads/home-vpn/README.md) | VPN через tailnet: Xray, Tailscale, ручной Application и внешние Secrets |
 | `bootstrap/bootstrap.sh` | Создание kind и начальная установка кластера |
 | `bootstrap/verify.sh` | Проверка перед pivot и после него; не меняет ресурсы |
 

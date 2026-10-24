@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: home-vpn
+resources:
+- namespace.yaml
+- serviceaccount.yaml
+- role.yaml
+- rolebinding.yaml
+- deployment.yaml
+configMapGenerator:
+- name: home-vpn-config
+  files:
+  - runtime.py

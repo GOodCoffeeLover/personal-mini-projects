@@ -1,0 +1,21 @@
+{
+  "tag": "upstream",
+  "protocol": "vless",
+  "settings": {
+    "vnext": [{
+      "address": "REPLACE_PUBLIC_IPV4",
+      "port": 443,
+      "users": [{"id": "REPLACE_UUID", "encryption": "none", "flow": "REPLACE_FLOW"}]
+    }]
+  },
+  "streamSettings": {
+    "network": "tcp",
+    "security": "reality",
+    "realitySettings": {
+      "serverName": "REPLACE_SERVER_NAME",
+      "publicKey": "REPLACE_PUBLIC_KEY",
+      "shortId": "REPLACE_SHORT_ID",
+      "fingerprint": "REPLACE_FINGERPRINT"
+    }
+  }
+}

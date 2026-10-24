@@ -1,0 +1,1 @@
+--login-server=https://REPLACE_HEADSCALE_HOST --accept-routes=false --advertise-exit-node=false
