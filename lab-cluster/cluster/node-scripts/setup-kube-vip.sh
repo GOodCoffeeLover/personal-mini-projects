@@ -35,6 +35,10 @@ case "$#" in
       awk -v key="$endpoint_key" '$1 == key { value=$2; gsub(/^"|"$/, "", value); print value; exit }' \
         "$KUBEADM_CONFIG"
     )"
+    # Once kubeadm has completed, use its regular admin kubeconfig.
+    if [[ -f /etc/kubernetes/admin.conf && -s /etc/kubernetes/admin.conf ]]; then
+      kubeconfig="/etc/kubernetes/admin.conf"
+    fi
     ;;
   2)
     endpoint="$1"
@@ -70,6 +74,7 @@ metadata:
   labels:
     app.kubernetes.io/name: kube-vip
 spec:
+  terminationGracePeriodSeconds: 60
   containers:
   - name: kube-vip
     image: ghcr.io/kube-vip/kube-vip:${KUBE_VIP_VERSION}
@@ -126,6 +131,7 @@ spec:
   - name: kubeconfig
     hostPath:
       path: "${kubeconfig}"
+      type: File
 EOF
 
 sudo mkdir -p /etc/kubernetes/manifests

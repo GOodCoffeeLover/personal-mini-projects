@@ -19,8 +19,12 @@ spec:
     timeout: 20m
     install:
       createNamespace: true
-  # Bootstrap values; keep chart version and values aligned with applications/argocd.yaml.
+  # Shared values match applications/argocd.yaml; bootstrap uses ClusterIP so Helm
+  # can finish before Argo CD applies Cilium's LB pool and L2 policy.
   valuesTemplate: |
+    server:
+      service:
+        type: ClusterIP
     redis:
       image:
         repository: docker.io/library/redis

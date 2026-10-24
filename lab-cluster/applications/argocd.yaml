@@ -11,8 +11,16 @@ spec:
     targetRevision: 10.9.6
     helm:
       releaseName: argocd
-      # Keep chart version and values aligned with cluster/addons/argocd.yaml.
+      # Keep chart version and shared values aligned with cluster/addons/argocd.yaml.
+      # Bootstrap keeps ClusterIP until Cilium's pool and L2 policy are ready.
       valuesObject:
+        server:
+          service:
+            type: LoadBalancer
+            loadBalancerClass: io.cilium/l2-announcer
+            externalTrafficPolicy: Cluster
+            annotations:
+              lbipam.cilium.io/ips: "10.60.80.2"
         redis:
           image:
             repository: docker.io/library/redis

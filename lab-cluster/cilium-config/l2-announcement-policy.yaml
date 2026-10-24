@@ -1,0 +1,11 @@
+apiVersion: cilium.io/v2alpha1
+kind: CiliumL2AnnouncementPolicy
+metadata:
+  name: lab-cluster-loadbalancers
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  interfaces:
+  - "^(en|eth).*"
+  externalIPs: false
+  loadBalancerIPs: true

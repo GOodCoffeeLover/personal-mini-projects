@@ -1,0 +1,10 @@
+apiVersion: cilium.io/v2
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: lab-cluster-loadbalancers
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  blocks:
+  - start: 10.60.80.2
+    stop: 10.60.80.11

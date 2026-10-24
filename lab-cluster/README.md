@@ -12,6 +12,7 @@
 | `cluster/addons/` | Cilium и Argo CD `HelmChartProxy`; образ Redis закреплён в values аддона Argo CD |
 | `cluster/remote-machines/` | Три `PooledRemoteMachine`; локальный SSH Secret не входит в сборку |
 | `applications/` | Корневое Application, системные Applications; ручные `lab-cluster-cluster`, `cilium` и `argocd` |
+| [`cilium-config/`](cilium-config/README.md) | Пул LB `10.60.80.2–10.60.80.11` и L2-политика; второй источник Application `cilium` |
 | `bootstrap/bootstrap.sh` | Создание kind и начальная установка кластера |
 | `bootstrap/verify.sh` | Проверка перед pivot и после него; не меняет ресурсы |
 
@@ -87,7 +88,7 @@ Kubeconfig хранятся по умолчанию в `lab-cluster/.state/kind.
 
 ## kube-vip при замене control-plane
 
-`setup-kube-vip` вызывается из CAPI без аргументов. Для первой ноды он читает `controlPlaneEndpoint` из `/run/kubeadm/kubeadm.yaml` и использует `/etc/kubernetes/super-admin.conf`. При join читает `apiServerEndpoint` из `/run/kubeadm/kubeadm-join-config.yaml` и использует `/etc/kubernetes/admin.conf`. Если на повторно используемой машине остались оба конфига, выбирается более новый. Отсутствующий конфиг или некорректный endpoint завершают скрипт ошибкой.
+`setup-kube-vip` вызывается из CAPI без аргументов до и после kubeadm. Для первой ноды он читает `controlPlaneEndpoint` из `/run/kubeadm/kubeadm.yaml` и использует `/etc/kubernetes/super-admin.conf` до завершения init. При join читает `apiServerEndpoint` из `/run/kubeadm/kubeadm-join-config.yaml` и использует `/etc/kubernetes/admin.conf`. Если уже существует непустой обычный файл `admin.conf`, он имеет приоритет при автоматическом выборе kubeconfig. Поэтому повторный вызов из `postKubeadmCommands` переводит успешно инициализированную ноду на `admin.conf`. Если на повторно используемой машине остались оба временных конфига, endpoint берётся из более нового. Отсутствующий конфиг или некорректный endpoint завершают скрипт ошибкой.
 
 Для восстановления VIP на уже работающем control-plane доступны два аргумента: endpoint и абсолютный путь к kubeconfig. После установки актуального скрипта на ноду выполните на ней:
 
@@ -96,7 +97,7 @@ sudo bash /usr/local/sbin/setup-kube-vip \
   10.60.80.1:6443 /etc/kubernetes/admin.conf
 ```
 
-В этом режиме временный kubeadm-конфиг не нужен. Скрипт записывает static Pod в `/etc/kubernetes/manifests/kube-vip.yaml`, только если содержимое изменилось. Kubelet подхватит его без перезапуска служб. kube-vip использует локальный API через loopback alias, поэтому запуск не зависит от доступности самого VIP.
+В этом режиме временный kubeadm-конфиг не нужен, указанный kubeconfig используется явно. Скрипт записывает static Pod в `/etc/kubernetes/manifests/kube-vip.yaml`, только если содержимое изменилось. Kubelet подхватит его без перезапуска служб. Для kubeconfig задан `hostPath.type: File`: до появления файла Pod ждёт его, а пустой каталог по этому пути не создаётся. kube-vip использует локальный API через loopback alias, поэтому запуск не зависит от доступности самого VIP.
 
 Проверьте появление VIP на интерфейсе ноды (`ip -br -4 address`), готовность pod kube-vip и ответ API через VIP. Если используется HTTP-прокси, исключите приватные адреса из проксирования:
 
@@ -107,6 +108,51 @@ kubectl --kubeconfig lab-cluster/.state/lab-cluster.kubeconfig get nodes -o wide
 ```
 
 После обновления до `v1.37.1` VIP восстановлен на `asus-pn41-2` (`10.60.80.102`) этим способом. Исправленный скрипт установлен на ноду напрямую. Изменение скрипта в репозитории меняет хеш Secret и может вызвать следующий rollout при ручной синхронизации `lab-cluster-cluster`; доставку обновлённых шаблонов проводите отдельно в плановое окно.
+
+### Очистка узла и доставка исправления
+
+`capi-node-cleanup` вызывается k0smotron без аргументов при удалении RemoteMachine. Сначала он удаляет `/etc/kubernetes/manifests/kube-vip.yaml`, пока kubelet работает, и ждёт завершения контейнера через `crictl ps --name '^kube-vip$' -q` без явного endpoint. Опрос выполняется раз в секунду, предел ожидания — 90 секунд. Для static Pod задан `terminationGracePeriodSeconds: 60`, чтобы kube-vip успел штатно освободить VIP. Отсутствующий манифест и отсутствие работающего контейнера допускаются; ошибка CRI или превышение времени останавливает cleanup до reset.
+
+После завершения kube-vip выполняется `kubeadm reset`, затем очистка CNI, `/run/kubeadm` и `/run/cluster-api`, включая прежнюю отметку успешного bootstrap. Ошибки reset не маскируются. Cleanup не удаляет IP вручную: освобождение адреса выполняет сам kube-vip.
+
+При диагностике повторного join `.102` VIP оставался на старом интерфейсе, и обращения к `10.60.80.1:6443` попадали в локальную ноду без API-сервера. Если kube-vip уже аварийно завершился и оставил IP, адрес нужно удалить вручную перед повторным использованием машины. Это относится и к остаткам после старого cleanup; cleanup целиком на работающей ноде не запускайте.
+
+Доставляйте исправление в таком порядке, отдельно от Sync Cilium и Argo CD:
+
+1. Дождитесь трёх готовых Machines и Nodes, исправного etcd и завершения текущих замен. Опубликуйте изменения в `main`, оставив `lab-cluster-cluster` без Sync.
+2. Приостановите CAPI, чтобы новая замена не началась во время доставки:
+
+   ```bash
+   kubectl --kubeconfig lab-cluster/.state/lab-cluster.kubeconfig -n lab-cluster \
+     patch cluster lab-cluster --type=merge -p '{"spec":{"paused":true}}'
+   ```
+
+3. Установите актуальные `capi-node-cleanup.sh` и `setup-kube-vip.sh` через SSH **на все три существующих узла**. Изменение Secret обновит файлы только при следующем bootstrap; для ближайшего удаления старой машины нужен уже исправленный локальный cleanup. Пример для одной ноды; повторите с `.102` и `.103`:
+
+   ```bash
+   NODE=10.60.80.101
+   SSH_KEY="$HOME/.ssh/personal_git"
+   ssh -F /dev/null -o BatchMode=yes -o StrictHostKeyChecking=yes -i "$SSH_KEY" "schizo@${NODE}" \
+     'sudo -n install -m 0755 /dev/stdin /usr/local/sbin/capi-node-cleanup' \
+     < lab-cluster/cluster/node-scripts/capi-node-cleanup.sh
+   ssh -F /dev/null -o BatchMode=yes -o StrictHostKeyChecking=yes -i "$SSH_KEY" "schizo@${NODE}" \
+     'sudo -n install -m 0755 /dev/stdin /usr/local/sbin/setup-kube-vip' \
+     < lab-cluster/cluster/node-scripts/setup-kube-vip.sh
+   ssh -F /dev/null -o BatchMode=yes -o StrictHostKeyChecking=yes -i "$SSH_KEY" "schizo@${NODE}" \
+     'sudo -n bash /usr/local/sbin/setup-kube-vip 10.60.80.1:6443 /etc/kubernetes/admin.conf'
+   ```
+
+   Выполняйте по одной ноде, подтверждая готовность её kube-vip перед переходом к следующей. При ошибке SSH или установки не продолжайте доставку. Смена host key требует проверки личности хоста.
+4. Подтвердите готовность трёх kube-vip, одного владельца lease `kube-system/plndr-cp-lock` и ответ `/readyz` через VIP. В `lab-cluster-cluster` вручную синхронизируйте только новый Secret со скриптами и KCP-шаблон, без prune. Cluster должен оставаться на паузе до окончания доставки.
+5. Возобновите CAPI и дождитесь последовательного rollout:
+
+   ```bash
+   kubectl --kubeconfig lab-cluster/.state/lab-cluster.kubeconfig -n lab-cluster \
+     patch cluster lab-cluster --type=merge -p '{"spec":{"paused":false}}'
+   lab-cluster/bootstrap/verify.sh post-pivot
+   ```
+
+6. Подтвердите три готовые Machine, исправный etcd, VIP и Cilium. При очередном удалении бывшего владельца VIP проверьте, что kube-vip завершился до reset и освободил `10.60.80.1/32`, а повторный join проходит без локального маршрута к этому адресу до запуска собственного kube-vip.
 
 ## Переход существующего control-plane с одной реплики на три
 
@@ -170,7 +216,9 @@ kind delete cluster --name lab-cluster-bootstrap
 | `cilium` | `cilium` | `1.20.2` | `cilium` | `kube-system` |
 | `argocd` | `argo-cd` | `10.9.6` | `argocd` | `argocd` |
 
-Оба приложения используют ручной Sync и server-side apply. Root Application создаёт и поддерживает их определения, но не запускает синхронизацию дочерних ресурсов. Начальные `valuesObject` совпадают с `valuesTemplate` соответствующих HelmChartProxy. При изменении версии или конфигурации меняйте оба определения: в `applications/` — для дальнейшего управления, в `cluster/addons/` — для нового bootstrap. Общий генератор values не используется.
+В Cilium включены `rollOutCiliumPods: true` и `operator.rollOutPods: true`: при изменении ConfigMap ручной Sync обновляет шаблоны Pod через checksum и запускает rollout агентов и оператора. Агенты обновляются по одному (`RollingUpdate`, `maxUnavailable: 1`); оператор остаётся в одной реплике. Дождитесь завершения rollout и подтвердите `EnableL2Announcements: true` на каждом агенте по [инструкции проверки](cilium-config/README.md#порядок-применения). Один статус `Synced` не подтверждает загрузку конфигурации работающими процессами.
+
+Оба приложения используют ручной Sync и server-side apply. Root Application создаёт и поддерживает их определения, но не запускает синхронизацию дочерних ресурсов. `cilium` использует два `sources`: Helm chart и Kustomize-сборку `cilium-config/` с пулом LB и L2-политикой (sync wave `1`). Helm values Cilium совпадают с bootstrap proxy. Общие values Argo CD также совпадают, но его Service при bootstrap остаётся `ClusterIP`, а Application переключает его на `LoadBalancer` с адресом `10.60.80.2`. Это позволяет Helm завершить bootstrap до создания пула. При изменении общих настроек меняйте оба определения, сохраняя это различие Service. [Пул адресов и порядок применения](cilium-config/README.md). Общий генератор values не используется.
 
 Cilium chart `1.20.2` по умолчанию включает Hubble TLS. Helm при установке может использовать `lookup` для существующих сертификатов, а рендеринг Argo CD генерирует новые. Поэтому Application игнорирует **только пять полей сертификатов** в Secrets `kube-system/cilium-ca` и `kube-system/hubble-server-certs`; `RespectIgnoreDifferences=true` сохраняет их и при Sync. Для отсутствующего Secret это правило не действует. Ротация CA/сертификатов требует отдельной операции; при включении Hubble relay или других TLS-компонентов пересмотрите правила для новых Secrets. Широких исключений для Secrets, CRD или workloads нет. [RespectIgnoreDifferences](https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#respect-ignore-differences-configs).
 
@@ -181,9 +229,9 @@ Chart Argo CD `10.9.6` уже исключает внутренние `CiliumIde
 1. Завершите переход control-plane на три реплики и его rollout. Подтвердите готовность трёх Nodes, etcd, VIP, Cilium и Argo CD. На новом кластере сначала завершите bootstrap и pivot.
 2. Опубликуйте определения в `main`, дождитесь появления `cilium` и `argocd` от root Application. Оба приложения должны оставаться без автоматического Sync; до ручной синхронизации ресурсы аддонов не меняются.
 3. Сравните установленные chart/values (`helm list`, `helm get values`) с таблицей и Applications. Проверьте у **обоих** HelmReleaseProxy `spec.reconcileStrategy: InstallOnce` и аннотацию `helmreleaseproxy.addons.cluster.x-k8s.io/release-successfully-installed: "true"`. Если отметки нет, разберите состояние CAAPH до Sync; не подставляйте её без подтверждения успешной установки. Существующие proxy сохраняются: пересоздание HelmReleaseProxy теряет отметку и может снова вызвать Helm install/upgrade.
-4. Сохраните манифесты и Secrets для восстановления извне по инструкции ниже. Проверьте diff каждого Application: имена, namespace, selectors, образы, CRD, Secrets и hooks. Различия tracking metadata и ожидаемый запуск Redis hook допустимы; остальные различия сначала разберите. При несовпадении установленных версий остановите передачу и согласуйте конфигурацию, не совмещая её с обновлением версий.
-5. Вручную выполните Sync только `argocd` без prune, Force и Replace. Дождитесь завершения Redis hook, готовности application-controller, repo-server, Redis и сервера. Убедитесь в сохранности доступа, существующих Applications и Secrets, а также исключений внутренних ресурсов Cilium.
-6. Затем вручную выполните Sync только `cilium` без prune, Force и Replace. Подтвердите готовность агентов на всех трёх узлах, operator и Envoy, работу DNS, связь pod между узлами и доступ к API через VIP.
+4. Сохраните манифесты и Secrets для восстановления извне по инструкции ниже. Проверьте diff каждого Application: имена, namespace, selectors, образы, CRD, Secrets и hooks. Ожидаются tracking metadata, включение L2 announcements и создание пула/политики Cilium, изменение Service Argo CD и запуск Redis hook; остальные различия сначала разберите. При несовпадении установленных версий остановите передачу и согласуйте конфигурацию, не совмещая её с обновлением версий.
+5. Вручную выполните Sync только `cilium` без prune, Force и Replace. Подтвердите готовность агентов на всех трёх узлах, operator и Envoy, работу DNS, связь pod между узлами и доступ к API через VIP. Дождитесь применения пула и L2-политики в sync wave `1`; пул должен быть без конфликта, а `.2–.11` — свободными и исключёнными из DHCP до выдачи IP.
+6. Затем вручную выполните Sync только `argocd` без prune, Force и Replace. Дождитесь завершения Redis hook, готовности application-controller, repo-server, Redis и сервера, выдачи `10.60.80.2` Service `argocd-server` и доступа к нему из локальной сети. Убедитесь в сохранности существующих Applications и Secrets, а также исключений внутренних ресурсов Cilium.
 7. Выполните `lab-cluster/bootstrap/verify.sh post-pivot` и просмотрите `Synced`/`Healthy` обоих Applications. Повторный refresh не должен создавать diff сертификатов. После Sync `helm history` и `helm status` остаются сведениями об установке CAAPH и больше не показывают актуальное состояние аддонов.
 
 `Prune=false` и отсутствие finalizer защищают от удаления при обычном Sync/удалении Application, но не предотвращают ошибочные изменения ресурсов при ручном Sync. Ошибка Cilium может остановить связь Argo и CAPI с API; ошибка обновления Argo — сам механизм доставки. Обновляйте компоненты по одному и сохраняйте внешний kubeconfig и SSH-доступ. CAAPH также работает в целевом кластере и после `InstallOnce` не восстанавливает аддоны автоматически.
