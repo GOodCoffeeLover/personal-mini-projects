@@ -21,4 +21,4 @@ spec:
     classRef:
       name: lab-cluster
     controlPlane:
-      replicas: 1
+      replicas: 3

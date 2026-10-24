@@ -10,7 +10,7 @@ case "$mode" in
 esac
 
 kubectl --kubeconfig "$TARGET_KUBECONFIG" -n argocd get applications \
-  lab-cluster-applications cert-manager capi-operator capi-providers lab-cluster-cluster
+  lab-cluster-applications cert-manager capi-operator capi-providers lab-cluster-cluster cilium argocd
 
 kubectl --kubeconfig "$TARGET_KUBECONFIG" -n cert-manager wait \
   --for=condition=Available deployment/cert-manager --timeout=15m
@@ -28,6 +28,10 @@ kubectl --kubeconfig "$TARGET_KUBECONFIG" wait --for=condition=Ready node --all 
 kubectl --kubeconfig "$TARGET_KUBECONFIG" -n kube-system rollout status daemonset/cilium --timeout=15m
 kubectl --kubeconfig "$TARGET_KUBECONFIG" -n kube-system rollout status deployment/cilium-operator --timeout=15m
 kubectl --kubeconfig "$TARGET_KUBECONFIG" -n argocd rollout status deployment/argocd-server --timeout=15m
+kubectl --kubeconfig "$TARGET_KUBECONFIG" -n argocd rollout status statefulset/argocd-application-controller --timeout=15m
+kubectl --kubeconfig "$TARGET_KUBECONFIG" -n argocd rollout status deployment/argocd-repo-server --timeout=15m
+kubectl --kubeconfig "$TARGET_KUBECONFIG" -n argocd rollout status deployment/argocd-redis --timeout=15m
+echo "Helm status describes the bootstrap releases; after Argo CD takeover, inspect Applications and live workloads for current state."
 helm --kubeconfig "$TARGET_KUBECONFIG" -n kube-system status cilium
 helm --kubeconfig "$TARGET_KUBECONFIG" -n argocd status argocd
 
@@ -42,5 +46,5 @@ if [[ "$mode" == pre-pivot ]]; then
     --to-kubeconfig "$TARGET_KUBECONFIG" --namespace "$CLUSTER_NAME" -v 4
   echo "Review the dry-run for Machines, templates, required Secrets, three PRM and both addon proxies with their releases before moving."
 else
-  echo "Review the moved resources and deployed Helm releases, then inspect the lab-cluster-cluster diff before a manual sync."
+  echo "Review the moved resources, Applications and live workloads, then inspect the lab-cluster-cluster diff before a manual sync."
 fi

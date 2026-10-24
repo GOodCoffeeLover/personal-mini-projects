@@ -17,6 +17,7 @@ spec:
   options:
     wait: true
     timeout: 20m
+  # Bootstrap values; keep chart version and values aligned with applications/cilium.yaml.
   valuesTemplate: |
     kubeProxyReplacement: "true"
     k8sServiceHost: 10.60.80.1

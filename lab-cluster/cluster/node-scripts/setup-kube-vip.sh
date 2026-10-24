@@ -15,16 +15,38 @@ is_ipv4_address() {
   done
 }
 
-KUBEADM_CONFIG="/run/kubeadm/kubeadm.yaml"
-if [[ ! -f "$KUBEADM_CONFIG" ]]; then
-  echo "Skipping kube-vip: ${KUBEADM_CONFIG} does not exist"
-  exit 0
-fi
+case "$#" in
+  0)
+    # A reused host can retain the other phase's config; prefer the newer file.
+    if [[ -f /run/kubeadm/kubeadm-join-config.yaml && ( ! -f /run/kubeadm/kubeadm.yaml \
+      || /run/kubeadm/kubeadm-join-config.yaml -nt /run/kubeadm/kubeadm.yaml ) ]]; then
+      KUBEADM_CONFIG="/run/kubeadm/kubeadm-join-config.yaml"
+      endpoint_key="apiServerEndpoint:"
+      kubeconfig="/etc/kubernetes/admin.conf"
+    elif [[ -f /run/kubeadm/kubeadm.yaml ]]; then
+      KUBEADM_CONFIG="/run/kubeadm/kubeadm.yaml"
+      endpoint_key="controlPlaneEndpoint:"
+      kubeconfig="/etc/kubernetes/super-admin.conf"
+    else
+      echo "Kubeadm init/join config not found; pass an endpoint and kubeconfig explicitly" >&2
+      exit 1
+    fi
+    endpoint="$(
+      awk -v key="$endpoint_key" '$1 == key { value=$2; gsub(/^"|"$/, "", value); print value; exit }' \
+        "$KUBEADM_CONFIG"
+    )"
+    ;;
+  2)
+    endpoint="$1"
+    kubeconfig="$2"
+    ;;
+  *)
+    echo "Usage: $0 [<IPv4:port> <absolute-kubeconfig-path>]" >&2
+    exit 1
+    ;;
+esac
 
-endpoint="$(
-  awk '$1 == "controlPlaneEndpoint:" { value=$2; gsub(/^"|"$/, "", value); print value; exit }' \
-    "$KUBEADM_CONFIG"
-)"
+[[ "$kubeconfig" == /* ]] || { echo "Kubeconfig path must be absolute" >&2; exit 1; }
 
 vip_address="${endpoint%:*}"
 vip_port="${endpoint##*:}"
@@ -32,8 +54,8 @@ if [[ "$vip_address" == "$endpoint" ]] \
   || ! is_ipv4_address "$vip_address" \
   || [[ ! "$vip_port" =~ ^[0-9]+$ ]] \
   || (( 10#$vip_port < 1 || 10#$vip_port > 65535 )); then
-  echo "Skipping kube-vip: controlPlaneEndpoint '${endpoint}' is not an IPv4 address with a valid port"
-  exit 0
+  echo "Invalid kube-vip endpoint '${endpoint}': expected an IPv4 address with a valid port" >&2
+  exit 1
 fi
 
 TEMP_DIR="$(mktemp -d /run/setup-kube-vip.XXXXXX)"
@@ -82,7 +104,7 @@ spec:
     - name: svc_enable
       value: "false"
     - name: k8s_config_file
-      value: /etc/kubernetes/super-admin.conf
+      value: "${kubeconfig}"
     - name: kubernetes_addr
       value: "kubernetes:${vip_port}"
     securityContext:
@@ -92,7 +114,7 @@ spec:
         - NET_RAW
     volumeMounts:
     - name: kubeconfig
-      mountPath: /etc/kubernetes/super-admin.conf
+      mountPath: "${kubeconfig}"
       readOnly: true
   hostAliases:
   - ip: 127.0.0.1
@@ -103,7 +125,7 @@ spec:
   volumes:
   - name: kubeconfig
     hostPath:
-      path: /etc/kubernetes/super-admin.conf
+      path: "${kubeconfig}"
 EOF
 
 sudo mkdir -p /etc/kubernetes/manifests

@@ -19,6 +19,7 @@ spec:
     timeout: 20m
     install:
       createNamespace: true
+  # Bootstrap values; keep chart version and values aligned with applications/argocd.yaml.
   valuesTemplate: |
     redis:
       image:
